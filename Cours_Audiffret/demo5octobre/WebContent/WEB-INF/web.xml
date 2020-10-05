@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>demo5octobre</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+
+    <servlet-name>Informatique</servlet-name>
+
+    <servlet-class>fr.polytech.nancy.info.Informatique</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>Informatique</servlet-name>
+
+    <url-pattern>/info</url-pattern>
+
+  </servlet-mapping>
+  
+    <servlet>
+
+    <servlet-name>re</servlet-name>
+
+    <servlet-class>fr.polytech.nancy.reseau.Reseau</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>re</servlet-name>
+
+    <url-pattern>/reseau</url-pattern>
+
+  </servlet-mapping>
+  
+  
+  
+  
+      <servlet>
+
+    <servlet-name>maths</servlet-name>
+
+    <servlet-class>fr.polytech.nancy.maths.Maths</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>maths</servlet-name>
+
+    <url-pattern>/maths</url-pattern>
+
+  </servlet-mapping>
+  
+</web-app>
