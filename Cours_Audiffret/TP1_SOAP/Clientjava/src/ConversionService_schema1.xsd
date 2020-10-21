@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://www.polytechNancy.fr" xmlns:tns="http://www.polytechNancy.fr" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="convertir" type="tns:convertir"/>
+
+  <xs:element name="convertirResponse" type="tns:convertirResponse"/>
+
+  <xs:complexType name="convertir">
+    <xs:sequence>
+      <xs:element name="mt" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="convertirResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
