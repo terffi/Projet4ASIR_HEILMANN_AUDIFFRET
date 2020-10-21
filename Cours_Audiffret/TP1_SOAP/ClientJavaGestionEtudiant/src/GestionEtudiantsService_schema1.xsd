@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://www.polytech.fr" xmlns:tns="http://www.polytech.fr" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="SearchId" type="tns:SearchId"/>
+
+  <xs:element name="SearchIdResponse" type="tns:SearchIdResponse"/>
+
+  <xs:element name="ajout" type="tns:ajout"/>
+
+  <xs:element name="ajoutResponse" type="tns:ajoutResponse"/>
+
+  <xs:element name="initialisation" type="tns:initialisation"/>
+
+  <xs:element name="initialisationResponse" type="tns:initialisationResponse"/>
+
+  <xs:element name="modifier" type="tns:modifier"/>
+
+  <xs:element name="modifierResponse" type="tns:modifierResponse"/>
+
+  <xs:element name="suppression" type="tns:suppression"/>
+
+  <xs:element name="suppressionResponse" type="tns:suppressionResponse"/>
+
+  <xs:element name="tous" type="tns:tous"/>
+
+  <xs:element name="tousResponse" type="tns:tousResponse"/>
+
+  <xs:complexType name="ajout">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+      <xs:element name="specialite" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ajoutResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tous">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="tousResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifier">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+      <xs:element name="specialite" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="suppression">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="suppressionResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="initialisation">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="initialisationResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="SearchId">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SearchIdResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
