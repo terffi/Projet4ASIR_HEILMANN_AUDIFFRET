@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://www.polytech.fr" xmlns:tns="http://www.polytech.fr" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="ajout" type="tns:ajout"/>
+
+  <xs:element name="ajoutResponse" type="tns:ajoutResponse"/>
+
+  <xs:element name="creer_liste" type="tns:creer_liste"/>
+
+  <xs:element name="creer_listeResponse" type="tns:creer_listeResponse"/>
+
+  <xs:element name="etudiant" type="tns:etudiant"/>
+
+  <xs:element name="recherche" type="tns:recherche"/>
+
+  <xs:element name="rechercheResponse" type="tns:rechercheResponse"/>
+
+  <xs:element name="supprimer" type="tns:supprimer"/>
+
+  <xs:element name="supprimerResponse" type="tns:supprimerResponse"/>
+
+  <xs:element name="tous" type="tns:tous"/>
+
+  <xs:element name="tousResponse" type="tns:tousResponse"/>
+
+  <xs:complexType name="supprimer">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="etudiant">
+    <xs:sequence>
+      <xs:element name="classe" type="xs:string" minOccurs="0"/>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="num_etudiant" type="xs:int"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="supprimerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recherche">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rechercheResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:etudiant" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ajout">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg3" type="xs:int"/>
+      <xs:element name="arg4" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ajoutResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:etudiant" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creer_liste">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="creer_listeResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tous">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tousResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:etudiant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

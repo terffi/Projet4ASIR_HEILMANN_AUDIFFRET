@@ -33,7 +33,7 @@ public class ServiceEtudiant {
 	}
 	
 	@WebMethod(operationName="ajout")
-	public Etudiant ajouter(@WebParam(name = "mt") String prenom,String classe, int num_etudiant, ArrayList<Etudiant> etudiants1) {
+	public Etudiant ajouter(String nom, String prenom, String classe, int num_etudiant, ArrayList<Etudiant> etudiants1) {
 		Etudiant e = new Etudiant(nom, prenom, classe, num_etudiant);
 		etudiants1.add(e);
 		return e;
