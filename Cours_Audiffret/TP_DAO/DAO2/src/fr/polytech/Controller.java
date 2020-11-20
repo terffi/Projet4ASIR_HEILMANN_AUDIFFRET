@@ -29,7 +29,6 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		Etudiants etudiantsListe = new Etudiants();
 		request.setAttribute("resultat", etudiantsListe.afficherTousLesEtudiants());
-		request.setAttribute("resultatRecherche", etudiantsListe.afficherTousLesEtudiants());
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/dao.jsp").forward(request, response);
 	}
@@ -65,13 +64,13 @@ public class Controller extends HttpServlet {
 			etudiants.supprimerUnEtudiant(id);
 		}
 		if(action.equals("RechercherEtudiant")) {
-			String recherche = request.getParameter("recherche");
+			String motClef = request.getParameter("recherche");
 			
-			if(recherche.equals("")) {
+			if(motClef.equals("")) {
 				request.setAttribute("resultatRecherche", etudiants.afficherTousLesEtudiants());
 			}
 			else {
-				request.setAttribute("resultatRecherche", etudiants.recherche(recherche));
+				request.setAttribute("resultatRecherche", etudiants.recherche(motClef));
 			}
 		}
 		

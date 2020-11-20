@@ -149,14 +149,19 @@ public class Etudiants {
 		List<Etudiant> resultat = new ArrayList<Etudiant>();
 		
 		// se connecter à la base de donnée ...
-		Statement statement = null;
+		//Statement statement = null;
 		ResultSet resultSet = null;
 		
 		try {			
-			statement = connection.createStatement();
+			//statement = connection.createStatement();
 			//executer une requete et recuperer le contenu dans l'objet resultSet ....
-			resultSet = statement.executeQuery("SELECT * FROM etudiants WHERE identifiant LIKE '%"+motClef+"%' OR nom LIKE '%"+motClef+"%' OR prenom LIKE '%"+motClef+"%'");
-			
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `etudiants` WHERE `identifiant` LIKE ? OR `nom` LIKE ? OR `prenom` LIKE ?");
+			preparedStatement.setString(1, motClef);
+			preparedStatement.setString(2, motClef);
+			preparedStatement.setString(3, motClef);
+			//resultSet = statement.executeQuery("SELECT * FROM `etudiants` WHERE `identifiant` LIKE '%"+motClef+"%' OR `nom` LIKE '%"+motClef+"%' OR `prenom` LIKE '%"+motClef+"%'");
+
+			resultSet = preparedStatement.executeQuery();
 			//recuperation des données ....
 			while(resultSet.next()) {
 				int identifiant = resultSet.getInt("identifiant");
