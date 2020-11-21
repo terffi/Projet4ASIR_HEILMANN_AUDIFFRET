@@ -119,9 +119,9 @@ public class Etudiants {
 		
 		try {
 			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `etudiants` SET `nom`=?,`prenom`=? WHERE `identifiant`=?");
-			preparedStatement.setInt(1, etudiants.getIdentifiant());
-			preparedStatement.setString(2, etudiants.getNom());
-			preparedStatement.setString(3, etudiants.getPrenom());
+			preparedStatement.setInt(3, etudiants.getIdentifiant());
+			preparedStatement.setString(1, etudiants.getNom());
+			preparedStatement.setString(2, etudiants.getPrenom());
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -129,15 +129,14 @@ public class Etudiants {
 		}
 		
 	}
+	
 	
 	public void supprimerUnEtudiant(Etudiant etudiants) {
 		this.seConnecter();
 		
 		try {
 			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `etudiants` WHERE `identifiant`=?");
-			//preparedStatement.setInt(1, etudiants.getIdentifiant());
-			//preparedStatement.setString(2, etudiants.getNom());
-			//preparedStatement.setString(3, etudiants.getPrenom());
+			preparedStatement.setInt(1, etudiants.getIdentifiant());
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -146,20 +145,78 @@ public class Etudiants {
 		
 	}
 	
-	public void rechercher(Etudiant etudiants) {
+	
+	public List<Etudiant> rechercher(Etudiant etudiants) {
 		this.seConnecter();
+		List<Etudiant> resultatRecherche = new ArrayList<Etudiant>();
 		
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT `identifiant`, `nom`, `prenom` FROM `etudiants` WHERE `identifiant`=?");
-			preparedStatement.setInt(1, etudiants.getIdentifiant());
-			preparedStatement.setString(2, etudiants.getNom());
-			preparedStatement.setString(3, etudiants.getPrenom());
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT `identifiant`, `nom`, `prenom` FROM `etudiants` WHERE `nom`=?");
+			//preparedStatement.setInt(1, etudiants.getIdentifiant());
+			//preparedStatement.setString(2, etudiants.getNom());
+			//preparedStatement.setString(3, etudiants.getPrenom());
+			
+			int identifiant = ((ResultSet) preparedStatement).getInt("identifiant");
+			String nom = ((ResultSet) preparedStatement).getString("nom");
+			String prenom = ((ResultSet) preparedStatement).getString("prenom");
+			resultatRecherche.add(new Etudiant(identifiant, nom, prenom));
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
+		return resultatRecherche;
+		
 	}
+	
+/*	public List<Etudiant> rechercher(String nomVar) {
+		List<Etudiant> resultatRecherche = new ArrayList<Etudiant>();
+		
+		//chargement du driver Mysql ....
+		this.seConnecter();
+	
+		// se connecter à la base de données ....
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost/13novembreSD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
+			statement = connection.createStatement();
+		// exécuter une requête et récupérer le contenu dans l'objet resultSet ....
+		resultSet = statement.executeQuery("SELECT `identifiant`, `nom`, `prenom` FROM `etudiants` WHERE `nom`="+nomVar+"");
+
+		// récupération des données ....
+		
+		while(resultSet.next()) {
+			int identifiant = resultSet.getInt("identifiant");
+			String nom = resultSet.getString("nom");
+			String prenom = resultSet.getString("prenom");
+			resultatRecherche.add(new Etudiant(identifiant, nom, prenom));
+			
+		}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		finally {
+				try {
+					if (connection != null) connection.close();
+					if (statement != null) statement.close();
+					if (resultSet != null) resultSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	}
+		
+		
+		
+		
+		return resultatRecherche;
+	}*/
 	
 }

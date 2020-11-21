@@ -35,9 +35,19 @@
 
 <p><label id="recherche">Recherche :</label>
 <input type="text" id="recherche" name="recherche"></input>
-<input type="submit" name="action" value="rechercher"/>
-
+<input type="submit" name="action1" value="rechercher"/>
 </p>
+
+<table>
+<c:forEach items="${resultatRecherche}" var="etuds">
+<tr>
+<c:out value="${etuds.nom}"></c:out>
+</tr>
+
+
+</c:forEach>
+
+</table>
 
 </form>
 <br/>

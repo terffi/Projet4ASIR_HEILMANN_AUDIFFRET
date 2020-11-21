@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,6 +41,11 @@ public class Controller extends HttpServlet {
 		Etudiants etudiants2 = new Etudiants();
 		request.setAttribute("resultat", etudiants2.afficherTousLesEtudiants());
 		
+//		Etudiants etudiants3 = new Etudiants();
+//		request.setAttribute("resultatRecherche", etudiants3.rechercher(request.getParameter("recherche")));
+
+		
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/dao2.jsp").forward(request, response);
 	}
 
@@ -54,23 +60,22 @@ public class Controller extends HttpServlet {
 		etudiant.setIdentifiant(Integer.parseInt(request.getParameter("id")));
 		etudiant.setNom(request.getParameter("nom"));
 		etudiant.setPrenom(request.getParameter("prenom"));
+		request.getParameter("recherche");
 		
 		String action = request.getParameter("action");
+		String action1 = request.getParameter("action1");
+		Etudiants etudiants = new Etudiants();
 		
 		if(action.equals("ajouter")) {
-			Etudiants etudiants = new Etudiants();
 			etudiants.ajouterUnEtudiant(etudiant);
 		}
 		if(action.equals("modifier")) {
-			Etudiants etudiants = new Etudiants();
 			etudiants.modifierInformationEtudiant(etudiant);
 		}
 		if(action.equals("supprimer")) {
-			Etudiants etudiants = new Etudiants();
 			etudiants.supprimerUnEtudiant(etudiant);
 		}
-		if(action.equals("rechercher")) {
-			Etudiants etudiants = new Etudiants();
+		if(action1.equals("rechercher")) {
 			etudiants.rechercher(etudiant);
 		}
 
