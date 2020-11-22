@@ -145,6 +145,8 @@ public class Etudiants {
 	public List<Etudiant> recherche(String motClef) {
 		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
 		this.seConnecter(); //je récupère une connexion ....
+		
+		motClef="%"+motClef+"%";
 				
 		List<Etudiant> resultat = new ArrayList<Etudiant>();
 		
@@ -153,7 +155,6 @@ public class Etudiants {
 		ResultSet resultSet = null;
 		
 		try {			
-			//statement = connection.createStatement();
 			//executer une requete et recuperer le contenu dans l'objet resultSet ....
 			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `etudiants` WHERE `identifiant` LIKE ? OR `nom` LIKE ? OR `prenom` LIKE ?");
 			preparedStatement.setString(1, motClef);
