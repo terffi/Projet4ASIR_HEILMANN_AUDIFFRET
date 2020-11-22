@@ -131,12 +131,12 @@ public class Etudiants {
 	}
 	
 	
-	public void supprimerUnEtudiant(int id) {
+	public void supprimerUnEtudiant(Etudiant etudiants) {
 		this.seConnecter();
 		
 		try {
 			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `etudiants` WHERE `identifiant`=?");
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, etudiants.getIdentifiant());
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -146,10 +146,32 @@ public class Etudiants {
 	}
 	
 	
-
+	public List<Etudiant> rechercher(Etudiant etudiants) {
+		this.seConnecter();
+		List<Etudiant> resultatRecherche = new ArrayList<Etudiant>();
+		
+		try {
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT `identifiant`, `nom`, `prenom` FROM `etudiants` WHERE `nom`=?");
+			//preparedStatement.setInt(1, etudiants.getIdentifiant());
+			//preparedStatement.setString(2, etudiants.getNom());
+			//preparedStatement.setString(3, etudiants.getPrenom());
+			
+			int identifiant = ((ResultSet) preparedStatement).getInt("identifiant");
+			String nom = ((ResultSet) preparedStatement).getString("nom");
+			String prenom = ((ResultSet) preparedStatement).getString("prenom");
+			resultatRecherche.add(new Etudiant(identifiant, nom, prenom));
+			
+			preparedStatement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resultatRecherche;
+		
+	}
 	
-	public List<Etudiant> rechercher(String Var) {
-		List<Etudiant> resultat = new ArrayList<Etudiant>();
+/*	public List<Etudiant> rechercher(String nomVar) {
+		List<Etudiant> resultatRecherche = new ArrayList<Etudiant>();
 		
 		//chargement du driver Mysql ....
 		this.seConnecter();
@@ -161,10 +183,10 @@ public class Etudiants {
 
 		
 		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost/13novembreSD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
 			statement = connection.createStatement();
-			// exécuter une requête et récupérer le contenu dans l'objet resultSet ....
-			resultSet = statement.executeQuery("SELECT * FROM etudiants WHERE identifiant LIKE '%"+Var+"%' OR nom LIKE '%"+Var+"%' OR prenom LIKE '%"+Var+"%'");
-		//	resultSet = statement.executeQuery("SELECT * FROM etudiants WHERE nom="+"\""+Var+"\""+" OR prenom="+"\""+Var+"\"");
+		// exécuter une requête et récupérer le contenu dans l'objet resultSet ....
+		resultSet = statement.executeQuery("SELECT `identifiant`, `nom`, `prenom` FROM `etudiants` WHERE `nom`="+nomVar+"");
 
 		// récupération des données ....
 		
@@ -172,7 +194,7 @@ public class Etudiants {
 			int identifiant = resultSet.getInt("identifiant");
 			String nom = resultSet.getString("nom");
 			String prenom = resultSet.getString("prenom");
-			resultat.add(new Etudiant(identifiant, nom, prenom));
+			resultatRecherche.add(new Etudiant(identifiant, nom, prenom));
 			
 		}
 		
@@ -194,7 +216,7 @@ public class Etudiants {
 		
 		
 		
-		return resultat;
-	}
+		return resultatRecherche;
+	}*/
 	
 }

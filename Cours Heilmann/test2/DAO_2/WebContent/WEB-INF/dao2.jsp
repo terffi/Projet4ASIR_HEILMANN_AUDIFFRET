@@ -28,38 +28,33 @@
 <input type="submit" name="action" value="modifier"/>
 <input type="submit" name="action" value="supprimer"/>
 
+</form>
+<br/>
+
+<form action="dao" method="post">
+
 <p><label id="recherche">Recherche :</label>
 <input type="text" id="recherche" name="recherche"></input>
-<input type="submit" name="action" value="rechercher"/>
+<input type="submit" name="action1" value="rechercher"/>
 </p>
+
+<table>
+<c:forEach items="${resultatRecherche}" var="etuds">
+<tr>
+<c:out value="${etuds.nom}"></c:out>
+</tr>
+
+
+</c:forEach>
+
+</table>
 
 </form>
 <br/>
 
 
+<c:out value="J'arrive à reconnaître la JSTL et prêt à l'utiliser"></c:out>
 
-
-<c:forEach items="${resultatRecherche}" var="etuds">
-
-<ul>
-
-<li><c:out value="${etuds.identifiant}"></c:out></li>
-<li><c:out value="${etuds.nom}"></c:out></li>
-<li><c:out value="${etuds.prenom}"></c:out></li>
-
-</ul>
-
-</c:forEach>
-
-<br/><br/><br/>
-
-
-
-
-
-
-
-<br/>
 
 
 <p>
@@ -72,13 +67,6 @@
 </ul>
 
 </c:forEach>
-
-
-<c:out value="J'arrive à reconnaître la JSTL et prêt à l'utiliser"></c:out>
-
-
-
-
 
 
 
