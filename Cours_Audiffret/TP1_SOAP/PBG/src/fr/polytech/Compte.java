@@ -1,33 +1,25 @@
 package fr.polytech;
 
 public class Compte {
-	private int id;
 	private String nom;
 	private String prenom;
 	private String mail;
-	private static int num;
+	private String mdp;
 	public Compte() {
 		super();
 	}
-	public Compte(String nom, String prenom, String mail) {
+	public Compte(String nom, String prenom, String mail, String mdp) {
 		super();
-		this.id = num++;
+		this.mdp=mdp;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 	}
-	public Compte(int id, String nom, String prenom, String mail) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
+	public String getMdp() {
+		return mdp;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 	public String getNom() {
 		return nom;

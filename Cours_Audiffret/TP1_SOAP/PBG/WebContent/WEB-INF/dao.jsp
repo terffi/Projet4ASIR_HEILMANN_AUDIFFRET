@@ -21,28 +21,32 @@
 
 
 <div class="page-header">
-<h1>Ajouter/Modifier/Supprimer un étudiant</h1>
+<h1>Ajouter/Modifier/Supprimer un compte</h1>
 </div>
 
 <form action="dao" method="post">
-<div class="form-group">
-  <label for="id">Identifiant:</label>
-  <input type="text" class="form-control" id="id" name="id">
-</div>
 <div class="form-group">
   <label for="nom">Nom:</label>
   <input type="text" class="form-control" id="nom" name="nom">
 </div>
 <div class="form-group">
-  <label for="prennom">Prénom:</label>
+  <label for="prenom">Prénom:</label>
   <input type="text" class="form-control" id="prenom" name="prenom">
 </div>
+<div class="form-group">
+  <label for="mail">Mail:</label>
+  <input type="text" class="form-control" id="mail" name="mail">
+</div>
+<div class="form-group">
+  <label for="mdp">Mot de passe:</label>
+  <input type="text" class="form-control" id="mdp" name="mdp">
+</div>
 
-<input type="submit" name="action" value="AjoutEtudiant" class="btn btn-info"/>
+<input type="submit" name="action" value="Ajout" class="btn btn-info"/>
 
-<input type="submit" name="action" value="ModifierEtudiant" class="btn btn-info"/>
+<input type="submit" name="action" value="Modifier" class="btn btn-info"/>
 
-<input type="submit" name="action" value="SupprimerEtudiant" class="btn btn-info"/>
+<input type="submit" name="action" value="Supprimer" class="btn btn-info"/>
 
 </form>
 
@@ -61,7 +65,7 @@
   <label for="id">Recherche:</label>
   <input type="text" class="form-control" id="recherche" name="recherche">
 </div>
-<input type="hidden" name="action" value="RechercherEtudiant"/>
+<input type="hidden" name="action" value="Rechercher"/>
 
 
 </form>
@@ -74,20 +78,22 @@
 
 <thead>
       <tr>
-        <th>id</th>
         <th>nom</th>
         <th>prénom</th>
+        <th>mail</th>
+        <th>mot de passe</th>
       </tr>
 </thead>
 
 <tbody>
 
-<c:forEach items="${resultatRecherche}" var="etudiant">
+<c:forEach items="${resultatRecherche}" var="compteRecherche">
 
 <tr>
-<td><c:out value="${etudiant.numero}"></c:out></td>
-<td><c:out value="${etudiant.nom}"></c:out></td>
-<td><c:out value="${etudiant.prenom}"></c:out></td>
+<td><c:out value="${compteRecherche.nom}"></c:out></td>
+<td><c:out value="${compteRecherche.prenom}"></c:out></td>
+<td><c:out value="${compteRecherche.mail}"></c:out></td>
+<td><c:out value="${compteRecherche.mdp}"></c:out></td>
 </tr>
 
 </c:forEach>
@@ -116,24 +122,26 @@ $(document).ready(function() {
 
 <div class="container">
 
-<table class="table" id="listeEtudiant">
+<table class="table" id="listeCompte">
 
 <thead>
       <tr>
-        <th>id</th>
         <th>nom</th>
         <th>prénom</th>
+        <th>mail</th>
+        <th>mot de passe</th>
       </tr>
 </thead>
 
 <tbody>
 
-<c:forEach items="${resultat}" var="etud">
+<c:forEach items="${resultat}" var="compte">
 
 <tr>
-<td><c:out value="${etud.numero}"></c:out></td>
-<td><c:out value="${etud.nom}"></c:out></td>
-<td><c:out value="${etud.prenom}"></c:out></td>
+<td><c:out value="${compte.nom}"></c:out></td>
+<td><c:out value="${compte.prenom}"></c:out></td>
+<td><c:out value="${compte.mail}"></c:out></td>
+<td><c:out value="${compte.mdp}"></c:out></td>
 </tr>
 
 </c:forEach>
@@ -144,7 +152,7 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#listeEtudiant').DataTable();
+    $('#listeCompte').DataTable();
 } );
 </script>
 

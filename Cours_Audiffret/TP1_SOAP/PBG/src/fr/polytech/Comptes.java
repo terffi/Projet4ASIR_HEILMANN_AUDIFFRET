@@ -76,11 +76,11 @@ private ResultSet resultSet = null;
 			
 			//recuperation des données ....
 			while(resultSet.next()) {
-				int identifiant = resultSet.getInt("identifiant");
 				String nom = resultSet.getString("nom");
 				String prenom = resultSet.getString("prenom");
 				String mail = resultSet.getString("mail");
-				resultat.add(new Compte(identifiant,nom,prenom,mail));
+				String mdp = resultSet.getString("mot de passe");
+				resultat.add(new Compte(nom,prenom,mail,mdp));
 			}
 			
 		} catch (SQLException e) {
@@ -99,11 +99,11 @@ private ResultSet resultSet = null;
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO `comptes`(`id`, `nom`, `prenom`,`mail`) VALUES (?,?,?,?)");
-			preparedStatement.setInt(1, compte.getId());
-			preparedStatement.setString(2, compte.getNom());
-			preparedStatement.setString(3, compte.getPrenom());
-			preparedStatement.setString(4, compte.getMail());
+			PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO `comptes`(`nom`, `prenom`,`mail`,`mot de passe`) VALUES (?,?,?,?)");
+			preparedStatement.setString(1, compte.getNom());
+			preparedStatement.setString(2, compte.getPrenom());
+			preparedStatement.setString(3, compte.getMail());
+			preparedStatement.setString(4, compte.getMdp());
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();
@@ -123,11 +123,11 @@ private ResultSet resultSet = null;
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `comptes` SET `nom`= ?,`prenom`= ?,`mail`= ? WHERE `id`= ?");
-			preparedStatement.setInt(4, compte.getId());
+			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `comptes` SET `nom`= ?,`prenom`= ?,`mot de passe`= ? WHERE `mail`= ?");
 			preparedStatement.setString(1, compte.getNom());
 			preparedStatement.setString(2, compte.getPrenom());
-			preparedStatement.setString(3, compte.getMail());
+			preparedStatement.setString(3, compte.getMdp());
+			preparedStatement.setString(4, compte.getMail());
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();
@@ -141,14 +141,14 @@ private ResultSet resultSet = null;
 		}
 	}
 	
-	public void supprimerUnCompte(int id) {
+	public void supprimerUnCompte(String mail) {
 		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `id`= ?");
-			preparedStatement.setInt(1, id);
+			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `mail`= ?");
+			preparedStatement.setString(1, mail);
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();
@@ -177,20 +177,19 @@ private ResultSet resultSet = null;
 		
 		try {			
 			//executer une requete et recuperer le contenu dans l'objet resultSet ....
-			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `compte` WHERE `id` LIKE ? OR `nom` LIKE ? OR `prenom` LIKE ? OR `mail` LIKE ?");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `comptes` WHERE `nom` LIKE ? OR `prenom` LIKE ? OR `mail` LIKE ?");
 			preparedStatement.setString(1, motClef);
 			preparedStatement.setString(2, motClef);
 			preparedStatement.setString(3, motClef);
-			preparedStatement.setString(4, motClef);
 
 			resultSet = preparedStatement.executeQuery();
 			//recuperation des données ....
 			while(resultSet.next()) {
-				int identifiant = resultSet.getInt("identifiant");
 				String nom = resultSet.getString("nom");
 				String prenom = resultSet.getString("prenom");
 				String mail = resultSet.getString("mail");
-				resultat.add(new Compte(identifiant,nom,prenom,mail));
+				String mdp = resultSet.getString("mot de passe");
+				resultat.add(new Compte(nom,prenom,mail,mdp));
 			}
 			
 		} catch (SQLException e) {
