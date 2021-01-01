@@ -116,7 +116,7 @@ $(document).ready(function() {
 
 
 <div class="page-header">
-<h1>Liste de tous les étudiants</h1>
+<h1>Liste de tous les comptes</h1>
 </div>
 
 
