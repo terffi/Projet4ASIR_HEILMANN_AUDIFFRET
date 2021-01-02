@@ -93,28 +93,46 @@ private ResultSet resultSet = null;
 		return resultat;
 	}
 	
-	public void ajouterUnCompte(Compte compte) {
+	public Compte ajouterUnCompte(Compte compte) {
+		//vérifie si un compte avec l'adresse mail rentrée existe déjà puis ajoute le compte à la table comptes si le mail n'est pas
+		//déjà pris, renvoie le compte ajouté si le mail est libre, renvoie null sinon
+		
 		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO `comptes`(`nom`, `prenom`,`mail`,`mot de passe`) VALUES (?,?,?,?)");
-			preparedStatement.setString(1, compte.getNom());
-			preparedStatement.setString(2, compte.getPrenom());
-			preparedStatement.setString(3, compte.getMail());
-			preparedStatement.setString(4, compte.getMdp());
+			//vérification de l'adresse mail
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `comptes` WHERE `mail`=?");
+			preparedStatement.setString(1, compte.getMail());
 			
-			//executer la requete ....
-			preparedStatement.executeUpdate();
+			resultSet = preparedStatement.executeQuery();
+			//recuperation des données ....
+			if(resultSet.next()) {
+				//un compte existe déjà
+				compte=null;				
+			}
+			else {
+				preparedStatement = this.connection.prepareStatement("INSERT INTO `comptes`(`nom`, `prenom`,`mail`,`mot de passe`) VALUES (?,?,?,?)");
+				preparedStatement.setString(1, compte.getNom());
+				preparedStatement.setString(2, compte.getPrenom());
+				preparedStatement.setString(3, compte.getMail());
+				preparedStatement.setString(4, compte.getMdp());
+				
+				//executer la requete ....
+				preparedStatement.executeUpdate();
+			}
 			
 		} catch (SQLException e) {
+			compte=null;
 			System.out.println("Je n'arrive pas à ajouter un étudiant");
 			e.printStackTrace();
 		}
 		finally {
 			this.seDeconnecter();
 		}
+		
+		return compte;
 	}
 	
 	public void modifierUnCompte(Compte compte) {

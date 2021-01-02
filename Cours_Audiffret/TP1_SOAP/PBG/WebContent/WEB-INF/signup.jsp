@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +40,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="acceuil">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
@@ -46,7 +50,7 @@
 						</ul>
 					</li>
 					<li><a href="contact.html">Contact</a></li>
-					<li class="active"><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+					<li class="active"><a class="btn" href="sign-in">SIGN IN / SIGN UP</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -59,7 +63,7 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="acceuil">Home</a></li>
 			<li class="active">Registration</li>
 		</ol>
 
@@ -75,32 +79,36 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Register a new account</h3>
-							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="sign-in">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
 							<hr>
 
-							<form>
+							<form action="sign-up" method="post">
 								<div class="top-margin">
-									<label>First Name</label>
-									<input type="text" class="form-control">
+									<label for="prenom">First Name</label>
+									<input type="text" class="form-control" id="prenom" name="prenom" value="${prenom}">
+									<c:out value="${erreurPrenom}"></c:out>
 								</div>
 								<div class="top-margin">
-									<label>Last Name</label>
-									<input type="text" class="form-control">
+									<label for="nom">Last Name</label>
+									<input type="text" class="form-control" id="nom" name="nom" value="${nom}">
+									<c:out value="${erreurNom}"></c:out>
 								</div>
 								<div class="top-margin">
-									<label>Email Address <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<label for="mail">Email Address <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="mail" name="mail" value="${mail}">
+									<c:out value="${erreurMail}"></c:out>
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
-										<label>Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<label for="mdp">Password <span class="text-danger">*</span></label>
+										<input type="password" class="form-control" id="mdp" name="mdp">
 									</div>
 									<div class="col-sm-6">
-										<label>Confirm Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<label for="confirmMdp">Confirm Password <span class="text-danger">*</span></label>
+										<input type="password" class="form-control" id="confirmMdp" name="confirmMdp">
 									</div>
+									<c:out value="${erreurMdp}"></c:out>
 								</div>
 
 								<hr>
