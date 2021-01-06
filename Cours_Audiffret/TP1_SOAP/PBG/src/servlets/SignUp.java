@@ -89,7 +89,7 @@ public class SignUp extends HttpServlet {
 				HttpSession maSession = request.getSession();
 				
 				maSession.setAttribute("compte", compte);
-				response.sendRedirect("/PBG");
+				response.sendRedirect("/PBG/acceuil");
 			}
 			else {
 				request.setAttribute("erreurMail", "Cette adresse mail est déjà utilisée");

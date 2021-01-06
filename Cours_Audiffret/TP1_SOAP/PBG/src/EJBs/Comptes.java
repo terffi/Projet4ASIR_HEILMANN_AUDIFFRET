@@ -159,14 +159,15 @@ private ResultSet resultSet = null;
 		}
 	}
 	
-	public void supprimerUnCompte(String mail) {
+	public void supprimerUnCompte(String mail,String mdp) {
 		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `mail`= ?");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `mail`= ? AND `mot de passe`= ?");
 			preparedStatement.setString(1, mail);
+			preparedStatement.setString(2, mdp);
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();

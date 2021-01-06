@@ -86,6 +86,24 @@
   </servlet-mapping>
   
   
+  <servlet>
+
+    <servlet-name>mon_compte</servlet-name>
+
+    <servlet-class>servlets.MonCompte</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>mon_compte</servlet-name>
+
+    <url-pattern>/mon_compte</url-pattern>
+
+  </servlet-mapping>
+  
+  
   
   
   
