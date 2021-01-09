@@ -29,14 +29,16 @@
 <div class="form-group">
   <label for="nom">Nom:</label>
   <input type="text" class="form-control" id="nom" name="nom" value="${sessionScope.compte.nom}">
+  <c:out value="${erreurNom}"></c:out>
 </div>
 <div class="form-group">
   <label for="prenom">Prénom:</label>
   <input type="text" class="form-control" id="prenom" name="prenom" value="${sessionScope.compte.prenom}">
+  <c:out value="${erreurPrenom}"></c:out>
 </div>
 
 <div class="form-group">
-  <label for="mdp">Pour effectuer toute modification ou supprimer votre compte, veuillez entrer votre mot de passe:</label>
+  <label for="mdp">Pour effectuer toute modification, veuillez entrer votre mot de passe:</label>
   <input type="password" class="form-control" id="mdp" name="mdp">
   <c:out value="${erreurMdp}"></c:out>
 </div>
@@ -47,17 +49,53 @@
 
 <br/><br/><br/>
 
-<div>
-<input type="submit" name="action" value="Supprimer le compte" class="btn btn-danger"/>
+</form>
+
+<div class="page-header">
+<h1>Changer de mot de passe :</h1>
 </div>
 
-<br/><br/><br/>
+<form action="MonCompte" method="post">
+<div class="form-group">
+  <label for="modifMdp">Mot de passe actuel :</label>
+  <input type="password" class="form-control" id="modifMdp" name="modifMdp">
+  <c:out value="${erreurModifMdp}"></c:out>
+</div>
+<div class="form-group">
+  <label for="newMdp">Nouveau mot de passe :</label>
+  <input type="password" class="form-control" id="newMdp" name="newMdp">
+  <c:out value="${erreurNewMdp}"></c:out>
+</div>
+<div class="form-group">
+  <label for="confirmMdp">Confirmez votre nouveau mot de passe :</label>
+  <input type="password" class="form-control" id="confirmMdp" name="confirmMdp">
+  <c:out value="${erreurConfirmMdp}"></c:out>
+</div>
+<div>
+<input type="submit" name="action" value="Changer de mot de passe" class="btn btn-info"/>
+</div>
 
 </form>
 
 <br/><br/><br/>
 
+<div class="page-header">
+<h1>Suppression du compte :</h1>
+</div>
 
+<form action="MonCompte" method="post">
+<div class="form-group">
+  <label for="mdpSuppr">Pour supprimer votre compte, veuillez entrer votre mot de passe :</label>
+  <input type="password" class="form-control" id="mdpSuppr" name="mdpSuppr">
+  <c:out value="${erreurSupprMdp}"></c:out>
+</div>
+<div>
+<input type="submit" name="action" value="Supprimer le compte" class="btn btn-danger"/>
+</div>
+
+</form>
+
+<br/><br/><br/>
 
 </body>
 </html>

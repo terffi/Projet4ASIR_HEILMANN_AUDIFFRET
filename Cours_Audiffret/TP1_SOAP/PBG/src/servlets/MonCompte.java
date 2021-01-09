@@ -40,8 +40,6 @@ public class MonCompte extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession maSession = request.getSession();
 		
-		// On définit un objet de la classe métier .... on fait appel à la méthode ajouterUnEtudiant(Etudiant etudiant)
-		
 		String action = request.getParameter("action");
 		
 		Comptes comptes = new Comptes();
@@ -49,35 +47,120 @@ public class MonCompte extends HttpServlet {
 		Compte compte = (Compte) maSession.getAttribute("compte"); //récupération du compte de la session
 		String mail = compte.getMail(); //récupération du mail
 		
-		String mdp = request.getParameter("mdp"); //récupération du mot de passe rentré
 		
-		compte = comptes.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
 		
-		if(compte!=null) {
-		
-			if(action.equals("Modifier le compte")) {
-				compte.setNom(request.getParameter("nom"));
-				compte.setPrenom(request.getParameter("prenom"));
+		if(action.equals("Modifier le compte")) {
+			String mdp = request.getParameter("mdp"); //récupération du mot de passe rentré
+			
+			compte = comptes.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
+			
+			if(compte!=null) {
 				
-				comptes.modifierUnCompte(compte);
+				String nom = request.getParameter("nom");
+				String prenom = request.getParameter("prenom");
 				
-				maSession.setAttribute("compte", compte);	
+				boolean valide=true;
 				
-				response.sendRedirect("/PBG/MonCompte");
+				String champVide="Ce champ ne peut pas être vide";
+				if(prenom.equals("")) {
+					request.setAttribute("erreurPrenom", champVide);
+					valide=false;
+				}
+				if(nom.equals("")) {
+					request.setAttribute("erreurNom", champVide);
+					valide=false;
+				}
+				
+				if(valide) {
+				
+					compte.setNom(nom);
+					compte.setPrenom(prenom);
+					
+					comptes.modifierUnCompte(compte);
+					
+					maSession.setAttribute("compte", compte);	
+					
+					response.sendRedirect("/PBG/MonCompte");
+				}
+				else {
+					doGet(request,response);
+				}
 			}
-			if(action.equals("Supprimer le compte")) {				
+			else {
+				request.setAttribute("erreurMdp", "Mot de passe incorrecte");
+				doGet(request,response);
+			}	
+		}
+		
+		
+		
+		
+		if(action.equals("Changer de mot de passe")) {
+			String mdp = request.getParameter("modifMdp"); //récupération du mot de passe rentré
+			
+			compte = comptes.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
+			
+			if(compte!=null) {
+				
+				String newMdp = request.getParameter("newMdp"); //récupération du nouveau mot de passe
+				String confirmMdp = request.getParameter("confirmMdp");
+				
+				boolean valide=true;
+				
+				if(newMdp.equals("")) {
+					request.setAttribute("erreurNewMdp", "Ce champ ne peut pas être vide");
+					valide=false;
+				}
+				else {
+					if(!newMdp.equals(confirmMdp)) {
+						request.setAttribute("erreurConfirmMdp", "Les mots de passe de correspondent pas");
+						valide=false;
+					}
+				}
+				
+				if(valide) {
+				
+					compte.setMdp(newMdp);
+						
+					comptes.modifierUnCompte(compte);
+						
+					maSession.setAttribute("compte", compte);	
+						
+					response.sendRedirect("/PBG/MonCompte");
+				}
+				else {
+					doGet(request,response);
+				}				
+			}
+			else {
+				request.setAttribute("erreurModifMdp", "Mot de passe incorrecte");
+				doGet(request,response);
+			}
+		}		
+		
+		
+		
+		if(action.equals("Supprimer le compte")) {
+			
+			String mdp = request.getParameter("mdpSuppr"); //récupération du mot de passe rentré
+			
+			compte = comptes.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
+			
+			if(compte!=null) {
 				comptes.supprimerUnCompte(mail,mdp);
 				
 				maSession.setAttribute("compte", null);
 				
 				response.sendRedirect("/PBG/acceuil");
 			}
+			else {
+				request.setAttribute("erreurSupprMdp", "Mot de passe incorrecte");
+				doGet(request,response);
+			}
 		}
-		else {
-			request.setAttribute("erreurMdp", "Mot de passe incorrecte");
-			doGet(request,response);
-		}
-	
+		
+		
+		
 	}
 
 }

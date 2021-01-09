@@ -50,7 +50,16 @@
 						</ul>
 					</li>
 					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" href="sign-in">SIGN IN / SIGN UP</a></li>
+					
+					<c:choose>
+						<c:when test="${connecté}">
+							<li><a class="btn" href="mon_compte">MON COMPTE</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a class="btn" href="sign-in">SIGN IN / SIGN UP</a></li>
+						</c:otherwise>
+					</c:choose>
+					
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
