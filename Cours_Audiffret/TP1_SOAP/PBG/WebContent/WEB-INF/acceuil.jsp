@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +36,7 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="Acceuil"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="acceuil"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -46,7 +50,16 @@
 						</ul>
 					</li>
 					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+					
+					<c:choose>
+						<c:when test="${connecté}">
+							<li><a class="btn" href="mon_compte">MON COMPTE</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a class="btn" href="sign-in">SIGN IN / SIGN UP</a></li>
+						</c:otherwise>
+					</c:choose>
+					
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -69,6 +82,7 @@
 	<div class="container text-center">
 		<br> <br>
 		<h2 class="thin">The best place to tell people why they are here</h2>
+		<c:out value="${sessionScope.compte.nom} ${sessionScope.compte.prenom} ${sessionScope.compte.mail} ${sessionScope.compte.mdp}"></c:out>
 		<p class="text-muted">
 			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br> 
 			the chicken was involved; the pig was committed.
@@ -149,7 +163,7 @@
 
 		<div class="jumbotron top-space">
 			<h4>Dicta, nostrum nemo soluta sapiente sit dolor quae voluptas quidem doloribus recusandae facere magni ullam suscipit sunt atque rerum eaque iusto facilis esse nam veniam incidunt officia perspiciatis at voluptatibus. Libero, aliquid illum possimus numquam fuga.</h4>
-     		<p class="text-right"><a class="btn btn-primary btn-large">Learn more Â»</a></p>
+     		<p class="text-right"><a class="btn btn-primary btn-large">Learn more »</a></p>
   		</div>
 
 </div>	<!-- /container -->
@@ -243,15 +257,12 @@
 
 	</footer>	
 		
-
-
-
-
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+		<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
+
 </body>
 </html>
