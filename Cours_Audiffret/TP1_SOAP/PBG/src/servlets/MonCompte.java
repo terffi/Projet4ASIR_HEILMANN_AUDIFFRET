@@ -120,9 +120,16 @@ public class MonCompte extends HttpServlet {
 				
 				if(valide) {
 				
-					compte.setMdp(newMdp);
+					compte.setMdp(comptes.modifierMotDePasse(mail, newMdp));
+					
+					if(compte.getMdp()==null) {
+						//erreur lors de l'encryption
+						request.setAttribute("erreurMdp", "Une erreur est survenu");
 						
-					comptes.modifierUnCompte(compte);
+						compte = comptes.connexion(mail, mdp); //on récupère l'ancien mot de passe dans la session
+						
+						doGet(request,response);						
+					}
 						
 					maSession.setAttribute("compte", compte);	
 						
@@ -147,7 +154,7 @@ public class MonCompte extends HttpServlet {
 			compte = comptes.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
 			
 			if(compte!=null) {
-				comptes.supprimerUnCompte(mail,mdp);
+				comptes.supprimerUnCompte(mail);
 				
 				maSession.setAttribute("compte", null);
 				

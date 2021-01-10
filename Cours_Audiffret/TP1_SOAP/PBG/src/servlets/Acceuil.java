@@ -34,22 +34,20 @@ public class Acceuil extends HttpServlet {
 		
 		Compte compte = (Compte) maSession.getAttribute("compte"); //récupération du compte de la session
 		
+		boolean connected = false;
+		
 		if(compte!=null) {
 		
-			compte = new Comptes().connexion(compte.getMail(), compte.getMdp()); //vérification de la validité du compte (on reconnecte l'utilisateur)
-			
-			if(compte!=null) {
-				request.setAttribute("connecté", true);
+			//vérification de la validité du compte
+			if(new Comptes().compteValide(compte)) {
+				connected=true;
 			}
 			else {
+				//compte invalide, on déconnecte l'utilisateur
 				maSession.setAttribute("compte", null);
-				request.setAttribute("connecté", false);
 			}
-		
 		}
-		else {
-			request.setAttribute("connecté", false);
-		}
+		request.setAttribute("connecté", connected);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/acceuil.jsp").forward(request, response);
 	}

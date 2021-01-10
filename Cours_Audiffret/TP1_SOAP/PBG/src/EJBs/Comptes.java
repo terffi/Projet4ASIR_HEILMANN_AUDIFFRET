@@ -1,5 +1,7 @@
 package EJBs;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -51,6 +53,7 @@ private ResultSet resultSet = null;
 				}
 	}
 	
+	
 	//méthode qui s'occupe uniquement de se déconnecter de la base de donnée ....
 	public void seDeconnecter() {
 		try {
@@ -63,7 +66,11 @@ private ResultSet resultSet = null;
 		}
 	}
 	
+	
+	
+	
 	public List<Compte> afficherTousLesComptes(){
+		//Méthode qui renvoie la liste des comptes de la table comptes
 		
 		List<Compte> resultat = new ArrayList<Compte>();
 		
@@ -93,11 +100,14 @@ private ResultSet resultSet = null;
 		return resultat;
 	}
 	
-	public Compte ajouterUnCompte(Compte compte) {
+	
+	
+	
+	
+	public Compte ajouterUnCompte(Compte compte,String mdp) {
 		//vérifie si un compte avec l'adresse mail rentrée existe déjà puis ajoute le compte à la table comptes si le mail n'est pas
 		//déjà pris, renvoie le compte ajouté si le mail est libre, renvoie null sinon
 		
-		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
@@ -107,12 +117,15 @@ private ResultSet resultSet = null;
 			preparedStatement.setString(1, compte.getMail());
 			
 			resultSet = preparedStatement.executeQuery();
+			
 			//recuperation des données ....
 			if(resultSet.next()) {
 				//un compte existe déjà
 				compte=null;				
 			}
 			else {
+				compte.setMdp(Encryption.generateStorngPasswordHash(mdp)); //encryption du mot de passe
+				
 				preparedStatement = this.connection.prepareStatement("INSERT INTO `comptes`(`nom`, `prenom`,`mail`,`mot de passe`) VALUES (?,?,?,?)");
 				preparedStatement.setString(1, compte.getNom());
 				preparedStatement.setString(2, compte.getPrenom());
@@ -125,33 +138,45 @@ private ResultSet resultSet = null;
 			
 		} catch (SQLException e) {
 			compte=null;
-			System.out.println("Je n'arrive pas à ajouter un étudiant");
+			System.out.println("Je n'arrive pas à ajouter un compte");
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// erreur lors de l'encryption du mot de passe
+			compte=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// erreur lors de l'encryption du mot de passe
+			compte=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
 			e.printStackTrace();
 		}
 		finally {
 			this.seDeconnecter();
 		}
-		
 		return compte;
 	}
 	
+	
+	
+	
 	public void modifierUnCompte(Compte compte) {
-		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
+		//methode permettant de modifier nom et prénom d'un compte
+		
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `comptes` SET `nom`= ?,`prenom`= ?,`mot de passe`= ? WHERE `mail`= ?");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `comptes` SET `nom`= ?,`prenom`= ? WHERE `mail`= ?");
 			preparedStatement.setString(1, compte.getNom());
 			preparedStatement.setString(2, compte.getPrenom());
-			preparedStatement.setString(3, compte.getMdp());
-			preparedStatement.setString(4, compte.getMail());
+			preparedStatement.setString(3, compte.getMail());
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("Je n'arrive pas à modifier un étudiant");
+			System.out.println("Je n'arrive pas à modifier un compte");
 			e.printStackTrace();
 		}
 		finally {
@@ -159,21 +184,61 @@ private ResultSet resultSet = null;
 		}
 	}
 	
-	public void supprimerUnCompte(String mail,String mdp) {
-		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
+	
+	public String modifierMotDePasse(String mail, String mdp) {
+		//méthode permettant de modifier le mot de passe d'un compte, renvoie le mot de passe encrypté
+		
+		//encryption du mot de passe
+		String mdpEncrypt;
+		try {
+			mdpEncrypt = Encryption.generateStorngPasswordHash(mdp);
+		} catch (NoSuchAlgorithmException e1) {
+			//une erreur est survenu lors de l'encryption du mot de passe
+			e1.printStackTrace();
+			return null;	
+		} catch (InvalidKeySpecException e1) {
+			//une erreur est survenu lors de l'encryption du mot de passe
+			e1.printStackTrace();
+			return null;
+		}
+		
+		
+		this.seConnecter(); //je récupère une connexion ....
+			
+		//failles d'injection SQL ....
+		try {
+			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE `comptes` SET `mot de passe`= ? WHERE `mail`= ?");
+			preparedStatement.setString(1, mdpEncrypt);
+			preparedStatement.setString(2, mail);
+	
+			//executer la requete ....
+			preparedStatement.executeUpdate();
+				
+		} catch (SQLException e) {
+			mdpEncrypt=null;
+			System.out.println("Je n'arrive pas à modifier le mot de passe");
+			e.printStackTrace();
+		}
+		finally {
+			seDeconnecter();
+		}
+		return mdpEncrypt;
+	}
+	
+	public void supprimerUnCompte(String mail) {
+		
 		this.seConnecter(); //je récupère une connexion ....
 		
 		//failles d'injection SQL ....
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `mail`= ? AND `mot de passe`= ?");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("DELETE FROM `comptes` WHERE `mail`= ?");
 			preparedStatement.setString(1, mail);
-			preparedStatement.setString(2, mdp);
 			
 			//executer la requete ....
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("Je n'arrive pas à supprimer un étudiant");
+			System.out.println("Je n'arrive pas à supprimer un compte");
 			e.printStackTrace();
 		}
 		finally {
@@ -183,7 +248,8 @@ private ResultSet resultSet = null;
 	
 	
 	public List<Compte> recherche(String motClef) {
-		//je me connecte à la base de donnée et on ajoute l'étudiant passé en paramètre ....
+		//moteur de recherche renvoyant la liste des comptes trouvé en fonction de la recherche motClef
+		
 		this.seConnecter(); //je récupère une connexion ....
 		
 		motClef="%"+motClef+"%";
@@ -191,7 +257,6 @@ private ResultSet resultSet = null;
 		List<Compte> resultat = new ArrayList<Compte>();
 		
 		// se connecter à la base de donnée ...
-		//Statement statement = null;
 		ResultSet resultSet = null;
 		
 		try {			
@@ -233,19 +298,33 @@ private ResultSet resultSet = null;
 		
 		try {
 			//executer une requete et recuperer le contenu dans l'objet resultSet ....
-			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `comptes` WHERE `mail`=? AND `mot de passe`=?");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `comptes` WHERE `mail`=?");
 			preparedStatement.setString(1, mail);
-			preparedStatement.setString(2, mdp);
 
 			resultSet = preparedStatement.executeQuery();
 			//recuperation des données ....
 			if(resultSet.next()) {
-				compte.setNom(resultSet.getString("nom"));
-				compte.setPrenom(resultSet.getString("prenom"));
-				compte.setMail(mail);
-				compte.setMdp(mdp);
+				String mdpEncrypt = resultSet.getString("mot de passe");
+				try {
+					if(Encryption.validatePassword(mdp, mdpEncrypt)) {
+						compte.setNom(resultSet.getString("nom"));
+						compte.setPrenom(resultSet.getString("prenom"));
+						compte.setMail(mail);
+						compte.setMdp(mdpEncrypt);
+					}
+					else {
+						compte=null;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvalidKeySpecException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			else {
+				//le mail entré n'est pas dans la table
 				compte=null;
 			}
 			
@@ -257,6 +336,37 @@ private ResultSet resultSet = null;
 		}	
 		
 		return compte;
+	}
+	
+	
+	public boolean compteValide(Compte compte) {
+		//permet de vérifier la validité d'un compte
+		//renvoie true si le couple mail/mot de passe sont dans la table comptes
+		//renvoie false sinon
+		
+		boolean valide = false;
+		
+		this.seConnecter();
+		
+		try {
+			//executer une requete et recuperer le contenu dans l'objet resultSet ....
+			PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM `comptes` WHERE `mail`=? AND `mot de passe`=?");
+			preparedStatement.setString(1, compte.getMail());
+			preparedStatement.setString(2, compte.getMdp());
+
+			resultSet = preparedStatement.executeQuery();
+			//recuperation des données ....
+			if(resultSet.next()) {
+				return true;
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			this.seDeconnecter();
+		}	
+		
+		return valide;
 	}
 
 }

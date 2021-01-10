@@ -81,9 +81,9 @@ public class SignUp extends HttpServlet {
 		}
 		
 		if(valide) {
-			Compte compte = new Compte(nom,prenom,mail,mdp);
+			Compte compte = new Compte(nom,prenom,mail,null);
 			
-			compte = new Comptes().ajouterUnCompte(compte);
+			compte = new Comptes().ajouterUnCompte(compte,mdp);
 			
 			if(compte!=null) {
 				HttpSession maSession = request.getSession();

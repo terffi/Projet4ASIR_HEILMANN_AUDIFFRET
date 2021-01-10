@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import EJBs.Compte;
+import EJBs.Comptes;
+
 /**
  * Servlet implementation class Controller
  */
@@ -65,13 +68,12 @@ public class Controller extends HttpServlet {
 			Compte compte = new Compte();
 			
 			compte.setMail(request.getParameter("mail"));
-			compte.setMdp(request.getParameter("mdp"));
 			compte.setNom(request.getParameter("nom"));
 			compte.setPrenom(request.getParameter("prenom"));
 			
 			
 			if(action.equals("Ajout")) {
-				comptes.ajouterUnCompte(compte);
+				compte=comptes.ajouterUnCompte(compte,request.getParameter("mdp"));
 			}
 			if(action.equals("Modifier")) {
 				comptes.modifierUnCompte(compte);
@@ -79,7 +81,7 @@ public class Controller extends HttpServlet {
 		}
 		if(action.equals("Supprimer")) {
 			String mail = request.getParameter("mail");
-			
+
 			comptes.supprimerUnCompte(mail);
 		}
 		if(action.equals("Rechercher")) {
