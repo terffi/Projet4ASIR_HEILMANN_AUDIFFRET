@@ -24,7 +24,7 @@
 <h1>Ajouter/Modifier/Supprimer un compte</h1>
 </div>
 
-<form action="dao" method="post">
+<form action="GestionComptes" method="post">
 <div class="form-group">
   <label for="nom">Nom:</label>
   <input type="text" class="form-control" id="nom" name="nom">
@@ -52,13 +52,31 @@
 
 <br/><br/><br/>
 
+<div class="page-header">
+<h1>Définir un compte administrateur</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="mailAdmin">Mail:</label>
+  <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
+</div>
+
+<input type="submit" name="action" value="Ajouter en tant qu'admin" class="btn btn-info"/>
+
+</form>
+
+<br/><br/><br/>
+
+
+
 
 
 <div class="page-header">
 <h1>Moteur de recherche</h1>
 </div>
 
-<form action="dao" method="post">
+<form action="GestionComptes" method="post">
 
 
 <div class="form-group">
@@ -78,6 +96,7 @@
 
 <thead>
       <tr>
+      	<th>admin</th>
         <th>nom</th>
         <th>prénom</th>
         <th>mail</th>
@@ -90,6 +109,7 @@
 <c:forEach items="${resultatRecherche}" var="compteRecherche">
 
 <tr>
+<td><c:out value="${compteRecherche.admin}"></c:out></td>
 <td><c:out value="${compteRecherche.nom}"></c:out></td>
 <td><c:out value="${compteRecherche.prenom}"></c:out></td>
 <td><c:out value="${compteRecherche.mail}"></c:out></td>
@@ -126,6 +146,7 @@ $(document).ready(function() {
 
 <thead>
       <tr>
+        <th>admin</th>
         <th>nom</th>
         <th>prénom</th>
         <th>mail</th>
@@ -138,6 +159,7 @@ $(document).ready(function() {
 <c:forEach items="${resultat}" var="compte">
 
 <tr>
+<td><c:out value="${compte.admin}"></c:out></td>
 <td><c:out value="${compte.nom}"></c:out></td>
 <td><c:out value="${compte.prenom}"></c:out></td>
 <td><c:out value="${compte.mail}"></c:out></td>
