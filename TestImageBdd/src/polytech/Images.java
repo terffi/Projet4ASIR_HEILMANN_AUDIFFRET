@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,17 +78,19 @@ public class Images {
 		this.connection = connection;
 	}
 	
-	public void uploadImage(int id, String nom, String description, InputStream input) {
+	public void uploadImage(int id, String nom, String description, Date date, InputStream input) {
 		
 		this.seConnecter();
 		
 		
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO `bankimage` (`id`, `nom`, `description`, `image`) values (?, ?, ?, ?)");
+			PreparedStatement preparedStatement = this.connection.prepareStatement("INSERT INTO `bankimage` (`id`, `nom`, `description`, `image`, `date`) values (?, ?, ?, ?, ?)");
 			preparedStatement.setInt(1, id);
 			preparedStatement.setString(2, nom);
 			preparedStatement.setString(3, description);
 			preparedStatement.setBlob(4, input);
+			preparedStatement.setDate(5, date);
+			
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -121,6 +124,7 @@ public class Images {
 			String nom = resultSet.getString("nom");
 			String description = resultSet.getString("description");
 			Blob image = resultSet.getBlob("image");
+			Date date = resultSet.getDate("date");
 			
 			InputStream in = image.getBinaryStream();  
 			
@@ -141,7 +145,7 @@ public class Images {
 			in.close();
 			out.close();
 			
-			resultat.add(new Image(id, nom, description, image, base64Image));
+			resultat.add(new Image(id, nom, description, image, date, base64Image));
 			
 		}
 		
@@ -194,6 +198,7 @@ public class Images {
 			String nom = resultSet.getString("nom");
 			String description = resultSet.getString("description");
 			Blob image = resultSet.getBlob("image");
+			Date date = resultSet.getDate("date");
 			
 			InputStream in = image.getBinaryStream();  
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -211,7 +216,7 @@ public class Images {
 			in.close();
 			out.close();
 			
-			resultat.add(new Image(id, nom, description, image, base64Image));
+			resultat.add(new Image(id, nom, description, image, date, base64Image));
 			
 		}
 		
@@ -272,14 +277,15 @@ public class Images {
 		
 	}
 	
-	public void modifierNomDescription(int id, String nom, String description) {
+	public void modifierNomDescriptionDate(int id, String nom, String description, Date date) {
 		this.seConnecter();
 		
 		try {
-			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE bankimage SET `nom`=?, `description`=? WHERE `id`=?");
-			preparedStatement.setInt(2, id);
+			PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE bankimage SET `nom`=?, `description`=?, `date`=? WHERE `id`=?");
+			preparedStatement.setInt(4, id);
 			preparedStatement.setString(1, nom);
 			preparedStatement.setString(2, description);
+			preparedStatement.setDate(3, date);
 			
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -289,7 +295,7 @@ public class Images {
 	}
 	
 	//vérifie si l'identifiant est déjà utilisé
-	public boolean verification_id(int id, boolean envoi_modif) {
+	public boolean verification_id2(int id, boolean envoi_modif) {
 		
 		List<Integer> resultat = new ArrayList<Integer>();
 		int a = 0;

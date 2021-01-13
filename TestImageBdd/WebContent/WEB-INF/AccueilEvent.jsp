@@ -15,7 +15,7 @@
             <th align="left">Sujets</th>
             <th align="right">
             	<a href="ControllerImage">AccesStaff</a>
-                <a href="#">Inscription</a>
+                <a href="ControllerClient">Voir les events</a>
             </th>
         </table>
 </body>

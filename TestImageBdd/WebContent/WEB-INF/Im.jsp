@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>    
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">   
 <html>
 <head>
@@ -24,6 +25,10 @@
 			
 			<label for="description">Description de l'event :</label>
 			<input type="text" id="description" name="description" value=""/>
+			<br/>
+			
+			<label for="date">Date de l'event :</label>
+			<input type="text" id="date" name="date" value=""/>
 			<br/>
 			
 			<label for="fichier">Emplacement du fichier image :<span class="requis">*</span></label>
@@ -98,31 +103,35 @@
 	</form>
 
 	
-	<c:if test="${erreurNom==true }">
+	<c:if test="${erreurNom}">
 		<h1>Le nom du fichier est invalide, veuillez recommencer</h1>
 	</c:if>
-	<c:if test="${erreurNonImage==true }">
+	<c:if test="${erreurNonImage}">
 		<h1>Vous n'avez pas rentrer une image, veuillez recommencer</h1>
 	</c:if>
-	<c:if test="${erreurTailleFichier==true }">
+	<c:if test="${erreurTailleFichier}">
 		<h1>le fichier est trop volumineux, limite = 1 Mo</h1>
 	</c:if>
-	<c:if test="${erreurDescription==true }">
+	<c:if test="${erreurDescription}">
 		<h1>la description est invalide</h1>
 	</c:if>
-	<c:if test="${erreurIdentifiant==true }">
+	<c:if test="${erreurIdentifiant}">
 		<h1>l'identifiant est invalide</h1>
 	</c:if>
-	<c:if test="${erreurFichierManquant==true }">
+	<c:if test="${erreurFichierManquant}">
 		<h1>le fichier est manquant</h1>
+	</c:if>
+	<c:if test="${erreurDate}">
+		<h1>La date est invalide</h1>
 	</c:if>
 	
 
-	<c:forEach items="${list }"  var = "image" >
+	<c:forEach items="${list}"  var = "image" >
 		<li><c:out value ="${image.id }"></c:out></li>
 		<li><c:out value ="${image.nom }"></c:out></li>
 		<li><img src="data:image/jpg;base64,${image.base64Image}" width="200" height="200"></li>
 		<li><c:out value ="${image.description }"></c:out></li>
+		<li><c:out value ="${image.date }"></c:out></li>
 	</c:forEach>
 	
 
