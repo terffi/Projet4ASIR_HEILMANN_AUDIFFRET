@@ -1,10 +1,11 @@
-package fr.polytech;
+package EJBs;
 
 public class Compte {
 	private String nom;
 	private String prenom;
 	private String mail;
 	private String mdp;
+	private boolean admin;
 	public Compte() {
 		super();
 	}
@@ -14,6 +15,15 @@ public class Compte {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
+		this.admin=false;
+	}
+	public Compte(String nom, String prenom, String mail, String mdp, boolean admin) {
+		super();
+		this.mdp=mdp;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.admin=admin;
 	}
 	public String getMdp() {
 		return mdp;
@@ -38,6 +48,12 @@ public class Compte {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }
