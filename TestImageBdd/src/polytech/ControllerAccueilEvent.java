@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ControllerAccueil
@@ -26,7 +27,7 @@ public class ControllerAccueilEvent extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/AccueilEvent.jsp").forward(request, response);
 	}
 
@@ -35,7 +36,11 @@ public class ControllerAccueilEvent extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession maSession = request.getSession();
+		
+		
 		doGet(request, response);
+		response.sendRedirect("/TestImageBdd/ControllerAccueilEvent");
 	}
 
 }

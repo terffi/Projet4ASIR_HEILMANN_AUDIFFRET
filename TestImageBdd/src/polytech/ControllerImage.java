@@ -3,10 +3,17 @@ package polytech;
 import java.io.IOException;
 
 
+
 import java.io.InputStream;
+import java.util.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Formatter;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,28 +51,21 @@ public class ControllerImage extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public boolean erreurNom=false;
-    public boolean erreurTailleFichier=false;
-    public boolean erreurFichierManquant=false;
-    public boolean erreurDescription=false;
-    public boolean erreurIdentifiant=false;
-    public boolean erreurNonImage=false;
+    public boolean erreurNom;
+    public boolean erreurTailleFichier;
+    public boolean erreurFichierManquant;
+    public boolean erreurDescription;
+    public boolean erreurIdentifiant;
+    public boolean erreurNonImage;
+    public boolean erreurDate;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession maSession = request.getSession();
-		
-		InputStream input = null;
-		
 		//récupération des données 
-		Image image = new Image();
 		Images images = new Images();
-		
-		
-		
-		String nom = request.getParameter("nom");
 		//request.setAttribute("nom", nom);
 				
 		if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
@@ -90,123 +90,150 @@ public class ControllerImage extends HttpServlet {
 
 		
 	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		InputStream input = null;
-		
 		//récupération des données 
-		Image image = new Image();
 		Images images = new Images();
 			
-		
-		
-		
 		HttpSession maSession = request.getSession();
 		
 		String action = request.getParameter("action");
 		
 		
 		if (action.equals("Envoyer")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			String nom = request.getParameter("nom");
-			String description = request.getParameter("description");
-			try {
-				Part part = request.getPart("fichier");
-			
-				if(part!=null) {
+			if(validation_id(request.getParameter("id")) && validation_date(request.getParameter("date"))) {
+				erreurIdentifiant=true;
+				validationNom(request.getParameter("nom"));
+				validationDescription(request.getParameter("description"));
+			}
+			else {
+				erreurIdentifiant = false;
+				int id = Integer.parseInt(request.getParameter("id"));
+				String nom = request.getParameter("nom");
+				String description = request.getParameter("description");
+				String date1 = request.getParameter("date");
 				
-					erreurs.clear();//suppression des anciennes erreurs
-					System.out.println(part.getName());
-					System.out.println(part.getSize());
-					System.out.println(part.getContentType());
+				//conversion de la string date en une Date java.util
+			    Date date = convertionDate(date1);
+				try {
+					Part part = request.getPart("fichier");
+				
+					if(part!=null) {
 					
-					input = part.getInputStream();
+						erreurs.clear();//suppression des anciennes erreurs
+						System.out.println(part.getName());
+						System.out.println(part.getSize());
+						System.out.println(part.getContentType());
+						
+						input = part.getInputStream();
+						
+					}
+							
+				    if(validationImage(images, input, part) && images.verification_id2(id, true) && validationNom(nom) && validationDescription(description)) {
+				    	erreurIdentifiant = images.verification_id2(id, true);  
+				    	erreurNom = validationNom(nom);
+				    	System.out.println(erreurDate);
+				    	//conversion de java util date en sql date pour la base de donnée 
+				    	java.sql.Date date2 = new java.sql.Date(date.getTime());
+				    	
+				    	images.uploadImage(id, nom, description, date2, input);
+				  	
+				    }
+				}catch(IllegalStateException e) {
+					e.printStackTrace();
+					
+					images.setErreur("fichier", "fichier trop volumineux, limite = 128Mo");
 					
 				}
-						
-			    if(validationImage(images, input, part) && images.verification_id(id, true) && validationNom(nom) && validationDescription(description)) {
-			    	erreurIdentifiant = images.verification_id(id, true);  
-			    	images.uploadImage(id, nom, description, input);
-			  	
-			    }
-			    else {
-			
-			    	request.setAttribute("erreurNom", erreurNom);
-			    	request.setAttribute("erreurTailleFichier", erreurTailleFichier);
-			    	request.setAttribute("erreurFichierManquant", erreurFichierManquant);
-			    	request.setAttribute("erreurDescription", erreurDescription);
-			    	request.setAttribute("erreurIdentifiant", erreurIdentifiant);
-			    }
-			}catch(IllegalStateException e) {
-				e.printStackTrace();
-				
-				images.setErreur("fichier", "fichier trop volumineux, limite = 128Mo");
-				
 			}
+			request.setAttribute("erreurNom", erreurNom);
+	    	request.setAttribute("erreurTailleFichier", erreurTailleFichier);
+	    	request.setAttribute("erreurFichierManquant", erreurFichierManquant);
+	    	request.setAttribute("erreurDescription", erreurDescription);
+	    	request.setAttribute("erreurIdentifiant", erreurIdentifiant);
+	    	request.setAttribute("erreurDate", erreurDate);
 		}
 		
 		
 		if(action.equals("Supprimer")) {
-			
-			
-			int idSupp = Integer.parseInt(request.getParameter("idSupp"));
-			
-			images.supprimerImage(idSupp);
+			if(validation_id(request.getParameter("idSupp"))) {
+				erreurIdentifiant=true;
+			}
+			else {
+				erreurIdentifiant = false;
+				int idSupp = Integer.parseInt(request.getParameter("idSupp"));
+				images.supprimerImage(idSupp);
+			}
 		}
 
 		if(action.equals("ModifierImage")) {
 			
-			int idModif = Integer.parseInt(request.getParameter("idModif1"));
-			
-			try {
-				Part part = request.getPart("fichierModif");
-			
-				if(part!=null) {
+			if(validation_id(request.getParameter("idModif1"))) {
+				erreurIdentifiant=true;
+			}
+			else {
+				erreurIdentifiant = false;
+				int idModif = Integer.parseInt(request.getParameter("idModif1"));
 				
-					erreurs.clear();//suppression des anciennes erreurs
-					System.out.println(part.getName());
-					System.out.println(part.getSize());
-					System.out.println(part.getContentType());
+				try {
+					Part part = request.getPart("fichierModif");
+				
+					if(part!=null) {
 					
-					input = part.getInputStream();
+						erreurs.clear();//suppression des anciennes erreurs
+						System.out.println(part.getName());
+						System.out.println(part.getSize());
+						System.out.println(part.getContentType());
+						
+						input = part.getInputStream();
+						
+					}
+							
+				    if(validationImage(images, input, part) && images.verification_id2(idModif, false)) {
+				    	erreurIdentifiant = images.verification_id2(idModif, true);
+				    	images.modifierImage(idModif, input);
+				  	
+				    }
+				}catch(IllegalStateException e) {
+					e.printStackTrace();
 					
 				}
-						
-			    if(validationImage(images, input, part) && images.verification_id(idModif, false)) {
-			    	erreurIdentifiant = images.verification_id(idModif, true);
-			    	images.modifierImage(idModif, input);
-			  	
-			    }
-			    else {
-			    	request.setAttribute("erreurTailleFichier", erreurTailleFichier);
-			    	request.setAttribute("erreurFichierManquant", erreurFichierManquant);
-			    	request.setAttribute("erreurIdentifiant", erreurIdentifiant);
-			    }
-			}catch(IllegalStateException e) {
-				e.printStackTrace();
-				
-				images.setErreur("fichier", "fichier trop volumineux, limite = 128Mo");
-				
 			}
+			request.setAttribute("erreurTailleFichier", erreurTailleFichier);
+	    	request.setAttribute("erreurFichierManquant", erreurFichierManquant);
+	    	request.setAttribute("erreurIdentifiant", erreurIdentifiant);
 			
 			
 		}
 		
-		if(action.equals("ModifierNomDescription")) {
+		if(action.equals("ModifierNomDescriptionDate")) {
 			
 			int idModif = Integer.parseInt(request.getParameter("idModif2"));
 			String nomModif = request.getParameter("nomModif2");
 			String descriptionModif = request.getParameter("descriptionModif2");
+			String dateModif = request.getParameter("dateModif");
+			Date date = convertionDate(dateModif);
 			
-			if(validationNom(nomModif) && validationDescription(descriptionModif) && images.verification_id(idModif, false)) {
-				erreurIdentifiant = images.verification_id(idModif, true);
-				images.modifierNomDescription(idModif, nomModif, descriptionModif);
+			if(validation_date(request.getParameter("dateModif"))) {
+				if(validationNom(nomModif) && validationDescription(descriptionModif) && images.verification_id2(idModif, false)) {
+					erreurIdentifiant = images.verification_id2(idModif, true);
+
+					
+				    java.sql.Date date2 = new java.sql.Date(date.getTime());
+				    images.modifierNomDescriptionDate(idModif, nomModif, descriptionModif, date2);
+					erreurDate = true ;
+					
+					
+				}
 			}
-			else {
-				request.setAttribute("erreurIdentifiant", erreurIdentifiant);
-				request.setAttribute("erreurNom", erreurNom);
-				request.setAttribute("erreurDescription", erreurDescription);
-			}
+			
+			request.setAttribute("erreurIdentifiant", erreurIdentifiant);
+			request.setAttribute("erreurNom", erreurNom);
+			request.setAttribute("erreurDescription", erreurDescription);
+			request.setAttribute("erreurDate", erreurDate);
 			
 		}
 		
@@ -229,11 +256,18 @@ public class ControllerImage extends HttpServlet {
 		doGet(request, response);
 		response.sendRedirect("/TestImageBdd/ControllerImage");
 		
+		
 	}
 	
 	
 	
-
+	
+	
+	
+	
+	
+	
+	//méthodes de validation des paramètres des form de la jsp
 	private boolean validationNom(String nom)  {
 		if(!nom.equals("")) {
 			if(nom.length() > 15) {
@@ -241,6 +275,7 @@ public class ControllerImage extends HttpServlet {
 				return false; 
 			}
 			else {
+				erreurNom = false;
 				return true;
 			}
 		}
@@ -287,7 +322,7 @@ public class ControllerImage extends HttpServlet {
 		}
 		if(part.getSize()>128000000) {
 			images.setErreur("fichier", "fichier trop volumineux, limite = 128Mo");
-			erreurTailleFichier = false;
+			erreurTailleFichier = true;
 			return false;
 		}
 		else {
@@ -295,20 +330,59 @@ public class ControllerImage extends HttpServlet {
 		}
 	}
 	
+	private boolean validation_id(String TestId) {
+		if(TestId.equals("")) {return true;}
+		else {
+			try {
+				int i=Integer.parseInt(TestId);
+				return false;
+			}catch(Exception e) {
+				return true;
+			}
+		}
+	}
+	
+	private boolean validation_date(String date1) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		if(date1.equals("")) {
+			erreurDate = true;
+			return true;
+		}
+		else {
+			try {
+		           java.util.Date date = formatter.parse(date1);
+		           System.out.println(date);
+		           System.out.println(formatter.format(date));
+		           erreurDate = false;
+		           return false;
+	
+		        } catch (ParseException e) {
+		        	erreurDate = true;
+		            return true;
+		        }
+		}
+	}
+	
+	private Date convertionDate(String date1) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+	           java.util.Date date = formatter.parse(date1);
+	           System.out.println(date);
+	           System.out.println(formatter.format(date));
+	           erreurDate = false;
+	           return date;
+	           
+
+	        } catch (ParseException e) {
+	        	erreurDate = true;
+	            return null;
+	        }
+	}
+	
 
 	
 	
 	
-	private String getNomFichier(Part part) {
-		//Boucle sur chacun des paramètres de l'en-tête "content-disposition"
-		for(String contentDisposition : part.getHeader("content-disposition").split(";")) {
-			 //Recherche de l'éventuelle présence du paramètre "fichier"
-			if(contentDisposition.trim().startsWith("fichier")) {
-				//Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier
-				return contentDisposition.substring(contentDisposition.indexOf('='));
-			}
-		}
-		return null;
-	}
+	
 
 }
