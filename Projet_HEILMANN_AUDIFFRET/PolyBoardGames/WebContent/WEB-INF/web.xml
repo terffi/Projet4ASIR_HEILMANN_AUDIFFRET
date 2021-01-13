@@ -123,5 +123,59 @@
   </servlet-mapping>
   
   
+      <servlet>
+
+    <servlet-name>contact</servlet-name>
+
+    <servlet-class>servlets.Contact</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>contact</servlet-name>
+
+    <url-pattern>/contact</url-pattern>
+
+  </servlet-mapping>
+  
+  
+        <servlet>
+
+    <servlet-name>about</servlet-name>
+
+    <servlet-class>servlets.About</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>about</servlet-name>
+
+    <url-pattern>/about</url-pattern>
+
+  </servlet-mapping>
+  
+  
+          <servlet>
+
+    <servlet-name>conditions_utilisation</servlet-name>
+
+    <servlet-class>servlets.ConditionsUtilisation</servlet-class>
+
+  </servlet>
+
+
+  <servlet-mapping>
+
+    <servlet-name>conditions_utilisation</servlet-name>
+
+    <url-pattern>/conditions_utilisation</url-pattern>
+
+  </servlet-mapping>
+  
+  
   
 </web-app>

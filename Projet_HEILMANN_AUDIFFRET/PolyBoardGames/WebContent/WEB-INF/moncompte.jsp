@@ -6,6 +6,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,8 +17,23 @@
   <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  	<script type="text/javascript">
+	$(function(){
+		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
+	})
+	$(function(){
+		$(".BandeauInferieur").load("assets/jsp/bandeau_inferieur.jsp");
+	})
+	</script>
 </head>
 <body>
+
+<div class="BandeauSuperieur"></div> 
+
+<br/><br/><br/>
+<br/>
+	
 
 <div class="page-header">
 <h1>Informations du compte :</h1>
@@ -96,6 +114,8 @@
 </form>
 
 <br/><br/><br/>
+
+<div class="BandeauInferieur"></div> 
 
 </body>
 </html>
