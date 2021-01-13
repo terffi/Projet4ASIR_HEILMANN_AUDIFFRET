@@ -7,10 +7,8 @@
 <meta charset="ISO-8859-1">
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-<title>Insert title here</title>
+<title>Gestion des comptes</title>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -48,60 +46,6 @@
 
 <br/><br/><br/>
 <br/>
-
-	
-	
-<div class="page-header">
-<h1>Ajouter/Modifier/Supprimer un compte</h1>
-</div>
-
-<form action="GestionComptes" method="post">
-<div class="form-group">
-  <label for="nom">Nom:</label>
-  <input type="text" class="form-control" id="nom" name="nom">
-</div>
-<div class="form-group">
-  <label for="prenom">Prénom:</label>
-  <input type="text" class="form-control" id="prenom" name="prenom">
-</div>
-<div class="form-group">
-  <label for="mail">Mail:</label>
-  <input type="text" class="form-control" id="mail" name="mail">
-</div>
-<div class="form-group">
-  <label for="mdp">Mot de passe:</label>
-  <input type="text" class="form-control" id="mdp" name="mdp">
-</div>
-
-<input type="submit" name="action" value="Ajout" class="btn btn-info"/>
-
-<input type="submit" name="action" value="Modifier" class="btn btn-info"/>
-
-<input type="submit" name="action" value="Supprimer" class="btn btn-info"/>
-
-</form>
-
-<br/><br/><br/>
-
-<div class="page-header">
-<h1>Définir un compte administrateur</h1>
-</div>
-
-<form action="GestionComptes" method="post">
-<div class="form-group">
-  <label for="mailAdmin">Mail:</label>
-  <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
-</div>
-
-<input type="submit" name="action" value="Ajouter en tant qu'admin" class="btn btn-info"/>
-
-</form>
-
-<br/><br/><br/>
-
-
-
-
 
 <div class="page-header">
 <h1>Moteur de recherche</h1>
@@ -210,6 +154,137 @@ $(document).ready(function() {
 </script>
 
 </div>
+
+	
+<div class="page-header">
+<h1>Ajouter un compte</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="nom">Nom:</label>
+  <input type="text" class="form-control" id="nom" name="nom">
+</div>
+<div class="form-group">
+  <label for="prenom">Prénom:</label>
+  <input type="text" class="form-control" id="prenom" name="prenom">
+</div>
+<div class="form-group">
+  <label for="mail">Mail:</label>
+  <input type="text" class="form-control" id="mail" name="mail">
+</div>
+<div class="form-group">
+  <label for="mdp">Mot de passe:</label>
+  <input type="text" class="form-control" id="mdp" name="mdp">
+</div>
+
+<input type="submit" name="action" value="Ajout" class="btn btn-info"/>
+
+</form>
+
+
+
+
+<br/><br/><br/>
+
+
+
+
+<div class="page-header">
+<h1>Modifier un compte</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="mailModif">Mail:</label>
+  <input type="text" class="form-control" id="mailModif" name="mailModif">
+</div>
+<div class="form-group">
+  <label for="nomModif">Nom:</label>
+  <input type="text" class="form-control" id="nomModif" name="nomModif">
+</div>
+<div class="form-group">
+  <label for="prenomModif">Prénom:</label>
+  <input type="text" class="form-control" id="prenomModif" name="prenomModif">
+</div>
+
+<input type="submit" name="action" value="Modifier" class="btn btn-info"/>
+
+</form>
+
+
+
+
+<br/><br/><br/>
+
+
+
+
+
+<div class="page-header">
+<h1>Modifier un mot de passe</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="mailModifMdp">Mail:</label>
+  <input type="text" class="form-control" id="mailModifMdp" name="mailModifMdp">
+</div>
+<div class="form-group">
+  <label for="mdpModif">Mot de passe:</label>
+  <input type="text" class="form-control" id="mdpModif" name="mdpModif">
+</div>
+
+<input type="submit" name="action" value="Modifier le mot de passe" class="btn btn-info"/>
+
+</form>
+
+
+
+
+<br/><br/><br/>
+
+
+
+
+<div class="page-header">
+<h1>Définir un compte administrateur</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="mailAdmin">Mail:</label>
+  <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
+</div>
+
+<input type="submit" name="action" value="Ajouter en tant qu'administrateur" class="btn btn-info"/>
+
+</form>
+
+
+
+<br/><br/><br/>
+
+
+
+
+<div class="page-header">
+<h1>Supprimer un compte</h1>
+</div>
+
+<form action="GestionComptes" method="post">
+<div class="form-group">
+  <label for="mailSuppr">Mail:</label>
+  <input type="text" class="form-control" id="mailSuppr" name="mailSuppr">
+</div>
+
+<input type="submit" name="action" value="Supprimer" class="btn btn-info"/>
+
+</form>
+
+
+
+
 
 <div class="BandeauInferieur"></div> 
 

@@ -76,42 +76,58 @@ public class GestionComptes extends HttpServlet {
 		//avant toute action, on vérifie que l'utilisateur est connecté avec un compte administrateur
 		if(compteAdmin!=null && comptes.isAdmin(compteAdmin))
 		{	
+			
 			String action = request.getParameter("action");
+			Compte compte = new Compte();
 			
-			
-			
-			if(action.equals("Ajout") || action.equals("Modifier")) {
-				Compte compte = new Compte();
+
+			if(action.equals("Ajout")) {
 				
 				compte.setMail(request.getParameter("mail"));
 				compte.setNom(request.getParameter("nom"));
 				compte.setPrenom(request.getParameter("prenom"));
-				
-				
-				if(action.equals("Ajout")) {
-					compte=comptes.ajouterUnCompte(compte,request.getParameter("mdp"));
-				}
-				if(action.equals("Modifier")) {
-					comptes.modifierUnCompte(compte);
-				}		
+	
+				compte=comptes.ajouterUnCompte(compte,request.getParameter("mdp"));		
 			}
+			
+			
+			if(action.equals("Modifier")) {
+				
+				compte.setMail(request.getParameter("mailModif"));
+				compte.setNom(request.getParameter("nomModif"));
+				compte.setPrenom(request.getParameter("prenomModif"));
+	
+				comptes.modifierUnCompte(compte);		
+			}
+			
+			
+			
 			if(action.equals("Supprimer")) {
-				String mail = request.getParameter("mail");
+				String mail = request.getParameter("mailSuppr");
 	
 				comptes.supprimerUnCompte(mail);
 			}
+			
+			
+			
 			if(action.equals("Rechercher")) {
 				String motClef = request.getParameter("recherche");
 				maSession.setAttribute("recherche", motClef);	
 			}
 		
 		
-			if(action.equals("Ajouter en tant qu'admin")) {
+			if(action.equals("Ajouter en tant qu'administrateur")) {
 				String mail = request.getParameter("mailAdmin");
 				comptes.compteAdmin(mail);
 			
 			}
 			
+			
+			if(action.equals("Modifier le mot de passe")) {
+				String mail = request.getParameter("mailModifMdp");
+				String mdp = request.getParameter("mdpModif");
+				comptes.modifierMotDePasse(mail, mdp);
+			}
 			
 			response.sendRedirect("/PolyBoardGames/gestion_comptes");
 		}
