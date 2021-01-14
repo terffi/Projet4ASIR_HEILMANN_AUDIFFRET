@@ -89,7 +89,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="acceuil">Acceuil</a> | 
+								<a href="acceuil">Accueil</a> | 
 								<a href="acceuil">About</a> |
 								<a href="contact">Contact</a> |
 								
