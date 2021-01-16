@@ -7,10 +7,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-	<title>Progressus - Free business bootstrap template by GetTemplate</title>
+	<title>PolyBoard Games</title>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -22,7 +20,7 @@
 
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main2.css">
 	
 	
 	<script type="text/javascript">
@@ -51,9 +49,30 @@
 	<header id="head">
 		<div class="container">
 			<div class="row">
-				<h1 class="lead">AWESOME, CUSTOMIZABLE, FREE</h1>
-				<p class="tagline">PROGRESSUS: free business bootstrap template by <a href="http://www.gettemplate.com/?utm_source=progressus&amp;utm_medium=template&amp;utm_campaign=progressus">GetTemplate</a></p>
-				<p><a class="btn btn-default btn-lg" role="button">MORE INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
+				<c:choose>
+					<c:when test="${sessionScope.compte==null}">
+						<h1 class="lead">Bienvenue sur le site du PolyBoard Games !</h1>
+					</c:when>
+					<c:otherwise>
+						<h1 class="lead">Bonjour <c:out value="${compte.prenom}"/> !</h1>
+					</c:otherwise>
+				</c:choose>
+				
+				<br/>
+				
+				<p>
+				<c:choose>
+					<c:when test="${sessionScope.compte==null}">
+						<a class="btn btn-default btn-lg" role="button" href="sign-in">SE CONNECTER</a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn btn-default btn-lg" role="button" href="mon_compte">MON COMPTE</a> 
+					</c:otherwise>
+				</c:choose>
+				
+				<a class="btn btn-action btn-lg" role="button">VOIR LES EVENEMENTS</a>
+				
+				</p>
 			</div>
 		</div>
 	</header>
@@ -62,92 +81,58 @@
 	<!-- Intro -->
 	<div class="container text-center">
 		<br> <br>
-		<h2 class="thin">The best place to tell people why they are here</h2>
-		<c:out value="${sessionScope.compte.nom} ${sessionScope.compte.prenom} ${sessionScope.compte.mail} ${sessionScope.compte.mdp}"></c:out>
-		<p class="text-muted">
-			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br> 
-			the chicken was involved; the pig was committed.
+		<h2 class="thin">Inscrivez-vous à des évènements pour pouvoir y participer !</h2>
+			<p class="text-muted">
+			Le PolyBoard Games organise régulièrement des évènements à Polytech Nancy, venez régulièrement sur ce site pour
+			ne rien louper !
 		</p>
 	</div>
 	<!-- /Intro-->
-		
-	<!-- Highlights - jumbotron -->
+	
 	<div class="jumbotron top-space">
-		<div class="container">
-			
-			<h3 class="text-center thin">Reasons to use this template</h3>
-			
-			<div class="row">
-				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Bootstrap-powered</h4></div>
-					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Fat-free</h4></div>
-					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Creative Commons</h4></div>
-					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Author's support</h4></div>
-					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita? </p>
-					</div>
-				</div>
-			</div> <!-- /row  -->
-		
-		</div>
-	</div>
-	<!-- /Highlights -->
-
 	<!-- container -->
-	<div class="container">
-
-		<h2 class="text-center top-space">Frequently Asked Questions</h2>
-		<br>
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Which code editor would you recommend?</h3>
-				<p>I'd highly recommend you <a href="http://www.sublimetext.com/">Sublime Text</a> - a free to try text editor which I'm using daily. Awesome tool!</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Nice header. Where do I find more images like that one?</h3>
-				<p>
-					Well, there are thousands of stock art galleries, but personally, 
-					I prefer to use photos from these sites: <a href="http://unsplash.com">Unsplash.com</a> 
-					and <a href="http://www.flickr.com/creativecommons/by-2.0/tags/">Flickr - Creative Commons</a></p>
-			</div>
-		</div> <!-- /row -->
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Can I use it to build a site for my client?</h3>
-				<p>
-					Yes, you can. You may use this template for any purpose, just don't forget about the <a href="http://creativecommons.org/licenses/by/3.0/">license</a>, 
-					which says: "You must give appropriate credit", i.e. you must provide the name of the creator and a link to the original template in your work. 
-				</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Can you customize this template for me?</h3>
-				<p>Yes, I can. Please drop me a line to sergey-at-pozhilov.com and describe your needs in details. Please note, my services are not cheap.</p>
-			</div>
-		</div> <!-- /row -->
-
-		<div class="jumbotron top-space">
-			<h4>Dicta, nostrum nemo soluta sapiente sit dolor quae voluptas quidem doloribus recusandae facere magni ullam suscipit sunt atque rerum eaque iusto facilis esse nam veniam incidunt officia perspiciatis at voluptatibus. Libero, aliquid illum possimus numquam fuga.</h4>
-     		<p class="text-right"><a class="btn btn-primary btn-large">Learn more »</a></p>
-  		</div>
-
-</div>	<!-- /container -->
+		<div class="container">
+	
+			<h2 class="text-center top-space">Frequently Asked Questions</h2>
+			<br>
+	
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>Puis-je m'inscrire à un évènement si je n'ai pas de compte?</h3>
+					<p>
+					Non, mais se créer un compte prend à peine quelques secondes! Il suffit de renseigner son nom, prénom et 
+					adresse mail <a href="sign-up">ici</a>!
+					</p>
+				</div>
+				<div class="col-sm-6">
+					<h3>Puis-je participer à un évènement si je ne suis pas étudiant à Polytech Nancy?</h3>
+					<p>
+						Hélas, il faut être côtisant au Cercle des Eleves de Polytech Nancy ou faire partie du personnel de
+						Polytech Nancy pour pouvoir participer à la plupart des évènements organisés par le club.
+					</p>
+				</div>
+			</div> <!-- /row -->
+	
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>J'ai oublié mon mot de passe et je ne peux pas le changer</h3>
+					<p>
+						Désolé, la fonctionnalité "j'ai oublié mon mot de passe" ne fonctionne pas pour le moment, n'hésitez pas
+						à <a href="contact">contacter un piviste</a>, ils peuvent changer votre mot de passe! 
+					</p>
+				</div>
+				<div class="col-sm-6">
+					<h3>La page des conditions d'utilisation est vide, est-ce normal?</h3>
+					<p>
+						Oui, il n'y a pas vraiment de conditions d'utilisations pour le moment, ce site est un projet pour la
+						4e année IA2R spécialité SIR, nous n'avons pas eu le temps de rédiger un document de conditions
+						d'utilisation...
+					</p>
+				</div>
+			</div> <!-- /row -->
+	
+	</div>	<!-- /container -->
+</div>
 
 
 <div class="BandeauInferieur"></div> 

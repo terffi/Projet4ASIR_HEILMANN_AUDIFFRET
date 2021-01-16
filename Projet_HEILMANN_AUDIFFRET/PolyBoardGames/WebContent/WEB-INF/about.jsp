@@ -6,10 +6,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-	<title>About - Progressus Bootstrap template</title>
+	<title>About</title>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -21,7 +19,7 @@
 
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main2.css">
 	
 	<script type="text/javascript">
 	$(function(){
@@ -49,7 +47,7 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="acceuil">Home</a></li>
 			<li class="active">About</li>
 		</ol>
 
@@ -60,21 +58,41 @@
 				<header class="page-header">
 					<h1 class="page-title">About us</h1>
 				</header>
-				<h3>Lorem ipsum</h3>
-				<p><img src="assets/images/mac.jpg" alt="" class="img-rounded pull-right" width="300" > Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente.</p>
-				<p>Quos, aliquam nam velit impedit minus tenetur beatae voluptas facere sint pariatur! Voluptatibus, quisquam, error, est assumenda corporis inventore illo nesciunt iure aut dolor possimus repellat minima veniam alias eius!</p>
-				<h3>Necessitatibus</h3>
-				<p>Velit, odit, eius, libero unde impedit quaerat dolorem assumenda alias consequuntur optio quae maiores ratione tempore sit aliquid architecto eligendi pariatur ab soluta doloremque dicta aspernatur labore quibusdam dolore corrupti quod inventore. Maiores, repellat, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-				<h3>Fugit, laboriosam</h3>
-				<p>Eum, quasi, est, vitae, ipsam nobis consectetur ea aspernatur ad eos voluptatibus fugiat nisi perferendis impedit. Quam, nulla, excepturi, voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia voluptatem natus velit fugiat omnis rem eos sapiente quasi quaerat aspernatur quisquam deleniti accusantium laboriosam odio id?</p>
-				<h3>Doloribus, illo ipsum</h3>
-				<p>Velit, odit, eius, libero unde impedit quaerat dolorem assumenda alias consequuntur optio quae maiores ratione tempore sit aliquid architecto eligendi pariatur ab soluta doloremque dicta aspernatur labore quibusdam dolore corrupti quod inventore. Maiores, repellat, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-				<p>Eum, quasi, est, vitae, ipsam nobis consectetur ea aspernatur ad eos voluptatibus fugiat nisi perferendis impedit. Quam, nulla, excepturi, voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia voluptatem natus velit fugiat omnis rem eos sapiente quasi quaerat aspernatur quisquam deleniti accusantium laboriosam odio id?</p>
+				<h3>Le club</h3>
+				<p><img src="assets/images/tarot.png" alt="" class="img-rounded pull-right" width="300" > 
+				Le PolyBoard Games (anciennement F'ESSTIN) est le club Jeux de Société de l'école d'ingénieur de Polytech Nancy, étudiants et personnel 
+				peuvent venir passer un moment détente autour d'un jeux de société ou d'un jeu de cartes lors des séances du
+				mercredi soir.
+				</p>
+				<p>
+				Les séances du PolyBoard Games se déroulent en temps normal tout les Mercredi soir de 18h jusqu'à la fermeture 
+				de l'école, dans la  salle C130. Suite à la crise sanitaire, ces séances se font en ligne sur le 
+				<a href="https://discord.gg/Nct9SKW">serveur discord</a> du club.
+				</p>
 				
+				<h3>Les Pivistes</h3>
+				<p>
+				Les étudiants de Polytech Nancy doivent valider un Projet d'Implication à la Vie de l'Ecole (PIVE) et la gestion
+				d'un club en fait partie.
+				</p>
+				<p>
+				Cette année, les Pivistes du PolyBoard Games sont Brice Heilmann, Berviller Thomas et Sam Audiffret. Tout 3 en 
+				4e année du parcours IA2R spécialisé SIR. Ils font tout ce qui est en leur possible pour offrir des moment détente
+				aux étudiants et au personnel via le PolyBoard Games, et la crise sanitaire ne leur fait pas peur.
+				</p>
+				
+				<h3>Les locaux</h3>
+				<p>
+				En temps normal, le PolyBoard Games occupe la salle C130 de Polytech Nancy. Dû à la crise sanitaire, les séance
+				ne peuvent plus se dérouler en présentiel.
+				</p>
+					
 			</article>
 			<!-- /Article -->
 			
 			<!-- Sidebar -->
+			
+			<!--Nous n'avons pas besoin de Sidebar pour le moment
 			<aside class="col-sm-4 sidebar sidebar-right">
 
 				<div class="widget">
@@ -89,6 +107,8 @@
 				</div>
 
 			</aside>
+			-->
+			
 			<!-- /Sidebar -->
 
 		</div>

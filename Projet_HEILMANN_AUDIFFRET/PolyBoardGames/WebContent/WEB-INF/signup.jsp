@@ -7,10 +7,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-	<title>Sign up - Progressus Bootstrap template</title>
+	<title>Sign up</title>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -22,7 +20,7 @@
 
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main2.css">
 	
 	<script type="text/javascript">
 	$(function(){
@@ -66,22 +64,24 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Register a new account</h3>
-							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="sign-in">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+							<p class="text-center text-muted">
+								Si vous possédez déjà un compte, connectez vous <a href="sign-in">ici</a>. 
+							</p>
 							<hr>
 
 							<form action="sign-up" method="post">
 								<div class="top-margin">
-									<label for="prenom">First Name</label>
+									<label for="prenom">Prénom</label>
 									<input type="text" class="form-control" id="prenom" name="prenom" value="${prenom}">
 									<c:out value="${erreurPrenom}"></c:out>
 								</div>
 								<div class="top-margin">
-									<label for="nom">Last Name</label>
+									<label for="nom">Nom</label>
 									<input type="text" class="form-control" id="nom" name="nom" value="${nom}">
 									<c:out value="${erreurNom}"></c:out>
 								</div>
 								<div class="top-margin">
-									<label for="mail">Email Address <span class="text-danger">*</span></label>
+									<label for="mail">Mail<span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="mail" name="mail" value="${mail}">
 									<c:out value="${erreurMail}"></c:out>
 								</div>
@@ -105,7 +105,8 @@
 										<label class="checkbox">
 											<input type="checkbox"> 
 											I've read the <a href="conditions_utilisation">Terms and Conditions</a>
-										</label>                        
+										</label>
+										<p>(pas besoin de cocher cette case pour le moment)</p>                        
 									</div>
 									<div class="col-lg-4 text-right">
 										<button class="btn btn-action" type="submit">Register</button>

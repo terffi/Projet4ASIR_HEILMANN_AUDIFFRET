@@ -6,10 +6,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-	<title>Contact us - Progressus Bootstrap template</title>
+	<title>Contact us</title>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -21,7 +19,7 @@
 
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/main2.css">
 	
 	<script type="text/javascript">
 	$(function(){
@@ -49,20 +47,21 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="acceuil">Home</a></li>
 			<li class="active">About</li>
 		</ol>
 
 		<div class="row">
 			
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-8 maincontent">
 				<header class="page-header">
 					<h1 class="page-title">Contact us</h1>
 				</header>
 				
 				<p>
-					Weâ€™d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
+				Si vous avez des questions, n'hésitez pas à nous envoyer un mail ! (le formulaire ci-dessous ne fonctionne pas pour
+				le moment, désolé)
 				</p>
 				<br>
 					<form>
@@ -98,17 +97,17 @@
 			<!-- /Article -->
 			
 			<!-- Sidebar -->
-			<aside class="col-sm-3 sidebar sidebar-right">
+			<aside class="col-sm-4 sidebar sidebar-right">
 
 				<div class="widget">
-					<h4>Address</h4>
-					<address>
-						2002 Holcombe Boulevard, Houston, TX 77030, USA
-					</address>
-					<h4>Phone:</h4>
-					<address>
-						(713) 791-1414
-					</address>
+					<h4>Mails</h4>
+						<a href="mailto:#">sam.audiffret@etu.polytech-nancy.univ-lorraine.fr</a><br>
+						<a href="mailto:#">brice.heilmann@etu.polytech-nancy.univ-lorraine.fr</a><br>
+						<a href="mailto:#">thomas.berviller1@etu.univ-lorraine.fr</a><br>
+					<h4>Discord:</h4>
+						<a href="https://discord.gg/Nct9SKW">discord.gg/Nct9SKW</a> (rôle "Gérants")
+					<h4>Facebook:</h4>
+						<a href="https://www.facebook.com/PolyBoardGames">facebook.com/PolyBoardGames</a>
 				</div>
 
 			</aside>
@@ -131,7 +130,7 @@
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
 	
-	<!-- Google Maps -->
+	<!-- Google Maps, il faut payer pour que ça fonctionne correctement-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
 	<script src="assets/js/google-map.js"></script>
 	
