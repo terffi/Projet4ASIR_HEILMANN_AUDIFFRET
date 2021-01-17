@@ -2,10 +2,11 @@ package polytech;
 
 import java.io.Serializable;
 
+
 import java.sql.Blob;
 import java.sql.Date;
 
-public class Event implements Serializable{
+public class Event {
 
 	private int id;
 	private String nom;

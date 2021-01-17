@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 
+
 import java.io.InputStream;
 import java.util.Date;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ import javax.servlet.http.Part;
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 
+import EJBs.Compte;
 import eu.medsea.mimeutil.MimeUtil;
 
 
@@ -65,9 +67,10 @@ public class ControllerEvent extends HttpServlet {
 		HttpSession maSession = request.getSession();
 		//récupération des données 
 		Events images = new Events();
-		//request.setAttribute("nom", nom);
-				
-		//if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
+
+
+			
+		
 		
 		if(maSession.getAttribute("recherche")!=null) {
 			if(maSession.getAttribute("recherche").equals("")) {
@@ -112,219 +115,232 @@ public class ControllerEvent extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		
+		Compte compte = (Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
-		if (action.equals("Envoyer")) {
-			if(validation_id(request.getParameter("id"), events, true)==false || validation_date(request.getParameter("date"))==false) {
-				//validationNom(request.getParameter("nom"));
-				//validationDescription(request.getParameter("description"));
-				if(erreurIdentifiant) {
-					erreurIdentifiant = false;
-					maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
-					}
-				
-				if(erreurDate) {
-					erreurDate = false;
-					maSession.setAttribute("erreurDate", "la date est invalide");
-					}	
-
-			}
-			else {
-				//erreurIdentifiant = false;
-				int id = Integer.parseInt(request.getParameter("id"));
-				String nom = request.getParameter("nom");
-				String description = request.getParameter("description");
-				String date1 = request.getParameter("date");
-				
-				//conversion de la string date en une Date java.util
-			    Date date = convertionDate(date1);
-				try {
-					Part part = request.getPart("fichier");
-				
-					if(part!=null) {
-					
-						System.out.println(part.getName());
-						System.out.println(part.getSize());
-						System.out.println(part.getContentType());
-						
-						input = part.getInputStream();
-						
-					}
-							
-				    if(validationImage(events, input, part) && events.verification_id2(id, true) && validationNom(nom) && validationDescription(description)) {
-
-				    	//conversion de java util date en sql date pour la base de donnée 
-				    	java.sql.Date date2 = new java.sql.Date(date.getTime());
-				    	
-				    	events.uploadImage(id, nom, description, date2, input);
-				  	
-				    }
-				    else {
-				    	
-				    	if(erreurNonImage) {
-							erreurNonImage = false;
-							maSession.setAttribute("erreurDate", "le fichier n'est pas une image");
-						}
-						if(erreurTailleFichier) {
-							erreurTailleFichier = false;
-							maSession.setAttribute("erreurTailleFichier", "le fichier est trop lourd, limite = 1Mo");
-							}
-						if(erreurNom) {
-							erreurNom = false;
-							maSession.setAttribute("erreurNom", "le nom est invalide");
-						}
-						if(erreurDescription) {
-							erreurDescription = false;
-							maSession.setAttribute("erreurDescription", "la description est invalide");
-						}
-						
-				    }
-				    
-				}catch(IllegalStateException e) {
-					e.printStackTrace();
-				}
-			}
-
-		}
+		if(compte!=null) {
 		
-		
-		
-		if(action.equals("Supprimer")) {
-			if(validation_id(request.getParameter("idSupp"), events, false)) {
-				int idSupp = Integer.parseInt(request.getParameter("idSupp"));
-				events.supprimerImage(idSupp);
-			}
-			else {
-				maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
-			}
-		}
-
-		
-		
-		if(action.equals("ModifierImage")) {
+			if(compte.isAdmin()) {
 			
-			if(validation_id(request.getParameter("idModif1"), events, false)==false) {
-				maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
 			
-			}
-			else {
-				erreurIdentifiant = false;
-				int idModif = Integer.parseInt(request.getParameter("idModif1"));
-				
-				try {
-					Part part = request.getPart("fichierModif");
-				
-					if(part!=null) {
-					
-						System.out.println(part.getName());
-						System.out.println(part.getSize());
-						System.out.println(part.getContentType());
-						
-						input = part.getInputStream();
-						
-					    if(validationImage(events, input, part) && events.verification_id2(idModif, false)) {
-					    	erreurIdentifiant = events.verification_id2(idModif, true);
-					    	events.modifierImage(idModif, input);
-							
-					    }
-					    else {
-					    	erreurIdentifiant = events.verification_id2(idModif, false);
-					    	if(erreurNonImage) {
-								erreurNonImage = false;
-								maSession.setAttribute("erreurDate", "le fichier n'est pas une image");
+				if (action.equals("Envoyer")) {
+					if(validation_id(request.getParameter("id"), events, true)==false || validation_date(request.getParameter("date"))==false) {
+						//validationNom(request.getParameter("nom"));
+						//validationDescription(request.getParameter("description"));
+						if(erreurIdentifiant) {
+							erreurIdentifiant = false;
+							maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
 							}
-							if(erreurTailleFichier) {
-								erreurTailleFichier = false;
-								maSession.setAttribute("erreurTailleFichier", "le fichier est trop lourd, limite = 1Mo");
-								}
-							if(erreurIdentifiant) {
-								erreurIdentifiant = false;
-								maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
-								}
-					    }
 						
+						if(erreurDate) {
+							erreurDate = false;
+							maSession.setAttribute("erreurDate", "la date est invalide");
+							}	
+		
 					}
 					else {
-							maSession.setAttribute("erreurFichierManquant", "le fichier est manquant");
-
+						//erreurIdentifiant = false;
+						int id = Integer.parseInt(request.getParameter("id"));
+						String nom = request.getParameter("nom");
+						String description = request.getParameter("description");
+						String date1 = request.getParameter("date");
+						
+						//conversion de la string date en une Date java.util
+					    Date date = convertionDate(date1);
+						try {
+							Part part = request.getPart("fichier");
+						
+							if(part!=null) {
+							
+								System.out.println(part.getName());
+								System.out.println(part.getSize());
+								System.out.println(part.getContentType());
+								
+								input = part.getInputStream();
+								
+							}
+									
+						    if(validationImage(events, input, part) && events.verification_id2(id, true) && validationNom(nom) && validationDescription(description)) {
+		
+						    	//conversion de java util date en sql date pour la base de donnée 
+						    	java.sql.Date date2 = new java.sql.Date(date.getTime());
+						    	
+						    	events.uploadImage(id, nom, description, date2, input);
+						  	
+						    }
+						    else {
+						    	
+						    	if(erreurNonImage) {
+									erreurNonImage = false;
+									maSession.setAttribute("erreurDate", "le fichier n'est pas une image");
+								}
+								if(erreurTailleFichier) {
+									erreurTailleFichier = false;
+									maSession.setAttribute("erreurTailleFichier", "le fichier est trop lourd, limite = 1Mo");
+									}
+								if(erreurNom) {
+									erreurNom = false;
+									maSession.setAttribute("erreurNom", "le nom est invalide");
+								}
+								if(erreurDescription) {
+									erreurDescription = false;
+									maSession.setAttribute("erreurDescription", "la description est invalide");
+								}
+								
+						    }
+						    
+						}catch(IllegalStateException e) {
+							e.printStackTrace();
+						}
 					}
-				}catch(IllegalStateException e) {
-					e.printStackTrace();
-					
+		
 				}
-			}
-		
-		}
-		
-		
-		
-		
-		if(action.equals("ModifierNomDescriptionDate")) {
-			
-			String nomModif = request.getParameter("nomModif2");
-			String descriptionModif = request.getParameter("descriptionModif2");
-			String dateModif = request.getParameter("dateModif2");
-			
-			if(validation_date(dateModif) && validation_id(request.getParameter("idModif2"), events, true)) {
-				int idModif = Integer.parseInt(request.getParameter("idModif2"));
-				Date date = convertionDate(dateModif);
 				
-				if(validationNom(nomModif) && validationDescription(descriptionModif) && events.verification_id2(idModif, false)) {
 				
-				    java.sql.Date date2 = new java.sql.Date(date.getTime());
-				    events.modifierNomDescriptionDate(idModif, nomModif, descriptionModif, date2);
+				
+				if(action.equals("Supprimer")) {
+					if(validation_id(request.getParameter("idSupp"), events, false)) {
+						int idSupp = Integer.parseInt(request.getParameter("idSupp"));
+						events.supprimerImage(idSupp);
+					}
+					else {
+						maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
+					}
+				}
+		
+				
+				
+				if(action.equals("ModifierImage")) {
 					
-				}
-				else {
-					erreurIdentifiant = events.verification_id2(idModif, true);
-					if(erreurNom) {
-						erreurNom = false;
-						maSession.setAttribute("erreurNom", "le nom est invalide");
+					if(validation_id(request.getParameter("idModif1"), events, false)==false) {
+						maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
+					
 					}
-					if(erreurDescription) {
-						erreurDescription = false;
-						maSession.setAttribute("erreurDescription","la description est invalide");
+					else {
+						erreurIdentifiant = false;
+						int idModif = Integer.parseInt(request.getParameter("idModif1"));
+						
+						try {
+							Part part = request.getPart("fichierModif");
+						
+							if(part!=null) {
+							
+								System.out.println(part.getName());
+								System.out.println(part.getSize());
+								System.out.println(part.getContentType());
+								
+								input = part.getInputStream();
+								
+							    if(validationImage(events, input, part) && events.verification_id2(idModif, false)) {
+							    	erreurIdentifiant = events.verification_id2(idModif, true);
+							    	events.modifierImage(idModif, input);
+									
+							    }
+							    else {
+							    	erreurIdentifiant = events.verification_id2(idModif, false);
+							    	if(erreurNonImage) {
+										erreurNonImage = false;
+										maSession.setAttribute("erreurDate", "le fichier n'est pas une image");
+									}
+									if(erreurTailleFichier) {
+										erreurTailleFichier = false;
+										maSession.setAttribute("erreurTailleFichier", "le fichier est trop lourd, limite = 1Mo");
+										}
+									if(erreurIdentifiant) {
+										erreurIdentifiant = false;
+										maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
+										}
+							    }
+								
+							}
+							else {
+									maSession.setAttribute("erreurFichierManquant", "le fichier est manquant");
+		
+							}
+						}catch(IllegalStateException e) {
+							e.printStackTrace();
+							
+						}
+					}
+				
+				}
+				
+				
+				
+				
+				if(action.equals("ModifierNomDescriptionDate")) {
+					
+					String nomModif = request.getParameter("nomModif2");
+					String descriptionModif = request.getParameter("descriptionModif2");
+					String dateModif = request.getParameter("dateModif2");
+					
+					if(validation_date(dateModif) && validation_id(request.getParameter("idModif2"), events, true)) {
+						int idModif = Integer.parseInt(request.getParameter("idModif2"));
+						Date date = convertionDate(dateModif);
+						
+						if(validationNom(nomModif) && validationDescription(descriptionModif) && events.verification_id2(idModif, false)) {
+						
+						    java.sql.Date date2 = new java.sql.Date(date.getTime());
+						    events.modifierNomDescriptionDate(idModif, nomModif, descriptionModif, date2);
+							
+						}
+						else {
+							erreurIdentifiant = events.verification_id2(idModif, true);
+							if(erreurNom) {
+								erreurNom = false;
+								maSession.setAttribute("erreurNom", "le nom est invalide");
+							}
+							if(erreurDescription) {
+								erreurDescription = false;
+								maSession.setAttribute("erreurDescription","la description est invalide");
+							}
+						}
+					}
+					else {
+						
+						if(erreurDate) {
+							erreurDate = false;
+							maSession.setAttribute("erreurDate",  "la date est invalide");
+							}	
+						if(erreurIdentifiant) {
+							erreurIdentifiant = false;
+							maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
+							}
 					}
 				}
+				
+				
+				
+				
+				
+				if(action.equals("Rechercher")) {
+					
+					String motCle = request.getParameter("recherche");
+					
+					maSession.setAttribute("recherche", motCle);	
+				}
+				
+				
+				 erreurNom = false;
+				 erreurTailleFichier = false;
+				 erreurFichierManquant = false;
+				 erreurDescription = false;
+				 erreurIdentifiant = false;
+				 erreurNonImage = false;
+				 erreurDate = false;
+				
+				
+		    	
+				
+				//doGet(request, response);
+				response.sendRedirect("/PolyBoardGames/ControllerEvent");
 			}
 			else {
-				
-				if(erreurDate) {
-					erreurDate = false;
-					maSession.setAttribute("erreurDate",  "la date est invalide");
-					}	
-				if(erreurIdentifiant) {
-					erreurIdentifiant = false;
-					maSession.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
-					}
+				response.sendRedirect("/PolyBoardGames/acceuil");
 			}
 		}
-		
-		
-		
-		
-		
-		if(action.equals("Rechercher")) {
-			
-			String motCle = request.getParameter("recherche");
-			
-			maSession.setAttribute("recherche", motCle);	
+		else {
+			response.sendRedirect("/PolyBoardGames/acceuil");
 		}
-		
-		
-		 erreurNom = false;
-		 erreurTailleFichier = false;
-		 erreurFichierManquant = false;
-		 erreurDescription = false;
-		 erreurIdentifiant = false;
-		 erreurNonImage = false;
-		 erreurDate = false;
-		
-		
-    	
-		
-		//doGet(request, response);
-		response.sendRedirect("/TestImageBdd/ControllerEvent");
-		
 		
 	}
 	

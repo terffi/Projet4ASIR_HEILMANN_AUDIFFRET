@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import EJBs.Compte;
+
 /**
  * Servlet implementation class ControllerStaff
  */
@@ -52,6 +54,8 @@ public class ControllerClient extends HttpServlet {
 			}
 		}
 		
+		request.setAttribute("inscription", (String)maSession.getAttribute("inscription"));
+		
 	
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);
 	}
@@ -69,10 +73,10 @@ public class ControllerClient extends HttpServlet {
 		String action = request.getParameter("action");
 		List<Event> liste = new ArrayList<Event>();
 		
-		//Compte compte = (Compte)maSession.getAttribute("compte"); //récupération du compte de la session
+		Compte compte = (Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		
-		//if(compte!=null) {
+		if(compte!=null) {
 			
 		
 		
@@ -89,10 +93,12 @@ public class ControllerClient extends HttpServlet {
 					liste = events.rechercher(motCle);
 				}
 				for(Event event1 : liste){
-					String bouton = "S'inscrire à "+event.getNom();
+					String bouton = "S'inscrire à "+event1.getNom();
 					if(action.equals(bouton)) {
-						//String mail = compte.getMail();
-						//participants.ajouter_un_participant(event1.getId(), mail);
+						System.out.println(compte.getMail());
+						String mail = compte.getMail();
+						participants.ajouter_un_participant(event1.getId(), mail);
+						maSession.setAttribute("inscription", "tu viens de t'inscrire à cet event !");
 					}
 				}
 				
@@ -100,11 +106,11 @@ public class ControllerClient extends HttpServlet {
 			
 	
 			//doGet(request, response);
-			response.sendRedirect("/TestImageBdd/ControllerClient");
-		//}
-		//else {
-			//response.sendRedirect("/TestImageBdd/ControllerAccueil");//à modifer après fusion des 2 parties
-		//}
+			response.sendRedirect("/PolyBoardGames/ControllerClient");
+}
+		else {
+			response.sendRedirect("/PolyBoardGames/acceuil");
+		}
 	}
 
 }

@@ -3,9 +3,9 @@ package servlets;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+//import java.net.http.HttpClient;
+//import java.net.http.HttpRequest;
+//import java.net.http.HttpResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,7 +64,7 @@ public class SignUp extends HttpServlet {
 		String champVide="champ obligatoire";
 		
 		//verif prenom
-		if(prenom.equals("")) {
+	/*	if(prenom.equals("")) {
 			request.setAttribute("erreurPrenom", champVide);
 			valide=false;
 		}
@@ -135,7 +135,7 @@ public class SignUp extends HttpServlet {
 					"processed_at":"2021-01-16 13:54:40.002"
 					}	
 					
-					 */
+					 
 					
 					//convertion de la réponse string en objet Json
 					JsonReader jsonReader = Json.createReader(new StringReader(responseMail.body()));
@@ -197,7 +197,7 @@ public class SignUp extends HttpServlet {
 			doGet(request,response);
 		}
 		
-		
+		*/
 	}
 
 }
