@@ -55,7 +55,7 @@ public class MonCompte extends HttpServlet {
 		Compte compte = (Compte) maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		//avant toute action, on vérifie que l'utilisateur est connecté avec un compte valide (présent dans la liste)
-		if(compte!=null && stub.compteValide(compte))
+		if(compte!=null && stub.compteValide(compte.getMail(),compte.getMdp()))
 		{
 			String action = request.getParameter("action");
 	

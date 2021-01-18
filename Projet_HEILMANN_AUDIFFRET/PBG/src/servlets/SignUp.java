@@ -1,11 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-//import java.io.StringReader;
-//import java.net.URI;
-//import java.net.http.HttpClient;
-//import java.net.http.HttpRequest;
-//import java.net.http.HttpResponse;
+import java.io.StringReader;
+import java.net.URI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import gestion.Compte;
 import gestion.GestionPBG;
 import gestion.GestionPBGService;
+import io.joshworks.restclient.http.HttpResponse;
+import io.joshworks.restclient.http.Unirest;
 
-//import javax.json.*;
+import javax.json.*;
 
 
 
@@ -101,67 +100,53 @@ public class SignUp extends HttpServlet {
 				valide=false;	
 			}
 			
-			/*
 			else {
 				//vérification de l'adresse mail via ZeroBounce (https://rapidapi.com/leeann/api/zerobounce1)
-		
-				HttpRequest requestMail = HttpRequest.newBuilder()
-						.uri(URI.create("https://zerobounce1.p.rapidapi.com/v2/validate?ip_address=%20&email="+mailSplit[0]+"%40"+mailSplit[1]))
+
+				HttpResponse<String> responseMail = Unirest.get("https://zerobounce1.p.rapidapi.com/v2/validate?ip_address=%20&email="+mailSplit[0]+"%40"+mailSplit[1])
 						.header("x-rapidapi-key", "7b136cdb65msh78a73bc2ee67aa4p13a1b1jsn10e1977237bf")
 						.header("x-rapidapi-host", "zerobounce1.p.rapidapi.com")
-						.method("GET", HttpRequest.BodyPublishers.noBody())
-						.build();
+						.asString();
 
-				try {
-					HttpResponse<String> responseMail = HttpClient.newHttpClient().send(requestMail, HttpResponse.BodyHandlers.ofString());
-
-					//traitement de la reponse de l'API
+				
+				//traitement de la reponse de l'API
+				
+				/*
+				Exemple de reponse :					
+				{
+				"address":"example@gmail.com",
+				"status":"invalid",
+				"sub_status":"mailbox_not_found",
+				"free_email":true,
+				"did_you_mean":NULL,
+				"account":"example",
+				"domain":"gmail.com",
+				"domain_age_days":"9289",
+				"smtp_provider":"google",
+				"mx_found":"true",
+				"mx_record":"gmail-smtp-in.l.google.com",
+				"firstname":NULL,
+				"lastname":NULL,
+				"gender":NULL,
+				"country":NULL,
+				"region":NULL,
+				"city":NULL,
+				"zipcode":NULL,
+				"processed_at":"2021-01-16 13:54:40.002"
+				}	
+				*/
 					
-					/*
-					Exemple de reponse :
+				//convertion de la réponse string en objet Json
+				JsonReader jsonReader = Json.createReader(new StringReader(responseMail.getBody()));
+				JsonObject reponseVerifMail = jsonReader.readObject();
+				jsonReader.close();					
 					
-					{
-					"address":"example@gmail.com",
-					"status":"invalid",
-					"sub_status":"mailbox_not_found",
-					"free_email":true,
-					"did_you_mean":NULL,
-					"account":"example",
-					"domain":"gmail.com",
-					"domain_age_days":"9289",
-					"smtp_provider":"google",
-					"mx_found":"true",
-					"mx_record":"gmail-smtp-in.l.google.com",
-					"firstname":NULL,
-					"lastname":NULL,
-					"gender":NULL,
-					"country":NULL,
-					"region":NULL,
-					"city":NULL,
-					"zipcode":NULL,
-					"processed_at":"2021-01-16 13:54:40.002"
-					}	
-					*/
-					 /*
-					
-					//convertion de la réponse string en objet Json
-					JsonReader jsonReader = Json.createReader(new StringReader(responseMail.body()));
-					JsonObject reponseVerifMail = jsonReader.readObject();
-					jsonReader.close();					
-					
-					if(!reponseVerifMail.getString("status").equals("valid"))	{
-						//adresse mail invalide
-						request.setAttribute("erreurMail", "mail invalide");
-						valide=false;	
-					}
-					
-				} catch (IOException | InterruptedException e) {
-					System.out.println("Erreur de communication avec ZeroBounce");
-					e.printStackTrace();
-					
-					request.setAttribute("erreurMdp", "impossible de vérifier votre adresse mail pour le moment, veuillez réessayer ultérieurement.");
+				if(!reponseVerifMail.getString("status").equals("valid"))	{
+					//adresse mail invalide
+					request.setAttribute("erreurMail", "mail invalide");
+					valide=false;	
 				}
-			}*/
+			}
 			
 			request.setAttribute("mail", mail);
 		}

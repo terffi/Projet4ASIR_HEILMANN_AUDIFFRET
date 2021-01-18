@@ -76,7 +76,7 @@ public class GestionComptes extends HttpServlet {
 		Compte compteAdmin = (Compte) maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		//avant toute action, on vérifie que l'utilisateur est connecté avec un compte administrateur
-		if(compteAdmin!=null && stub.isAdmin(compteAdmin))
+		if(compteAdmin!=null && stub.isAdmin(compteAdmin.getMail(),compteAdmin.getMdp()))
 		{	
 			
 			String action = request.getParameter("action");

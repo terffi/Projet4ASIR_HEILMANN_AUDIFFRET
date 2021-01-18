@@ -54,7 +54,7 @@ public class SignIn extends HttpServlet {
 		Compte compte = stub.connexion(mail, mdp);
 		
 		if(compte!=null) {
-	
+			
 			maSession.setAttribute("compte", compte);
 			
 			response.sendRedirect("/PBG/acceuil");			
