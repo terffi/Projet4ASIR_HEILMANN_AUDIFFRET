@@ -79,11 +79,6 @@
 		</div>
 	</header>
 	<!-- /Header -->
-	
-	<div class="page-header">
-<h1>Liste de tous les comptes</h1>
-</div>
-
 
 	<!-- Intro -->
 	<div class="container text-center">

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-<<<<<<< HEAD
-  <runtime name="Apache Tomee v8.0.5 (3)"/>
-=======
   <runtime name="tomee2"/>
->>>>>>> ec10b08e6b15cd72fb81cdbe1adb5be1ea1d860c
   <fixed facet="java"/>
   <fixed facet="jst.web"/>
   <fixed facet="wst.jsdt.web"/>

@@ -1,4 +1,4 @@
-package eventServlet;
+package servlets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,8 +49,6 @@ public class ControllerEvent extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession maSession = request.getSession();
-		
-		String action = request.getParameter("action");
 		
 		//Events events = new Events();
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session
