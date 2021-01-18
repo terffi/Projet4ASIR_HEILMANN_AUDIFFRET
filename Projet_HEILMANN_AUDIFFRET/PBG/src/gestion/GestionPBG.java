@@ -145,7 +145,8 @@ public interface GestionPBG {
 
     /**
      * 
-     * @param compte
+     * @param mail
+     * @param mdp
      * @return
      *     returns boolean
      */
@@ -154,8 +155,10 @@ public interface GestionPBG {
     @RequestWrapper(localName = "compteValide", targetNamespace = "http://gestion/", className = "gestion.CompteValide")
     @ResponseWrapper(localName = "compteValideResponse", targetNamespace = "http://gestion/", className = "gestion.CompteValideResponse")
     public boolean compteValide(
-        @WebParam(name = "compte", targetNamespace = "")
-        Compte compte);
+        @WebParam(name = "mail", targetNamespace = "")
+        String mail,
+        @WebParam(name = "mdp", targetNamespace = "")
+        String mdp);
 
     /**
      * 
@@ -170,7 +173,8 @@ public interface GestionPBG {
 
     /**
      * 
-     * @param compte
+     * @param mail
+     * @param mdp
      * @return
      *     returns boolean
      */
@@ -179,8 +183,10 @@ public interface GestionPBG {
     @RequestWrapper(localName = "isAdmin", targetNamespace = "http://gestion/", className = "gestion.IsAdmin")
     @ResponseWrapper(localName = "isAdminResponse", targetNamespace = "http://gestion/", className = "gestion.IsAdminResponse")
     public boolean isAdmin(
-        @WebParam(name = "compte", targetNamespace = "")
-        Compte compte);
+        @WebParam(name = "mail", targetNamespace = "")
+        String mail,
+        @WebParam(name = "mdp", targetNamespace = "")
+        String mdp);
 
     /**
      * 

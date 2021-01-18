@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -15,7 +16,7 @@ import javax.jws.WebService;
 @WebService
 public class GestionPBG {
 	
-	public static ArrayList<Compte> comptes = new ArrayList<Compte>();
+	public static ArrayList<Compte> comptes = new ArrayList<Compte>(Arrays.asList(new Compte("admin","admin","admin","admin",true)));
 	public static ArrayList<Event> events;
 	public static ArrayList<Participant> participations;
 
@@ -37,10 +38,6 @@ public class GestionPBG {
 	@WebMethod(operationName = "afficherComptes")
 	public ArrayList<Compte> afficherComptes(){
 		//Méthode qui renvoie la liste des comptes
-		
-		for(Compte c : comptes) {
-			System.out.println(c.getMail());
-		}
 		
 		return comptes;
 	}
@@ -65,29 +62,25 @@ public class GestionPBG {
 	@WebMethod(operationName = "ajoutCompte")
 	public Compte ajouter(@WebParam(name="nom")String nom,@WebParam(name="prenom")String prenom,@WebParam(name="mail")String mail,@WebParam(name="mdp")String mdp) {
 		//vérifie si un compte avec l'adresse mail rentrée existe déjà puis ajoute le compte à la liste si le mail n'est pas
-		//déjà pris, renvoie le compte ajouté si le mail est libre, renvoie null sinon
+		//déjà pris, renvoie le compte ajouté si le mail est libre, renvoie null sinon, renvoie également null si un probleme
+		//survient lors de l'encryption du mot de passe
 		
 		Compte c=null;
 		
 		//verification de l'adresse mail
 		if(rechercheUnCompte(mail)==null) {
-			try {
-				//ajout du compte
-				c = new Compte(nom, prenom, mail,Encryption.generateStorngPasswordHash(mdp)); //mot de passe encrypté
-				
-			} catch (NoSuchAlgorithmException e) {
-				// erreur lors de l'encryption du mot de passe
-				c=null;
-				System.out.println("erreur lors de l'encryption du mot de passe");
-				e.printStackTrace();
-			} catch (InvalidKeySpecException e) {
-				// erreur lors de l'encryption du mot de passe
-				c=null;
-				System.out.println("erreur lors de l'encryption du mot de passe");
-				e.printStackTrace();
-			}
 			
-			comptes.add(c);
+			//ajout du compte
+			c = new Compte(nom, prenom, mail,mdp); //mot de passe encrypté
+			
+			//vérification de l'encryption du mot de passe
+			if(c.getMdp()!=null) {
+				comptes.add(c);
+			}
+			else {
+				//erreur lors de l'encryption du mot de passe
+				c=null;
+			}			
 		}
 		
 		return c;
@@ -114,30 +107,25 @@ public class GestionPBG {
 	//Méthode pour modifier le mot de passe d'un compte
 	@WebMethod(operationName = "modifMdpCompte")
 	public String modifierMotDePasse(@WebParam(name="mail") String mail,@WebParam(name="mdp") String mdp) {
-		//méthode permettant de modifier le mot de passe d'un compte, renvoie le mot de passe encrypté
-		
-		//encryption du mot de passe
-		String mdpEncrypt;
-		try {
-			mdpEncrypt = Encryption.generateStorngPasswordHash(mdp);
-		} catch (NoSuchAlgorithmException e1) {
-			//une erreur est survenu lors de l'encryption du mot de passe
-			e1.printStackTrace();
-			return null;	
-		} catch (InvalidKeySpecException e1) {
-			//une erreur est survenu lors de l'encryption du mot de passe
-			e1.printStackTrace();
-			return null;
-		}
+		//méthode permettant de modifier le mot de passe d'un compte, renvoie le mot de passe encrypté,
+		//renvoie null en cas d'erreur d'encryption du mot de passe
 		
 		//modification du mot de passe
 		Compte c = rechercheUnCompte(mail);
 		
 		if(c!=null) {
-			c.setMdp(mdpEncrypt);
+			String oldMdp = c.getMdp(); //stockage de l'ancien mot de passe en cas d'erreur d'encryption
+			
+			c.setMdp(mdp);
+			
+			if(c.getMdp()==null) {
+				//erreur d'encryption
+				c.setMdpEncryp(oldMdp); //on remet l'ancien mot de passe
+				return null;
+			}
 		}
 		
-		return mdpEncrypt;
+		return c.getMdp();
 	}
 	
 	
@@ -163,8 +151,7 @@ public class GestionPBG {
 		if(c!=null) {
 			//vérification du mot de passe
 			try {
-				if(Encryption.validatePassword(c.getMdp(),mdp)) {
-					
+				if(Encryption.validatePassword(mdp,c.getMdp())) {
 					return c;
 					
 				}
@@ -189,15 +176,15 @@ public class GestionPBG {
 	
 	//Méthode pour valider un compte
 	@WebMethod(operationName = "compteValide")
-	public boolean compteValide(@WebParam(name="compte") Compte compte) {
+	public boolean compteValide(@WebParam(name="mail") String mail, @WebParam(name="mdp") String mdp) {
 		//permet de vérifier la validité d'un compte
 		//renvoie true si le couple mail/mot de passe sont dans la liste
 		//renvoie false sinon
 		
-		Compte c = rechercheUnCompte(compte.getMail());
+		Compte c = rechercheUnCompte(mail);
 		
 		if(c!=null) {
-			if(c.getMdp().equals(compte.getMdp())) {
+			if(c.getMdp().equals(mdp)) {
 				//compte valide
 				return true;
 			}
@@ -222,17 +209,17 @@ public class GestionPBG {
 	
 	//Méthode pour savoir si un compte est administrateur
 	@WebMethod(operationName = "isAdmin")
-	public boolean isAdmin(@WebParam(name="compte") Compte compte) {
+	public boolean isAdmin(@WebParam(name="mail") String mail, @WebParam(name="mdp") String mdp) {
 		//permet de vérifier la validité d'un compte et s'il est administrateur
 		//renvoie true si le couple mail/mot de passe sont dans la table comptes et que admin vaut true
 		//renvoie false sinon
 		
-		Compte c = rechercheUnCompte(compte.getMail());
+		Compte c = rechercheUnCompte(mail);
 		
 		if(c!=null) {
-			if(c.getMdp().equals(compte.getMdp())) {
+			if(c.getMdp().equals(mdp)) {
 				//compte valide
-				return compte.isAdmin();
+				return c.isAdmin();
 			}
 		}
 		

@@ -85,46 +85,6 @@
 </div>
 
 
-<div class="container">
-
-<table class="table" id="listeCompte">
-
-<thead>
-      <tr>
-        <th>admin</th>
-        <th>nom</th>
-        <th>prénom</th>
-        <th>mail</th>
-        <th>mot de passe</th>
-      </tr>
-</thead>
-
-<tbody>
-
-<c:forEach items="${resultat}" var="compte">
-
-<tr>
-<td><c:out value="${compte.admin}"></c:out></td>
-<td><c:out value="${compte.nom}"></c:out></td>
-<td><c:out value="${compte.prenom}"></c:out></td>
-<td><c:out value="${compte.mail}"></c:out></td>
-<td><c:out value="${compte.mdp}"></c:out></td>
-</tr>
-
-</c:forEach>
-
-</tbody>
-
-</table>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#listeCompte').DataTable();
-} );
-</script>
-
-</div>
-
 	<!-- Intro -->
 	<div class="container text-center">
 		<br> <br>

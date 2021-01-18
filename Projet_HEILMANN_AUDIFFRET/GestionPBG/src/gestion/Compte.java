@@ -1,6 +1,8 @@
 package gestion;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,7 +22,24 @@ public class Compte implements Serializable {
 	}
 	public Compte(String nom, String prenom, String mail, String mdp) {
 		super();
-		this.mdp=mdp;
+		
+		//encryption du mot de passe (mot de passe null si erreur)
+		try {
+			
+			this.mdp=Encryption.generateStorngPasswordHash(mdp);
+			
+		} catch (NoSuchAlgorithmException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		}
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
@@ -28,7 +47,24 @@ public class Compte implements Serializable {
 	}
 	public Compte(String nom, String prenom, String mail, String mdp, boolean admin) {
 		super();
-		this.mdp=mdp;
+		
+		//encryption du mot de passe (mot de passe null si erreur)
+		try {
+			
+			this.mdp=Encryption.generateStorngPasswordHash(mdp);
+			
+		} catch (NoSuchAlgorithmException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		}
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
@@ -38,7 +74,22 @@ public class Compte implements Serializable {
 		return mdp;
 	}
 	public void setMdp(String mdp) {
-		this.mdp = mdp;
+		//encryption du mot de passe (mot de passe null si erreur)
+		try {
+			
+			this.mdp=Encryption.generateStorngPasswordHash(mdp);
+			
+		} catch (NoSuchAlgorithmException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// erreur lors de l'encryption du mot de passe
+			this.mdp=null;
+			System.out.println("erreur lors de l'encryption du mot de passe");
+			e.printStackTrace();
+		}
 	}
 	public String getNom() {
 		return nom;
@@ -63,6 +114,10 @@ public class Compte implements Serializable {
 	}
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
+	}
+	
+	public void setMdpEncryp(String mdpEncrypt) {
+		this.mdp=mdpEncrypt;
 	}
 
 }
