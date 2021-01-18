@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//servlet de déconnexion
+
 /**
  * Servlet implementation class SignOut
  */
-@WebServlet("/SignOut")
+@WebServlet("/sign-out")
 public class SignOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,7 +22,6 @@ public class SignOut extends HttpServlet {
      */
     public SignOut() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -29,16 +30,16 @@ public class SignOut extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession maSession = request.getSession();
 		
-		maSession.setAttribute("compte", null);		
+		maSession.setAttribute("compte", null);	//deconnexion	
 		
-		response.sendRedirect("/PBG/acceuil");
+		response.sendRedirect("/PBG/accueil");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/PBG/acceuil");
+		response.sendRedirect("/PBG/accueil");
 	}
 
 }

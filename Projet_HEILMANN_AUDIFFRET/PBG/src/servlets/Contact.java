@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//Servlet servant à afficher la page contact
+
 /**
  * Servlet implementation class Contact
  */
-@WebServlet("/Contact")
+@WebServlet("/contact")
 public class Contact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +21,6 @@ public class Contact extends HttpServlet {
      */
     public Contact() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,7 +35,6 @@ public class Contact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -13,16 +13,16 @@ import gestion.Compte;
 import gestion.GestionPBG;
 import gestion.GestionPBGService;
 
-
+//servlet de gestion des comptes accessibles uniquement aux administrateurs
 
 /**
  * Servlet implementation class Controller
  */
-@WebServlet("/GestionComptes")
+@WebServlet("/gestion_comptes")
 public class GestionComptes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	GestionPBG stub;
+	GestionPBG stub; //communication avec le service web SOAP
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,6 +44,7 @@ public class GestionComptes extends HttpServlet {
 		//avant toute action, on vérifie que le compte utilisateur est un compte valide et admin
 		if(compte!=null && compte.isAdmin()) {
 			
+			//affichage des résultats de la recherche
 			if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
 			
 			
@@ -51,17 +52,17 @@ public class GestionComptes extends HttpServlet {
 				request.setAttribute("resultatRecherche", stub.afficherComptes());
 			}
 			else {
-				request.setAttribute("resultatRecherche", stub.rechercheCompte((String)maSession.getAttribute("recherche")));
+				
 			}
 			
-			
+			//affichage de tout les comptes
 			request.setAttribute("resultat", stub.afficherComptes());
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_comptes.jsp").forward(request, response);
 		}
 		else {
 			//l'utilisateur n'est pas connecté ou n'est pas administrateur
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 	}
@@ -81,7 +82,7 @@ public class GestionComptes extends HttpServlet {
 			
 			String action = request.getParameter("action");
 			
-
+			//ajout d'un compte
 			if(action.equals("Ajout")) {
 				
 				String mail = request.getParameter("mail");
@@ -92,7 +93,7 @@ public class GestionComptes extends HttpServlet {
 				stub.ajoutCompte(nom, prenom, mail, mdp);
 			}
 			
-			
+			//modification d'un compte
 			if(action.equals("Modifier")) {
 				
 				String mail = request.getParameter("mailModif");
@@ -102,29 +103,27 @@ public class GestionComptes extends HttpServlet {
 				stub.modifCompte(nom, prenom, mail);	
 			}
 			
-			
-			
+			//suppression d'un compte
 			if(action.equals("Supprimer")) {
 				String mail = request.getParameter("mailSuppr");
 	
 				stub.supprCompte(mail);
 			}
 			
-			
-			
+			//recherche
 			if(action.equals("Rechercher")) {
 				String motClef = request.getParameter("recherche");
 				maSession.setAttribute("recherche", motClef);	
 			}
 		
-		
+			//ajout d'un compte administrateur
 			if(action.equals("Ajouter en tant qu'administrateur")) {
 				String mail = request.getParameter("mailAdmin");
 				stub.setAdmin(mail);
 			
 			}
 			
-			
+			//modification du mot de passe d'un compte
 			if(action.equals("Modifier le mot de passe")) {
 				String mail = request.getParameter("mailModifMdp");
 				String mdp = request.getParameter("mdpModif");
@@ -135,7 +134,7 @@ public class GestionComptes extends HttpServlet {
 		}
 		else {
 			//le compte utilisateur n'est pas admin
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 	}
 

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main2.css">
 	
-	
+	<!-- chargement des bandeaux -->
 	<script type="text/javascript">
 	$(function(){
 		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
@@ -31,16 +30,11 @@
 		$(".BandeauInferieur").load("assets/jsp/bandeau_inferieur.jsp");
 	})
 	</script>
-	
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.js"></script>
-	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body class="home">
+
 
      <div class="BandeauSuperieur"></div>     
 
@@ -80,6 +74,7 @@
 	</header>
 	<!-- /Header -->
 
+
 	<!-- Intro -->
 	<div class="container text-center">
 		<br> <br>
@@ -90,6 +85,7 @@
 		</p>
 	</div>
 	<!-- /Intro-->
+	
 	
 	<div class="jumbotron top-space">
 	<!-- container -->
@@ -133,11 +129,11 @@
 				</div>
 			</div> <!-- /row -->
 	
-	</div>	<!-- /container -->
-</div>
+		</div>	<!-- /container -->
+	</div>
 
 
-<div class="BandeauInferieur"></div> 
+	<div class="BandeauInferieur"></div> 
 	
 		
 		<!-- JavaScript libs are placed at the end of the document so the pages load faster -->

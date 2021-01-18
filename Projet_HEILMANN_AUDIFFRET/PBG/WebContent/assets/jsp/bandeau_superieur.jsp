@@ -26,7 +26,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="acceuil">Accueil</a></li>
+					<li class="active"><a href="accueil">Accueil</a></li>
 					<li><a href="about">About</a></li>
 					<li><a href="contact">Contact</a></li>
 					
@@ -44,7 +44,7 @@
 					
 					<c:choose>
 						<c:when test="${sessionScope.compte!=null}">
-							<li><a href="sign_out">Sign Out</a></li>
+							<li><a href="sign-out">Sign Out</a></li>
 							<li><a class="btn" href="mon_compte">MON COMPTE</a></li>
 						</c:when>
 						<c:otherwise>

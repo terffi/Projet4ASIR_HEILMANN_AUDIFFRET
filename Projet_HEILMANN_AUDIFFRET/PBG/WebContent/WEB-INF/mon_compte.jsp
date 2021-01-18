@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Mon Compte</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -18,6 +18,8 @@
   <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  
+  	<!-- chargement des bandeaux --> 
   	<script type="text/javascript">
 	$(function(){
 		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
@@ -29,17 +31,28 @@
 </head>
 <body>
 
+
 <div class="BandeauSuperieur"></div> 
 
-<br/><br/><br/>
-<br/>
+<header id="head" class="secondary"></header>
 	
 
+<!-- container -->
+<div class="container">
+
+
+		<ol class="breadcrumb">
+			<li><a href="accueil">Home</a></li>
+			<li class="active">Mon_compte</li>
+		</ol>
+	
+
+<!-- Modifications du compte -->
 <div class="page-header">
 <h1>Informations du compte :</h1>
 </div>
 
-<form action="MonCompte" method="post">
+<form action="mon_compte" method="post">
 <div class="form-group">
   <label for="mail">Mail:</label>
   <c:out value="${sessionScope.compte.mail}"></c:out>
@@ -65,15 +78,18 @@
 <input type="submit" name="action" value="Modifier le compte" class="btn btn-info"/>
 </div>
 
-<br/><br/><br/>
-
 </form>
 
+
+<br/><br/><br/>
+
+
+<!-- Modification du mot de passe -->
 <div class="page-header">
 <h1>Changer de mot de passe :</h1>
 </div>
 
-<form action="MonCompte" method="post">
+<form action="mon_compte" method="post">
 <div class="form-group">
   <label for="modifMdp">Mot de passe actuel :</label>
   <input type="password" class="form-control" id="modifMdp" name="modifMdp">
@@ -95,13 +111,16 @@
 
 </form>
 
+
 <br/><br/><br/>
 
+
+<!-- Suppression du compte -->
 <div class="page-header">
 <h1>Suppression du compte :</h1>
 </div>
 
-<form action="MonCompte" method="post">
+<form action="mon_compte" method="post">
 <div class="form-group">
   <label for="mdpSuppr">Pour supprimer votre compte, veuillez entrer votre mot de passe :</label>
   <input type="password" class="form-control" id="mdpSuppr" name="mdpSuppr">
@@ -113,9 +132,13 @@
 
 </form>
 
-<br/><br/><br/>
+
+</div>
+<!-- container -->
+
 
 <div class="BandeauInferieur"></div> 
+
 
 </body>
 </html>

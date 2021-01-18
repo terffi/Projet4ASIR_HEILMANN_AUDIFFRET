@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//Servlet servant uniquement à afficher la page "à propos"
+
 /**
  * Servlet implementation class About
  */
-@WebServlet("/About")
+@WebServlet("/about")
 public class About extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +21,6 @@ public class About extends HttpServlet {
      */
     public About() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,7 +35,6 @@ public class About extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

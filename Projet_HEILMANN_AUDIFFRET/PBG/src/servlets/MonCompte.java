@@ -12,14 +12,16 @@ import gestion.Compte;
 import gestion.GestionPBG;
 import gestion.GestionPBGService;
 
+//servlet de gestion personnelle de compte
+
 /**
  * Servlet implementation class MonCompte
  */
-@WebServlet("/MonCompte")
+@WebServlet("/mon_compte")
 public class MonCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	GestionPBG stub;
+	GestionPBG stub; //communication avec le service web SOAP
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,13 +37,14 @@ public class MonCompte extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession maSession = request.getSession();
-
+		
+		//on vérifie que l'utilisateur est connecté
 		if(maSession.getAttribute("compte")!=null) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/moncompte.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/mon_compte.jsp").forward(request, response);
 		}
 		else {
 			//l'utilisateur n'est pas connecté
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 	}
@@ -61,7 +64,9 @@ public class MonCompte extends HttpServlet {
 	
 			String mail = compte.getMail(); //récupération du mail
 			
+			//modification du comptes
 			if(action.equals("Modifier le compte")) {
+				
 				String mdp = request.getParameter("mdp"); //récupération du mot de passe rentré
 				
 				compte = stub.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
@@ -71,6 +76,7 @@ public class MonCompte extends HttpServlet {
 					String nom = request.getParameter("nom");
 					String prenom = request.getParameter("prenom");
 					
+					//vérification des champs
 					boolean valide=true;
 					
 					String champVide="Ce champ ne peut pas être vide";
@@ -84,39 +90,42 @@ public class MonCompte extends HttpServlet {
 					}
 					
 					if(valide) {
-					
+						//modification du compte
+						
 						compte.setNom(nom);
 						compte.setPrenom(prenom);
 						
 						stub.modifCompte(nom, prenom, mail);
 						
-						maSession.setAttribute("compte", compte);	
+						maSession.setAttribute("compte", compte); //mise à jour du compte de la session	
 						
 						response.sendRedirect("/PBG/mon_compte");
 					}
 					else {
+						//un ou plusieurs champs ne sont pas remplis
 						doGet(request,response);
 					}
 				}
 				else {
+					//mot de passe incorrect
 					request.setAttribute("erreurMdp", "Mot de passe incorrecte");
 					doGet(request,response);
 				}	
 			}
 			
-			
-			
-			
+			//modification du mot de passe
 			if(action.equals("Changer de mot de passe")) {
+				
 				String mdp = request.getParameter("modifMdp"); //récupération du mot de passe rentré
 				
 				compte = stub.connexion(mail, mdp); //vérification du mot de passe (on reconnecte l'utilisateur)
-				
+
 				if(compte!=null) {
 					
 					String newMdp = request.getParameter("newMdp"); //récupération du nouveau mot de passe
 					String confirmMdp = request.getParameter("confirmMdp");
 					
+					//vérifications des champs
 					boolean valide=true;
 					
 					if(newMdp.equals("")) {
@@ -131,7 +140,8 @@ public class MonCompte extends HttpServlet {
 					}
 					
 					if(valide) {
-					
+						//modification du mot de passe
+						
 						compte.setMdp(stub.modifMdpCompte(mail, newMdp));
 						
 						if(compte.getMdp()==null) {
@@ -143,22 +153,23 @@ public class MonCompte extends HttpServlet {
 							doGet(request,response);						
 						}
 							
-						maSession.setAttribute("compte", compte);	
+						maSession.setAttribute("compte", compte); //mise à jour du compte de la session
 							
 						response.sendRedirect("/PBG/mon_compte");
 					}
 					else {
+						//champs incorrect
 						doGet(request,response);
 					}				
 				}
 				else {
+					//mot de passe incorrect
 					request.setAttribute("erreurModifMdp", "Mot de passe incorrecte");
 					doGet(request,response);
 				}
 			}		
 			
-			
-			
+			//suppression du compte
 			if(action.equals("Supprimer le compte")) {
 				
 				String mdp = request.getParameter("mdpSuppr"); //récupération du mot de passe rentré
@@ -168,11 +179,10 @@ public class MonCompte extends HttpServlet {
 				if(compte!=null) {
 					stub.supprCompte(mail);;
 					
-					maSession.setAttribute("compte", null);
-					
-					response.sendRedirect("/PolyBoardGames/acceuil");
+					response.sendRedirect("/PBG/sign-out"); //déconnexion de l'utilisateur
 				}
 				else {
+					//mot de passe incorrect
 					request.setAttribute("erreurSupprMdp", "Mot de passe incorrecte");
 					doGet(request,response);
 				}
@@ -183,7 +193,7 @@ public class MonCompte extends HttpServlet {
 			//le compte n'est pas valide, on déconnecte l'utilisateur et on redirige à la page d'acceuil
 			compte=null;
 			maSession.setAttribute("compte", compte);
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 		

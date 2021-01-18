@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main2.css">
 	
+	<!-- chargement des bandeaux --> 
 	<script type="text/javascript">
 	$(function(){
 		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
@@ -48,7 +49,7 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="acceuil">Home</a></li>
+			<li><a href="accueil">Home</a></li>
 			<li class="active">Registration</li>
 		</ol>
 

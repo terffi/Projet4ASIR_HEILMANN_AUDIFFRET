@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main2.css">
 	
+	<!-- chargement des bandeaux -->
 	<script type="text/javascript">
 	$(function(){
 		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
@@ -30,16 +31,13 @@
 	})
 	</script>
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.js"></script>
-	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
 
+
 	<div class="BandeauSuperieur"></div> 
+
 
 	<header id="head" class="secondary"></header>
 
@@ -47,11 +45,12 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="acceuil">Home</a></li>
+			<li><a href="accueil">Home</a></li>
 			<li class="active">About</li>
 		</ol>
 
 		<div class="row">
+			
 			
 			<!-- Article main content -->
 			<article class="col-sm-8 maincontent">
@@ -96,6 +95,7 @@
 			</article>
 			<!-- /Article -->
 			
+			
 			<!-- Sidebar -->
 			<aside class="col-sm-4 sidebar sidebar-right">
 
@@ -113,12 +113,15 @@
 			</aside>
 			<!-- /Sidebar -->
 
+
 		</div>
 	</div>	<!-- /container -->
+	
 	
 	<section class="container-full top-space">
 		<div id="map"></div>
 	</section>
+
 
 <div class="BandeauInferieur"></div> 
 

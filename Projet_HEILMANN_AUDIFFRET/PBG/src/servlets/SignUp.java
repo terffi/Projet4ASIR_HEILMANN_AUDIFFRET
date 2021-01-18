@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.URI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,16 +18,16 @@ import io.joshworks.restclient.http.Unirest;
 
 import javax.json.*;
 
-
+//servlet d'inscription
 
 /**
  * Servlet implementation class SignUp
  */
-@WebServlet("/SignUp")
+@WebServlet("/sign-up")
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	GestionPBG stub;
+	GestionPBG stub; //communication avec le service web SOAP
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +43,8 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession maSession = request.getSession();
-
+		
+		//vérification que l'utilisateur ne soit pas déjà connecté
 		if(maSession.getAttribute("compte")!=null)response.sendRedirect("/PBG/acceuil"); //l'utilisateur est déjà connecté
 		else this.getServletContext().getRequestDispatcher("/WEB-INF/signup.jsp").forward(request, response);
 	}
@@ -172,17 +172,20 @@ public class SignUp extends HttpServlet {
 			//vérification de la disponibilité de l'adresse mail (Comptes().ajouterUnCompte renvoie null si l'adresse mail est
 			//déjà prise)
 			if(compte!=null) {
+				//création du compte et connexion de l'utilisateur
 				HttpSession maSession = request.getSession();
 				
 				maSession.setAttribute("compte", compte);
 				response.sendRedirect("/PBG/acceuil");
 			}
 			else {
+				//mail déjà utilisée
 				request.setAttribute("erreurMail", "cette adresse mail est déjà utilisée");
 				doGet(request,response);
 			}
 		}
 		else {
+			//un ou plusieurs champs sont incorrects
 			doGet(request,response);
 		}
 		

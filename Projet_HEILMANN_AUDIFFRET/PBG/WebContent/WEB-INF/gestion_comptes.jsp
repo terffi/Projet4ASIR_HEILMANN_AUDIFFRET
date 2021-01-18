@@ -21,14 +21,8 @@
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main2.css">
-
-
-
-  <!-- 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  -->
-  
+	
+	<!-- chargement des bandeaux -->  
   	<script type="text/javascript">
 	$(function(){
 		$(".BandeauSuperieur").load("assets/jsp/bandeau_superieur.jsp");
@@ -40,31 +34,39 @@
   
 </head>
 
-<div class="BandeauSuperieur"></div> 
-
 <body>
 
-<br/><br/><br/>
-<br/>
 
+<div class="BandeauSuperieur"></div> 
+
+<header id="head" class="secondary"></header>
+
+
+<!-- container -->
+<div class="container">
+
+
+		<ol class="breadcrumb">
+			<li><a href="accueil">Home</a></li>
+			<li class="active">Gestion_comptes</li>
+		</ol>
+
+
+<!-- Moteur de recherche -->
 <div class="page-header">
 <h1>Moteur de recherche</h1>
 </div>
 
-<form action="GestionComptes" method="post">
-
-
+<!-- Mot à rechercher -->
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="id">Recherche:</label>
   <input type="text" class="form-control" id="recherche" name="recherche">
 </div>
 <input type="hidden" name="action" value="Rechercher"/>
-
-
 </form>
 
-
-
+<!-- Resultats de la recherche -->
 <div class="container">
 
 <table class="table" id="listeRecherche">
@@ -105,15 +107,14 @@ $(document).ready(function() {
 
 </div>
 
+
 <br/><br/><br/>
 
 
-
-
+<!-- Affichage de tout les comptes -->
 <div class="page-header">
-<h1>Liste de tous les comptes</h1>
+<h1>Liste de tout les comptes</h1>
 </div>
-
 
 <div class="container">
 
@@ -155,12 +156,16 @@ $(document).ready(function() {
 
 </div>
 
-	
+
+<br/><br/><br/>
+
+
+<!-- Ajout d'un compte -->	
 <div class="page-header">
 <h1>Ajouter un compte</h1>
 </div>
 
-<form action="GestionComptes" method="post">
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="nom">Nom:</label>
   <input type="text" class="form-control" id="nom" name="nom">
@@ -183,18 +188,15 @@ $(document).ready(function() {
 </form>
 
 
-
-
 <br/><br/><br/>
 
 
-
-
+<!-- Modification d'un compte -->
 <div class="page-header">
 <h1>Modifier un compte</h1>
 </div>
 
-<form action="GestionComptes" method="post">
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="mailModif">Mail:</label>
   <input type="text" class="form-control" id="mailModif" name="mailModif">
@@ -213,19 +215,15 @@ $(document).ready(function() {
 </form>
 
 
-
-
 <br/><br/><br/>
 
 
-
-
-
+<!-- Modification du mot de passe d'un compte -->
 <div class="page-header">
 <h1>Modifier un mot de passe</h1>
 </div>
 
-<form action="GestionComptes" method="post">
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="mailModifMdp">Mail:</label>
   <input type="text" class="form-control" id="mailModifMdp" name="mailModifMdp">
@@ -240,18 +238,15 @@ $(document).ready(function() {
 </form>
 
 
-
-
 <br/><br/><br/>
 
 
-
-
+<!-- Ajout d'un compte Administrateur -->
 <div class="page-header">
 <h1>Définir un compte administrateur</h1>
 </div>
 
-<form action="GestionComptes" method="post">
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="mailAdmin">Mail:</label>
   <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
@@ -262,17 +257,15 @@ $(document).ready(function() {
 </form>
 
 
-
 <br/><br/><br/>
 
 
-
-
+<!-- Suppression d'un compte -->
 <div class="page-header">
 <h1>Supprimer un compte</h1>
 </div>
 
-<form action="GestionComptes" method="post">
+<form action="gestion_comptes" method="post">
 <div class="form-group">
   <label for="mailSuppr">Mail:</label>
   <input type="text" class="form-control" id="mailSuppr" name="mailSuppr">
@@ -283,21 +276,22 @@ $(document).ready(function() {
 </form>
 
 
-
+</div>
+<!-- container -->
 
 
 <div class="BandeauInferieur"></div> 
 
 
-		<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
 	
-  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
+ 	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
 
 </body>
 </html>

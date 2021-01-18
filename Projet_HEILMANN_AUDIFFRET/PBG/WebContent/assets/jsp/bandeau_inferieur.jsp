@@ -89,13 +89,13 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="acceuil">Accueil</a> | 
-								<a href="acceuil">About</a> |
+								<a href="accueil">Accueil</a> | 
+								<a href="about">About</a> |
 								<a href="contact">Contact</a> |
 								
 								<c:choose>
 									<c:when test="${sessionScope.compte!=null}">
-										<b><a href="sign_out">Sign Out</a></b>
+										<b><a href="sign-out">Sign Out</a></b>
 									</c:when>
 									<c:otherwise>
 										<b><a href="sign-up">Sign up</a></b>

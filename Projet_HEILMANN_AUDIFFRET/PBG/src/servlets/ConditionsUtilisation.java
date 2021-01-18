@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//Servlet servant uniquement à afficher les conditions d'utilisation
+
 /**
  * Servlet implementation class ConditionsUtilisation
  */
-@WebServlet("/ConditionsUtilisation")
+@WebServlet("/conditions_utilisation")
 public class ConditionsUtilisation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +21,6 @@ public class ConditionsUtilisation extends HttpServlet {
      */
     public ConditionsUtilisation() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,7 +35,6 @@ public class ConditionsUtilisation extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
