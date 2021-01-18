@@ -46,8 +46,8 @@ private ResultSet resultSet = null;
 					System.out.println("Le driver n'est pas chargé");
 				} 	
 				try {
-					//connection = DriverManager.getConnection("jdbc:mysql://localhost/pbg?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
-					connection = DriverManager.getConnection("jdbc:mysql://localhost/testimage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+					connection = DriverManager.getConnection("jdbc:mysql://localhost/pbg?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
+					
 				} catch (SQLException e) {
 					System.out.println("Problème de connection à la base de donnée");
 					e.printStackTrace();

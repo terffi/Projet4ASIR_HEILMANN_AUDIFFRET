@@ -92,8 +92,15 @@ public class ControllerClient extends HttpServlet {
 				else {
 					liste = events.rechercher(motCle);
 				}
+				
+			}
+			
+			if(action.equals("S'inscrire")) {				
+				/*
 				for(Event event1 : liste){
 					String bouton = "S'inscrire à "+event1.getNom();
+					System.out.println(bouton);
+					
 					if(action.equals(bouton)) {
 						System.out.println(compte.getMail());
 						String mail = compte.getMail();
@@ -101,7 +108,8 @@ public class ControllerClient extends HttpServlet {
 						maSession.setAttribute("inscription", "tu viens de t'inscrire à cet event !");
 					}
 				}
-				
+				*/
+				participants.ajouter_un_participant(Integer.parseInt(request.getParameter("idEvent")), compte.getMail());
 			}
 			
 	

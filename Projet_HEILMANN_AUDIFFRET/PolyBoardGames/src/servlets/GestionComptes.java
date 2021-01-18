@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 import EJBs.Compte;
 import EJBs.Comptes;
 
+
+
+
+
+
 /**
  * Servlet implementation class Controller
  */
@@ -24,7 +29,6 @@ public class GestionComptes extends HttpServlet {
      */
     public GestionComptes() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

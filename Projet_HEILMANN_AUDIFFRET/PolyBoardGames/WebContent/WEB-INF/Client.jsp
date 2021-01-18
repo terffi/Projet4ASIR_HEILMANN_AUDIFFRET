@@ -65,7 +65,12 @@
 	<td><img src="data:image/jpg;base64,${event.base64Image}" width="200" height="200"></td>
 	<td><c:out value="${event.description}"></c:out></td>
 	<td><c:out value="${event.date}"></c:out></td>
-	<td><input type="submit" name="action" value="S'inscrire à ${event.nom }" class="btn btn-info"/></td>
+	<td>
+	<form action=ControllerClient method="post" enctype="multipart/form-data">
+	<input type="hidden" class="form-control" id="idEvent" name="idEvent" value="${event.id}">
+	<input type="submit" name="action" value="S'inscrire" class="btn btn-info"/>
+	</form>
+	</td>
 	</tr>
 	
 	</c:forEach>

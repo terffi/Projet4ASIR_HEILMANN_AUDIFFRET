@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://gestion/" xmlns:tns="http://gestion/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="SearchCompte" type="tns:SearchCompte"/>
+
+  <xs:element name="SearchCompteResponse" type="tns:SearchCompteResponse"/>
+
+  <xs:element name="ajoutCompte" type="tns:ajoutCompte"/>
+
+  <xs:element name="ajoutCompteResponse" type="tns:ajoutCompteResponse"/>
+
+  <xs:element name="compte" type="tns:compte"/>
+
+  <xs:element name="initialisation" type="tns:initialisation"/>
+
+  <xs:element name="initialisationResponse" type="tns:initialisationResponse"/>
+
+  <xs:element name="tous" type="tns:tous"/>
+
+  <xs:element name="tousResponse" type="tns:tousResponse"/>
+
+  <xs:complexType name="SearchCompte">
+    <xs:sequence>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SearchCompteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="compte">
+    <xs:sequence>
+      <xs:element name="admin" type="xs:boolean"/>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+      <xs:element name="mdp" type="xs:string" minOccurs="0"/>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ajoutCompte">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenom" type="xs:string" minOccurs="0"/>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+      <xs:element name="mdp" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ajoutCompteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="tous">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="tousResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="initialisation">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="initialisationResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+
