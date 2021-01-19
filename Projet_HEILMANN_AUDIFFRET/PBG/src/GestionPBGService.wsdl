@@ -6,11 +6,23 @@
       <xsd:import namespace="http://gestion/" schemaLocation="GestionPBGService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="initialisation">
-    <part name="parameters" element="tns:initialisation"/>
+  <message name="resetComptes">
+    <part name="parameters" element="tns:resetComptes"/>
   </message>
-  <message name="initialisationResponse">
-    <part name="parameters" element="tns:initialisationResponse"/>
+  <message name="resetComptesResponse">
+    <part name="parameters" element="tns:resetComptesResponse"/>
+  </message>
+  <message name="resetEvents">
+    <part name="parameters" element="tns:resetEvents"/>
+  </message>
+  <message name="resetEventsResponse">
+    <part name="parameters" element="tns:resetEventsResponse"/>
+  </message>
+  <message name="resetParticipations">
+    <part name="parameters" element="tns:resetParticipations"/>
+  </message>
+  <message name="resetParticipationsResponse">
+    <part name="parameters" element="tns:resetParticipationsResponse"/>
   </message>
   <message name="afficherComptes">
     <part name="parameters" element="tns:afficherComptes"/>
@@ -47,6 +59,12 @@
   </message>
   <message name="supprCompteResponse">
     <part name="parameters" element="tns:supprCompteResponse"/>
+  </message>
+  <message name="supprParticipationMail">
+    <part name="parameters" element="tns:supprParticipationMail"/>
+  </message>
+  <message name="supprParticipationMailResponse">
+    <part name="parameters" element="tns:supprParticipationMailResponse"/>
   </message>
   <message name="connexion">
     <part name="parameters" element="tns:connexion"/>
@@ -96,6 +114,12 @@
   <message name="supprEventResponse">
     <part name="parameters" element="tns:supprEventResponse"/>
   </message>
+  <message name="supprParticipationEvent">
+    <part name="parameters" element="tns:supprParticipationEvent"/>
+  </message>
+  <message name="supprParticipationEventResponse">
+    <part name="parameters" element="tns:supprParticipationEventResponse"/>
+  </message>
   <message name="modifImageEvent">
     <part name="parameters" element="tns:modifImageEvent"/>
   </message>
@@ -120,16 +144,36 @@
   <message name="afficherParticipantsResponse">
     <part name="parameters" element="tns:afficherParticipantsResponse"/>
   </message>
+  <message name="afficherParticipationEvents">
+    <part name="parameters" element="tns:afficherParticipationEvents"/>
+  </message>
+  <message name="afficherParticipationEventsResponse">
+    <part name="parameters" element="tns:afficherParticipationEventsResponse"/>
+  </message>
   <message name="ajouterParticipation">
     <part name="parameters" element="tns:ajouterParticipation"/>
   </message>
   <message name="ajouterParticipationResponse">
     <part name="parameters" element="tns:ajouterParticipationResponse"/>
   </message>
+  <message name="supprParticipation">
+    <part name="parameters" element="tns:supprParticipation"/>
+  </message>
+  <message name="supprParticipationResponse">
+    <part name="parameters" element="tns:supprParticipationResponse"/>
+  </message>
   <portType name="GestionPBG">
-    <operation name="initialisation">
-      <input message="tns:initialisation"/>
-      <output message="tns:initialisationResponse"/>
+    <operation name="resetComptes">
+      <input message="tns:resetComptes"/>
+      <output message="tns:resetComptesResponse"/>
+    </operation>
+    <operation name="resetEvents">
+      <input message="tns:resetEvents"/>
+      <output message="tns:resetEventsResponse"/>
+    </operation>
+    <operation name="resetParticipations">
+      <input message="tns:resetParticipations"/>
+      <output message="tns:resetParticipationsResponse"/>
     </operation>
     <operation name="afficherComptes">
       <input message="tns:afficherComptes"/>
@@ -154,6 +198,10 @@
     <operation name="supprCompte">
       <input message="tns:supprCompte"/>
       <output message="tns:supprCompteResponse"/>
+    </operation>
+    <operation name="supprParticipationMail">
+      <input message="tns:supprParticipationMail"/>
+      <output message="tns:supprParticipationMailResponse"/>
     </operation>
     <operation name="connexion">
       <input message="tns:connexion"/>
@@ -187,6 +235,10 @@
       <input message="tns:supprEvent"/>
       <output message="tns:supprEventResponse"/>
     </operation>
+    <operation name="supprParticipationEvent">
+      <input message="tns:supprParticipationEvent"/>
+      <output message="tns:supprParticipationEventResponse"/>
+    </operation>
     <operation name="modifImageEvent">
       <input message="tns:modifImageEvent"/>
       <output message="tns:modifImageEventResponse"/>
@@ -203,14 +255,40 @@
       <input message="tns:afficherParticipants"/>
       <output message="tns:afficherParticipantsResponse"/>
     </operation>
+    <operation name="afficherParticipationEvents">
+      <input message="tns:afficherParticipationEvents"/>
+      <output message="tns:afficherParticipationEventsResponse"/>
+    </operation>
     <operation name="ajouterParticipation">
       <input message="tns:ajouterParticipation"/>
       <output message="tns:ajouterParticipationResponse"/>
     </operation>
+    <operation name="supprParticipation">
+      <input message="tns:supprParticipation"/>
+      <output message="tns:supprParticipationResponse"/>
+    </operation>
   </portType>
   <binding name="GestionPBGPortBinding" type="tns:GestionPBG">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="initialisation">
+    <operation name="resetComptes">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="resetEvents">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="resetParticipations">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -265,6 +343,15 @@
       </output>
     </operation>
     <operation name="supprCompte">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="supprParticipationMail">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -345,6 +432,15 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="supprParticipationEvent">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="modifImageEvent">
       <soap:operation soapAction=""/>
       <input>
@@ -381,7 +477,25 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="afficherParticipationEvents">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="ajouterParticipation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="supprParticipation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

@@ -41,7 +41,6 @@ public class ControllerEvent extends HttpServlet {
     public ControllerEvent() {
         super();
         stub = new GestionPBGService().getGestionPBGPort();
-        stub.initialisation();
     }
 
 	/**

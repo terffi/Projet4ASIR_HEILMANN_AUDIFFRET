@@ -17,16 +17,34 @@ import javax.jws.WebService;
 public class GestionPBG {
 	
 	public static ArrayList<Compte> comptes = new ArrayList<Compte>(Arrays.asList(new Compte("admin","admin","admin","admin",true)));
-	public static ArrayList<Event> events;
-	public static ArrayList<Participant> participations;
+	public static ArrayList<Event> events = new ArrayList<Event>();
+	public static ArrayList<Participant> participations = new ArrayList<Participant>();
 
-	//Méthode pour créer les listes
-	@WebMethod(operationName = "initialisation")
-	public void creation() {
-		events = new ArrayList<Event>();
-		
+	
+	
+	//Méthode pour réinitialiser la liste des comptes
+	@WebMethod(operationName = "resetComptes")
+	public void resetComptes() {
+		comptes = new ArrayList<Compte>(Arrays.asList(new Compte("admin","admin","admin","admin",true)));
 		participations= new ArrayList<Participant>();
 	}
+	
+	
+	
+	//Méthode pour réinitialiser la liste des events
+	@WebMethod(operationName = "resetEvents")
+	public void resetEvents() {
+		events = new ArrayList<Event>();
+		participations= new ArrayList<Participant>();
+	}
+	
+	
+	
+	//Méthode pour réinitialiser la liste des participations
+	@WebMethod(operationName = "resetParticipations")
+	public void resetParticipations() {		
+		participations= new ArrayList<Participant>();
+	}	
 	
 	
 	
@@ -135,6 +153,9 @@ public class GestionPBG {
 		
 		Compte c = rechercheUnCompte(mail);
 		comptes.remove(c);
+		
+		//suppression des participations associées à ce compte
+		supprParticipationMail(mail);
 	}
 	
 	
@@ -282,7 +303,10 @@ public class GestionPBG {
 	public void supprimerEvent(@WebParam(name="id") int id) {
 		
 		Event e = rechercherUnEvent(id);
-		events.remove(e);		
+		events.remove(e);
+		
+		//suppression des participations associées à ce compte
+		supprParticipationEvent(id);
 	}
 	
 	
@@ -346,6 +370,23 @@ public class GestionPBG {
 	
 	
 	
+	//Méthode pour obtenir tous les events auxquels participe un compte
+	@WebMethod(operationName = "afficherParticipationEvents")
+	public ArrayList<Event> afficherParticipationEvents(String mail){
+		//Méthode qui renvoie la liste des events auxquel participe le compte associé au mail donné
+		
+		ArrayList<Event> participationsEvents = new ArrayList<Event>();
+		
+		for(Participant p : participations) {
+			if(p.getMail().equals(mail)) {
+				participationsEvents.add(rechercherUnEvent(p.getIdEvent()));
+			}
+		}
+		
+		return participationsEvents;
+	}
+	
+	
 	
 	//Méthode pour ajouter des participants à un event
 	@WebMethod(operationName = "ajouterParticipation")
@@ -368,5 +409,44 @@ public class GestionPBG {
 			participations.add(new Participant(idEvent, mail));
 		}
 	}
+	
+	
+	
+	//Méthode pour supprimer des participations
+	@WebMethod(operationName = "supprParticipation")
+	public void supprParticipation(int idEvent, String mail) {
+		
+		Participant p = new Participant(idEvent, mail);
+		
+		participations.remove(p);
+	}
+	
+	
+	
+	//Méthode pour supprimer les participations d'un mail donné
+	@WebMethod(operationName = "supprParticipationMail")
+	public void supprParticipationMail(String mail) {
+		
+		for(Participant p : participations) {
+			if(p.getMail().equals(mail)) {
+				participations.remove(p);
+			}
+		}
+	}
+	
+	
+	
+	//Méthode pour supprimer les participations d'un event donné
+	@WebMethod(operationName = "supprParticipationEvent")
+	public void supprParticipationEvent(int idEvent) {
+		
+		for(Participant p : participations) {
+			if(p.getIdEvent()==idEvent) {
+				participations.remove(p);
+			}
+		}
+	}
 
+	
+	
 }

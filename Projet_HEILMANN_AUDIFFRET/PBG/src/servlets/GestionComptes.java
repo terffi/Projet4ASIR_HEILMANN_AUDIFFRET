@@ -30,7 +30,6 @@ public class GestionComptes extends HttpServlet {
     public GestionComptes() {
         super();
 		stub = new GestionPBGService().getGestionPBGPort();
-		stub.initialisation();
     }
 
 	/**

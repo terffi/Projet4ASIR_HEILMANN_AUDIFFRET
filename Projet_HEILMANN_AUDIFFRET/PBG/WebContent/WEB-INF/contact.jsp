@@ -46,7 +46,7 @@
 
 		<ol class="breadcrumb">
 			<li><a href="accueil">Home</a></li>
-			<li class="active">About</li>
+			<li class="active">Contact</li>
 		</ol>
 
 		<div class="row">

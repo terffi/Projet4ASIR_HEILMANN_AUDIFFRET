@@ -30,7 +30,6 @@ public class ControllerClient extends HttpServlet {
     public ControllerClient() {
         super();
         stub = new GestionPBGService().getGestionPBGPort();
-        stub.initialisation();
     }
 
 

@@ -29,7 +29,6 @@ public class SignIn extends HttpServlet {
     public SignIn() {
         super();
 		stub = new GestionPBGService().getGestionPBGPort();
-		stub.initialisation();
     }
 
 	/**

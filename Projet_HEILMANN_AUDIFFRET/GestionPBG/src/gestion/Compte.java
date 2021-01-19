@@ -23,21 +23,27 @@ public class Compte implements Serializable {
 	public Compte(String nom, String prenom, String mail, String mdp) {
 		super();
 		
-		//encryption du mot de passe (mot de passe null si erreur)
-		try {
-			
-			this.mdp=Encryption.generateStorngPasswordHash(mdp);
-			
-		} catch (NoSuchAlgorithmException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
+		if(mdp!=null && !mdp.equals("")) {
+			//encryption du mot de passe (mot de passe null si erreur)
+			try {
+				
+				this.mdp=Encryption.generateStorngPasswordHash(mdp);
+				
+			} catch (NoSuchAlgorithmException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			}
+		}
+		else {
+			//il n'y a pas de mot de passe
+			this.mdp=mdp;
 		}
 		
 		this.nom = nom;
@@ -48,21 +54,27 @@ public class Compte implements Serializable {
 	public Compte(String nom, String prenom, String mail, String mdp, boolean admin) {
 		super();
 		
-		//encryption du mot de passe (mot de passe null si erreur)
-		try {
-			
-			this.mdp=Encryption.generateStorngPasswordHash(mdp);
-			
-		} catch (NoSuchAlgorithmException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
+		if(mdp!=null && !mdp.equals("")) {
+			//encryption du mot de passe (mot de passe null si erreur)
+			try {
+				
+				this.mdp=Encryption.generateStorngPasswordHash(mdp);
+				
+			} catch (NoSuchAlgorithmException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			}
+		}
+		else {
+			//il n'y a pas de mot de passe
+			this.mdp=mdp;
 		}
 		
 		this.nom = nom;
@@ -74,21 +86,27 @@ public class Compte implements Serializable {
 		return mdp;
 	}
 	public void setMdp(String mdp) {
-		//encryption du mot de passe (mot de passe null si erreur)
-		try {
-			
-			this.mdp=Encryption.generateStorngPasswordHash(mdp);
-			
-		} catch (NoSuchAlgorithmException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// erreur lors de l'encryption du mot de passe
-			this.mdp=null;
-			System.out.println("erreur lors de l'encryption du mot de passe");
-			e.printStackTrace();
+		if(mdp!=null && !mdp.equals("")) {
+			//encryption du mot de passe (mot de passe null si erreur)
+			try {
+				
+				this.mdp=Encryption.generateStorngPasswordHash(mdp);
+				
+			} catch (NoSuchAlgorithmException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// erreur lors de l'encryption du mot de passe
+				this.mdp=null;
+				System.out.println("erreur lors de l'encryption du mot de passe");
+				e.printStackTrace();
+			}
+		}
+		else {
+			//il n'y a pas de mot de passe
+			this.mdp=mdp;
 		}
 	}
 	public String getNom() {

@@ -29,9 +29,25 @@ public interface GestionPBG {
      * 
      */
     @WebMethod
-    @RequestWrapper(localName = "initialisation", targetNamespace = "http://gestion/", className = "gestion.Initialisation")
-    @ResponseWrapper(localName = "initialisationResponse", targetNamespace = "http://gestion/", className = "gestion.InitialisationResponse")
-    public void initialisation();
+    @RequestWrapper(localName = "resetComptes", targetNamespace = "http://gestion/", className = "gestion.ResetComptes")
+    @ResponseWrapper(localName = "resetComptesResponse", targetNamespace = "http://gestion/", className = "gestion.ResetComptesResponse")
+    public void resetComptes();
+
+    /**
+     * 
+     */
+    @WebMethod
+    @RequestWrapper(localName = "resetEvents", targetNamespace = "http://gestion/", className = "gestion.ResetEvents")
+    @ResponseWrapper(localName = "resetEventsResponse", targetNamespace = "http://gestion/", className = "gestion.ResetEventsResponse")
+    public void resetEvents();
+
+    /**
+     * 
+     */
+    @WebMethod
+    @RequestWrapper(localName = "resetParticipations", targetNamespace = "http://gestion/", className = "gestion.ResetParticipations")
+    @ResponseWrapper(localName = "resetParticipationsResponse", targetNamespace = "http://gestion/", className = "gestion.ResetParticipationsResponse")
+    public void resetParticipations();
 
     /**
      * 
@@ -125,6 +141,17 @@ public interface GestionPBG {
     public void supprCompte(
         @WebParam(name = "mail", targetNamespace = "")
         String mail);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "supprParticipationMail", targetNamespace = "http://gestion/", className = "gestion.SupprParticipationMail")
+    @ResponseWrapper(localName = "supprParticipationMailResponse", targetNamespace = "http://gestion/", className = "gestion.SupprParticipationMailResponse")
+    public void supprParticipationMail(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
     /**
      * 
@@ -252,6 +279,17 @@ public interface GestionPBG {
 
     /**
      * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "supprParticipationEvent", targetNamespace = "http://gestion/", className = "gestion.SupprParticipationEvent")
+    @ResponseWrapper(localName = "supprParticipationEventResponse", targetNamespace = "http://gestion/", className = "gestion.SupprParticipationEventResponse")
+    public void supprParticipationEvent(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
      * @param id
      * @param image
      */
@@ -311,6 +349,20 @@ public interface GestionPBG {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<gestion.Event>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "afficherParticipationEvents", targetNamespace = "http://gestion/", className = "gestion.AfficherParticipationEvents")
+    @ResponseWrapper(localName = "afficherParticipationEventsResponse", targetNamespace = "http://gestion/", className = "gestion.AfficherParticipationEventsResponse")
+    public List<Event> afficherParticipationEvents(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      */
@@ -318,6 +370,20 @@ public interface GestionPBG {
     @RequestWrapper(localName = "ajouterParticipation", targetNamespace = "http://gestion/", className = "gestion.AjouterParticipation")
     @ResponseWrapper(localName = "ajouterParticipationResponse", targetNamespace = "http://gestion/", className = "gestion.AjouterParticipationResponse")
     public void ajouterParticipation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "supprParticipation", targetNamespace = "http://gestion/", className = "gestion.SupprParticipation")
+    @ResponseWrapper(localName = "supprParticipationResponse", targetNamespace = "http://gestion/", className = "gestion.SupprParticipationResponse")
+    public void supprParticipation(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")

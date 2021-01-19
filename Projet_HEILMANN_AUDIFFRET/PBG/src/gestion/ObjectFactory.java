@@ -24,49 +24,61 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ModifCompte_QNAME = new QName("http://gestion/", "modifCompte");
-    private final static QName _AfficherComptesResponse_QNAME = new QName("http://gestion/", "afficherComptesResponse");
-    private final static QName _AjoutEvent_QNAME = new QName("http://gestion/", "ajoutEvent");
+    private final static QName _SupprParticipation_QNAME = new QName("http://gestion/", "supprParticipation");
+    private final static QName _SupprParticipationMail_QNAME = new QName("http://gestion/", "supprParticipationMail");
     private final static QName _ModifImageEventResponse_QNAME = new QName("http://gestion/", "modifImageEventResponse");
-    private final static QName _ModifMdpCompte_QNAME = new QName("http://gestion/", "modifMdpCompte");
-    private final static QName _CompteValideResponse_QNAME = new QName("http://gestion/", "compteValideResponse");
     private final static QName _AfficherEvents_QNAME = new QName("http://gestion/", "afficherEvents");
-    private final static QName _SupprCompte_QNAME = new QName("http://gestion/", "supprCompte");
-    private final static QName _InitialisationResponse_QNAME = new QName("http://gestion/", "initialisationResponse");
-    private final static QName _SupprEvent_QNAME = new QName("http://gestion/", "supprEvent");
+    private final static QName _AfficherParticipationEvents_QNAME = new QName("http://gestion/", "afficherParticipationEvents");
+    private final static QName _SupprParticipationMailResponse_QNAME = new QName("http://gestion/", "supprParticipationMailResponse");
     private final static QName _AfficherParticipantsResponse_QNAME = new QName("http://gestion/", "afficherParticipantsResponse");
     private final static QName _RechercheCompteResponse_QNAME = new QName("http://gestion/", "rechercheCompteResponse");
-    private final static QName _Participant_QNAME = new QName("http://gestion/", "participant");
-    private final static QName _IsAdmin_QNAME = new QName("http://gestion/", "isAdmin");
-    private final static QName _ModifMdpCompteResponse_QNAME = new QName("http://gestion/", "modifMdpCompteResponse");
-    private final static QName _AfficherParticipationsResponse_QNAME = new QName("http://gestion/", "afficherParticipationsResponse");
-    private final static QName _AjoutCompte_QNAME = new QName("http://gestion/", "ajoutCompte");
+    private final static QName _SupprParticipationResponse_QNAME = new QName("http://gestion/", "supprParticipationResponse");
+    private final static QName _SupprParticipationEvent_QNAME = new QName("http://gestion/", "supprParticipationEvent");
     private final static QName _AjoutEventResponse_QNAME = new QName("http://gestion/", "ajoutEventResponse");
     private final static QName _SupprCompteResponse_QNAME = new QName("http://gestion/", "supprCompteResponse");
     private final static QName _IsAdminResponse_QNAME = new QName("http://gestion/", "isAdminResponse");
     private final static QName _CompteValide_QNAME = new QName("http://gestion/", "compteValide");
     private final static QName _RechercheEvent_QNAME = new QName("http://gestion/", "rechercheEvent");
     private final static QName _RechercheEventResponse_QNAME = new QName("http://gestion/", "rechercheEventResponse");
-    private final static QName _AjouterParticipationResponse_QNAME = new QName("http://gestion/", "ajouterParticipationResponse");
+    private final static QName _ResetComptes_QNAME = new QName("http://gestion/", "resetComptes");
+    private final static QName _ResetEventsResponse_QNAME = new QName("http://gestion/", "resetEventsResponse");
     private final static QName _AfficherComptes_QNAME = new QName("http://gestion/", "afficherComptes");
-    private final static QName _ModifImageEvent_QNAME = new QName("http://gestion/", "modifImageEvent");
     private final static QName _AjoutCompteResponse_QNAME = new QName("http://gestion/", "ajoutCompteResponse");
     private final static QName _SetAdmin_QNAME = new QName("http://gestion/", "setAdmin");
-    private final static QName _SetAdminResponse_QNAME = new QName("http://gestion/", "setAdminResponse");
-    private final static QName _AfficherParticipations_QNAME = new QName("http://gestion/", "afficherParticipations");
-    private final static QName _ModifCompteResponse_QNAME = new QName("http://gestion/", "modifCompteResponse");
     private final static QName _AfficherEventsResponse_QNAME = new QName("http://gestion/", "afficherEventsResponse");
     private final static QName _ModifEvent_QNAME = new QName("http://gestion/", "modifEvent");
-    private final static QName _ModifEventResponse_QNAME = new QName("http://gestion/", "modifEventResponse");
     private final static QName _SupprEventResponse_QNAME = new QName("http://gestion/", "supprEventResponse");
     private final static QName _RechercheCompte_QNAME = new QName("http://gestion/", "rechercheCompte");
+    private final static QName _SupprParticipationEventResponse_QNAME = new QName("http://gestion/", "supprParticipationEventResponse");
+    private final static QName _AfficherParticipants_QNAME = new QName("http://gestion/", "afficherParticipants");
+    private final static QName _AjouterParticipation_QNAME = new QName("http://gestion/", "ajouterParticipation");
+    private final static QName _ModifCompte_QNAME = new QName("http://gestion/", "modifCompte");
+    private final static QName _AfficherComptesResponse_QNAME = new QName("http://gestion/", "afficherComptesResponse");
+    private final static QName _AjoutEvent_QNAME = new QName("http://gestion/", "ajoutEvent");
+    private final static QName _ModifMdpCompte_QNAME = new QName("http://gestion/", "modifMdpCompte");
+    private final static QName _CompteValideResponse_QNAME = new QName("http://gestion/", "compteValideResponse");
+    private final static QName _ResetParticipations_QNAME = new QName("http://gestion/", "resetParticipations");
+    private final static QName _ResetComptesResponse_QNAME = new QName("http://gestion/", "resetComptesResponse");
+    private final static QName _SupprCompte_QNAME = new QName("http://gestion/", "supprCompte");
+    private final static QName _ResetEvents_QNAME = new QName("http://gestion/", "resetEvents");
+    private final static QName _SupprEvent_QNAME = new QName("http://gestion/", "supprEvent");
+    private final static QName _Participant_QNAME = new QName("http://gestion/", "participant");
+    private final static QName _IsAdmin_QNAME = new QName("http://gestion/", "isAdmin");
+    private final static QName _ModifMdpCompteResponse_QNAME = new QName("http://gestion/", "modifMdpCompteResponse");
+    private final static QName _AfficherParticipationsResponse_QNAME = new QName("http://gestion/", "afficherParticipationsResponse");
+    private final static QName _AjoutCompte_QNAME = new QName("http://gestion/", "ajoutCompte");
+    private final static QName _ResetParticipationsResponse_QNAME = new QName("http://gestion/", "resetParticipationsResponse");
+    private final static QName _AjouterParticipationResponse_QNAME = new QName("http://gestion/", "ajouterParticipationResponse");
+    private final static QName _ModifImageEvent_QNAME = new QName("http://gestion/", "modifImageEvent");
+    private final static QName _SetAdminResponse_QNAME = new QName("http://gestion/", "setAdminResponse");
+    private final static QName _AfficherParticipationEventsResponse_QNAME = new QName("http://gestion/", "afficherParticipationEventsResponse");
+    private final static QName _AfficherParticipations_QNAME = new QName("http://gestion/", "afficherParticipations");
+    private final static QName _ModifCompteResponse_QNAME = new QName("http://gestion/", "modifCompteResponse");
+    private final static QName _ModifEventResponse_QNAME = new QName("http://gestion/", "modifEventResponse");
     private final static QName _Compte_QNAME = new QName("http://gestion/", "compte");
     private final static QName _Event_QNAME = new QName("http://gestion/", "event");
-    private final static QName _Initialisation_QNAME = new QName("http://gestion/", "initialisation");
-    private final static QName _AfficherParticipants_QNAME = new QName("http://gestion/", "afficherParticipants");
     private final static QName _Connexion_QNAME = new QName("http://gestion/", "connexion");
     private final static QName _ConnexionResponse_QNAME = new QName("http://gestion/", "connexionResponse");
-    private final static QName _AjouterParticipation_QNAME = new QName("http://gestion/", "ajouterParticipation");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: gestion
@@ -76,171 +88,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AjouterParticipation }
+     * Create an instance of {@link ModifImageEvent }
      * 
      */
-    public AjouterParticipation createAjouterParticipation() {
-        return new AjouterParticipation();
+    public ModifImageEvent createModifImageEvent() {
+        return new ModifImageEvent();
     }
 
     /**
-     * Create an instance of {@link AfficherEventsResponse }
+     * Create an instance of {@link SupprParticipationEvent }
      * 
      */
-    public AfficherEventsResponse createAfficherEventsResponse() {
-        return new AfficherEventsResponse();
-    }
-
-    /**
-     * Create an instance of {@link AfficherParticipants }
-     * 
-     */
-    public AfficherParticipants createAfficherParticipants() {
-        return new AfficherParticipants();
-    }
-
-    /**
-     * Create an instance of {@link Connexion }
-     * 
-     */
-    public Connexion createConnexion() {
-        return new Connexion();
-    }
-
-    /**
-     * Create an instance of {@link RechercheEventResponse }
-     * 
-     */
-    public RechercheEventResponse createRechercheEventResponse() {
-        return new RechercheEventResponse();
-    }
-
-    /**
-     * Create an instance of {@link AfficherParticipations }
-     * 
-     */
-    public AfficherParticipations createAfficherParticipations() {
-        return new AfficherParticipations();
-    }
-
-    /**
-     * Create an instance of {@link ModifEventResponse }
-     * 
-     */
-    public ModifEventResponse createModifEventResponse() {
-        return new ModifEventResponse();
-    }
-
-    /**
-     * Create an instance of {@link CompteValideResponse }
-     * 
-     */
-    public CompteValideResponse createCompteValideResponse() {
-        return new CompteValideResponse();
-    }
-
-    /**
-     * Create an instance of {@link CompteValide }
-     * 
-     */
-    public CompteValide createCompteValide() {
-        return new CompteValide();
-    }
-
-    /**
-     * Create an instance of {@link ModifCompte }
-     * 
-     */
-    public ModifCompte createModifCompte() {
-        return new ModifCompte();
-    }
-
-    /**
-     * Create an instance of {@link IsAdmin }
-     * 
-     */
-    public IsAdmin createIsAdmin() {
-        return new IsAdmin();
-    }
-
-    /**
-     * Create an instance of {@link Initialisation }
-     * 
-     */
-    public Initialisation createInitialisation() {
-        return new Initialisation();
-    }
-
-    /**
-     * Create an instance of {@link AjoutEvent }
-     * 
-     */
-    public AjoutEvent createAjoutEvent() {
-        return new AjoutEvent();
-    }
-
-    /**
-     * Create an instance of {@link Event }
-     * 
-     */
-    public Event createEvent() {
-        return new Event();
-    }
-
-    /**
-     * Create an instance of {@link AfficherParticipantsResponse }
-     * 
-     */
-    public AfficherParticipantsResponse createAfficherParticipantsResponse() {
-        return new AfficherParticipantsResponse();
-    }
-
-    /**
-     * Create an instance of {@link ModifMdpCompteResponse }
-     * 
-     */
-    public ModifMdpCompteResponse createModifMdpCompteResponse() {
-        return new ModifMdpCompteResponse();
-    }
-
-    /**
-     * Create an instance of {@link SupprEvent }
-     * 
-     */
-    public SupprEvent createSupprEvent() {
-        return new SupprEvent();
-    }
-
-    /**
-     * Create an instance of {@link SetAdmin }
-     * 
-     */
-    public SetAdmin createSetAdmin() {
-        return new SetAdmin();
-    }
-
-    /**
-     * Create an instance of {@link AjoutEventResponse }
-     * 
-     */
-    public AjoutEventResponse createAjoutEventResponse() {
-        return new AjoutEventResponse();
-    }
-
-    /**
-     * Create an instance of {@link AjoutCompte }
-     * 
-     */
-    public AjoutCompte createAjoutCompte() {
-        return new AjoutCompte();
-    }
-
-    /**
-     * Create an instance of {@link AjouterParticipationResponse }
-     * 
-     */
-    public AjouterParticipationResponse createAjouterParticipationResponse() {
-        return new AjouterParticipationResponse();
+    public SupprParticipationEvent createSupprParticipationEvent() {
+        return new SupprParticipationEvent();
     }
 
     /**
@@ -252,11 +112,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AfficherComptesResponse }
+     * Create an instance of {@link IsAdmin }
      * 
      */
-    public AfficherComptesResponse createAfficherComptesResponse() {
-        return new AfficherComptesResponse();
+    public IsAdmin createIsAdmin() {
+        return new IsAdmin();
+    }
+
+    /**
+     * Create an instance of {@link SetAdmin }
+     * 
+     */
+    public SetAdmin createSetAdmin() {
+        return new SetAdmin();
+    }
+
+    /**
+     * Create an instance of {@link AfficherComptes }
+     * 
+     */
+    public AfficherComptes createAfficherComptes() {
+        return new AfficherComptes();
+    }
+
+    /**
+     * Create an instance of {@link ModifEventResponse }
+     * 
+     */
+    public ModifEventResponse createModifEventResponse() {
+        return new ModifEventResponse();
+    }
+
+    /**
+     * Create an instance of {@link SupprCompte }
+     * 
+     */
+    public SupprCompte createSupprCompte() {
+        return new SupprCompte();
+    }
+
+    /**
+     * Create an instance of {@link RechercheEvent }
+     * 
+     */
+    public RechercheEvent createRechercheEvent() {
+        return new RechercheEvent();
     }
 
     /**
@@ -268,19 +168,147 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ModifCompteResponse }
+     * Create an instance of {@link SupprEvent }
      * 
      */
-    public ModifCompteResponse createModifCompteResponse() {
-        return new ModifCompteResponse();
+    public SupprEvent createSupprEvent() {
+        return new SupprEvent();
     }
 
     /**
-     * Create an instance of {@link ModifImageEventResponse }
+     * Create an instance of {@link AjoutCompte }
      * 
      */
-    public ModifImageEventResponse createModifImageEventResponse() {
-        return new ModifImageEventResponse();
+    public AjoutCompte createAjoutCompte() {
+        return new AjoutCompte();
+    }
+
+    /**
+     * Create an instance of {@link ResetEvents }
+     * 
+     */
+    public ResetEvents createResetEvents() {
+        return new ResetEvents();
+    }
+
+    /**
+     * Create an instance of {@link ModifEvent }
+     * 
+     */
+    public ModifEvent createModifEvent() {
+        return new ModifEvent();
+    }
+
+    /**
+     * Create an instance of {@link AfficherParticipationEvents }
+     * 
+     */
+    public AfficherParticipationEvents createAfficherParticipationEvents() {
+        return new AfficherParticipationEvents();
+    }
+
+    /**
+     * Create an instance of {@link SupprParticipationResponse }
+     * 
+     */
+    public SupprParticipationResponse createSupprParticipationResponse() {
+        return new SupprParticipationResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheEventResponse }
+     * 
+     */
+    public RechercheEventResponse createRechercheEventResponse() {
+        return new RechercheEventResponse();
+    }
+
+    /**
+     * Create an instance of {@link ResetParticipations }
+     * 
+     */
+    public ResetParticipations createResetParticipations() {
+        return new ResetParticipations();
+    }
+
+    /**
+     * Create an instance of {@link AjouterParticipation }
+     * 
+     */
+    public AjouterParticipation createAjouterParticipation() {
+        return new AjouterParticipation();
+    }
+
+    /**
+     * Create an instance of {@link AfficherParticipations }
+     * 
+     */
+    public AfficherParticipations createAfficherParticipations() {
+        return new AfficherParticipations();
+    }
+
+    /**
+     * Create an instance of {@link SetAdminResponse }
+     * 
+     */
+    public SetAdminResponse createSetAdminResponse() {
+        return new SetAdminResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheCompteResponse }
+     * 
+     */
+    public RechercheCompteResponse createRechercheCompteResponse() {
+        return new RechercheCompteResponse();
+    }
+
+    /**
+     * Create an instance of {@link SupprParticipationMailResponse }
+     * 
+     */
+    public SupprParticipationMailResponse createSupprParticipationMailResponse() {
+        return new SupprParticipationMailResponse();
+    }
+
+    /**
+     * Create an instance of {@link ResetEventsResponse }
+     * 
+     */
+    public ResetEventsResponse createResetEventsResponse() {
+        return new ResetEventsResponse();
+    }
+
+    /**
+     * Create an instance of {@link Event }
+     * 
+     */
+    public Event createEvent() {
+        return new Event();
+    }
+
+    /**
+     * Create an instance of {@link SupprParticipation }
+     * 
+     */
+    public SupprParticipation createSupprParticipation() {
+        return new SupprParticipation();
+    }
+
+    /**
+     * Create an instance of {@link RechercheCompte }
+     * 
+     */
+    public RechercheCompte createRechercheCompte() {
+        return new RechercheCompte();
+    }
+
+    /**
+     * Create an instance of {@link Connexion }
+     * 
+     */
+    public Connexion createConnexion() {
+        return new Connexion();
     }
 
     /**
@@ -300,43 +328,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InitialisationResponse }
+     * Create an instance of {@link AfficherParticipantsResponse }
      * 
      */
-    public InitialisationResponse createInitialisationResponse() {
-        return new InitialisationResponse();
+    public AfficherParticipantsResponse createAfficherParticipantsResponse() {
+        return new AfficherParticipantsResponse();
     }
 
     /**
-     * Create an instance of {@link SetAdminResponse }
+     * Create an instance of {@link AfficherComptesResponse }
      * 
      */
-    public SetAdminResponse createSetAdminResponse() {
-        return new SetAdminResponse();
-    }
-
-    /**
-     * Create an instance of {@link ModifEvent }
-     * 
-     */
-    public ModifEvent createModifEvent() {
-        return new ModifEvent();
-    }
-
-    /**
-     * Create an instance of {@link AfficherParticipationsResponse }
-     * 
-     */
-    public AfficherParticipationsResponse createAfficherParticipationsResponse() {
-        return new AfficherParticipationsResponse();
-    }
-
-    /**
-     * Create an instance of {@link SupprCompteResponse }
-     * 
-     */
-    public SupprCompteResponse createSupprCompteResponse() {
-        return new SupprCompteResponse();
+    public AfficherComptesResponse createAfficherComptesResponse() {
+        return new AfficherComptesResponse();
     }
 
     /**
@@ -348,11 +352,75 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AfficherComptes }
+     * Create an instance of {@link SupprParticipationMail }
      * 
      */
-    public AfficherComptes createAfficherComptes() {
-        return new AfficherComptes();
+    public SupprParticipationMail createSupprParticipationMail() {
+        return new SupprParticipationMail();
+    }
+
+    /**
+     * Create an instance of {@link ResetComptes }
+     * 
+     */
+    public ResetComptes createResetComptes() {
+        return new ResetComptes();
+    }
+
+    /**
+     * Create an instance of {@link AjouterParticipationResponse }
+     * 
+     */
+    public AjouterParticipationResponse createAjouterParticipationResponse() {
+        return new AjouterParticipationResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifCompteResponse }
+     * 
+     */
+    public ModifCompteResponse createModifCompteResponse() {
+        return new ModifCompteResponse();
+    }
+
+    /**
+     * Create an instance of {@link AfficherParticipants }
+     * 
+     */
+    public AfficherParticipants createAfficherParticipants() {
+        return new AfficherParticipants();
+    }
+
+    /**
+     * Create an instance of {@link AjoutEventResponse }
+     * 
+     */
+    public AjoutEventResponse createAjoutEventResponse() {
+        return new AjoutEventResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifMdpCompteResponse }
+     * 
+     */
+    public ModifMdpCompteResponse createModifMdpCompteResponse() {
+        return new ModifMdpCompteResponse();
+    }
+
+    /**
+     * Create an instance of {@link SupprCompteResponse }
+     * 
+     */
+    public SupprCompteResponse createSupprCompteResponse() {
+        return new SupprCompteResponse();
+    }
+
+    /**
+     * Create an instance of {@link SupprParticipationEventResponse }
+     * 
+     */
+    public SupprParticipationEventResponse createSupprParticipationEventResponse() {
+        return new SupprParticipationEventResponse();
     }
 
     /**
@@ -364,35 +432,75 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SupprCompte }
+     * Create an instance of {@link AfficherEventsResponse }
      * 
      */
-    public SupprCompte createSupprCompte() {
-        return new SupprCompte();
+    public AfficherEventsResponse createAfficherEventsResponse() {
+        return new AfficherEventsResponse();
     }
 
     /**
-     * Create an instance of {@link RechercheCompteResponse }
+     * Create an instance of {@link AjoutEvent }
      * 
      */
-    public RechercheCompteResponse createRechercheCompteResponse() {
-        return new RechercheCompteResponse();
+    public AjoutEvent createAjoutEvent() {
+        return new AjoutEvent();
     }
 
     /**
-     * Create an instance of {@link RechercheCompte }
+     * Create an instance of {@link CompteValideResponse }
      * 
      */
-    public RechercheCompte createRechercheCompte() {
-        return new RechercheCompte();
+    public CompteValideResponse createCompteValideResponse() {
+        return new CompteValideResponse();
     }
 
     /**
-     * Create an instance of {@link SupprEventResponse }
+     * Create an instance of {@link AfficherParticipationEventsResponse }
      * 
      */
-    public SupprEventResponse createSupprEventResponse() {
-        return new SupprEventResponse();
+    public AfficherParticipationEventsResponse createAfficherParticipationEventsResponse() {
+        return new AfficherParticipationEventsResponse();
+    }
+
+    /**
+     * Create an instance of {@link CompteValide }
+     * 
+     */
+    public CompteValide createCompteValide() {
+        return new CompteValide();
+    }
+
+    /**
+     * Create an instance of {@link ModifImageEventResponse }
+     * 
+     */
+    public ModifImageEventResponse createModifImageEventResponse() {
+        return new ModifImageEventResponse();
+    }
+
+    /**
+     * Create an instance of {@link ResetParticipationsResponse }
+     * 
+     */
+    public ResetParticipationsResponse createResetParticipationsResponse() {
+        return new ResetParticipationsResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifCompte }
+     * 
+     */
+    public ModifCompte createModifCompte() {
+        return new ModifCompte();
+    }
+
+    /**
+     * Create an instance of {@link ResetComptesResponse }
+     * 
+     */
+    public ResetComptesResponse createResetComptesResponse() {
+        return new ResetComptesResponse();
     }
 
     /**
@@ -404,46 +512,37 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RechercheEvent }
+     * Create an instance of {@link AfficherParticipationsResponse }
      * 
      */
-    public RechercheEvent createRechercheEvent() {
-        return new RechercheEvent();
+    public AfficherParticipationsResponse createAfficherParticipationsResponse() {
+        return new AfficherParticipationsResponse();
     }
 
     /**
-     * Create an instance of {@link ModifImageEvent }
+     * Create an instance of {@link SupprEventResponse }
      * 
      */
-    public ModifImageEvent createModifImageEvent() {
-        return new ModifImageEvent();
+    public SupprEventResponse createSupprEventResponse() {
+        return new SupprEventResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifCompte }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipation }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifCompte")
-    public JAXBElement<ModifCompte> createModifCompte(ModifCompte value) {
-        return new JAXBElement<ModifCompte>(_ModifCompte_QNAME, ModifCompte.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipation")
+    public JAXBElement<SupprParticipation> createSupprParticipation(SupprParticipation value) {
+        return new JAXBElement<SupprParticipation>(_SupprParticipation_QNAME, SupprParticipation.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherComptesResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipationMail }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "afficherComptesResponse")
-    public JAXBElement<AfficherComptesResponse> createAfficherComptesResponse(AfficherComptesResponse value) {
-        return new JAXBElement<AfficherComptesResponse>(_AfficherComptesResponse_QNAME, AfficherComptesResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjoutEvent }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "ajoutEvent")
-    public JAXBElement<AjoutEvent> createAjoutEvent(AjoutEvent value) {
-        return new JAXBElement<AjoutEvent>(_AjoutEvent_QNAME, AjoutEvent.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipationMail")
+    public JAXBElement<SupprParticipationMail> createSupprParticipationMail(SupprParticipationMail value) {
+        return new JAXBElement<SupprParticipationMail>(_SupprParticipationMail_QNAME, SupprParticipationMail.class, null, value);
     }
 
     /**
@@ -456,24 +555,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifMdpCompte }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifMdpCompte")
-    public JAXBElement<ModifMdpCompte> createModifMdpCompte(ModifMdpCompte value) {
-        return new JAXBElement<ModifMdpCompte>(_ModifMdpCompte_QNAME, ModifMdpCompte.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CompteValideResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "compteValideResponse")
-    public JAXBElement<CompteValideResponse> createCompteValideResponse(CompteValideResponse value) {
-        return new JAXBElement<CompteValideResponse>(_CompteValideResponse_QNAME, CompteValideResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AfficherEvents }{@code >}}
      * 
      */
@@ -483,30 +564,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SupprCompte }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipationEvents }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "supprCompte")
-    public JAXBElement<SupprCompte> createSupprCompte(SupprCompte value) {
-        return new JAXBElement<SupprCompte>(_SupprCompte_QNAME, SupprCompte.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipationEvents")
+    public JAXBElement<AfficherParticipationEvents> createAfficherParticipationEvents(AfficherParticipationEvents value) {
+        return new JAXBElement<AfficherParticipationEvents>(_AfficherParticipationEvents_QNAME, AfficherParticipationEvents.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InitialisationResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipationMailResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "initialisationResponse")
-    public JAXBElement<InitialisationResponse> createInitialisationResponse(InitialisationResponse value) {
-        return new JAXBElement<InitialisationResponse>(_InitialisationResponse_QNAME, InitialisationResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SupprEvent }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "supprEvent")
-    public JAXBElement<SupprEvent> createSupprEvent(SupprEvent value) {
-        return new JAXBElement<SupprEvent>(_SupprEvent_QNAME, SupprEvent.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipationMailResponse")
+    public JAXBElement<SupprParticipationMailResponse> createSupprParticipationMailResponse(SupprParticipationMailResponse value) {
+        return new JAXBElement<SupprParticipationMailResponse>(_SupprParticipationMailResponse_QNAME, SupprParticipationMailResponse.class, null, value);
     }
 
     /**
@@ -528,48 +600,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Participant }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipationResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "participant")
-    public JAXBElement<Participant> createParticipant(Participant value) {
-        return new JAXBElement<Participant>(_Participant_QNAME, Participant.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipationResponse")
+    public JAXBElement<SupprParticipationResponse> createSupprParticipationResponse(SupprParticipationResponse value) {
+        return new JAXBElement<SupprParticipationResponse>(_SupprParticipationResponse_QNAME, SupprParticipationResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IsAdmin }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipationEvent }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "isAdmin")
-    public JAXBElement<IsAdmin> createIsAdmin(IsAdmin value) {
-        return new JAXBElement<IsAdmin>(_IsAdmin_QNAME, IsAdmin.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifMdpCompteResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifMdpCompteResponse")
-    public JAXBElement<ModifMdpCompteResponse> createModifMdpCompteResponse(ModifMdpCompteResponse value) {
-        return new JAXBElement<ModifMdpCompteResponse>(_ModifMdpCompteResponse_QNAME, ModifMdpCompteResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipationsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipationsResponse")
-    public JAXBElement<AfficherParticipationsResponse> createAfficherParticipationsResponse(AfficherParticipationsResponse value) {
-        return new JAXBElement<AfficherParticipationsResponse>(_AfficherParticipationsResponse_QNAME, AfficherParticipationsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjoutCompte }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "ajoutCompte")
-    public JAXBElement<AjoutCompte> createAjoutCompte(AjoutCompte value) {
-        return new JAXBElement<AjoutCompte>(_AjoutCompte_QNAME, AjoutCompte.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipationEvent")
+    public JAXBElement<SupprParticipationEvent> createSupprParticipationEvent(SupprParticipationEvent value) {
+        return new JAXBElement<SupprParticipationEvent>(_SupprParticipationEvent_QNAME, SupprParticipationEvent.class, null, value);
     }
 
     /**
@@ -627,12 +672,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterParticipationResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetComptes }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://gestion/", name = "ajouterParticipationResponse")
-    public JAXBElement<AjouterParticipationResponse> createAjouterParticipationResponse(AjouterParticipationResponse value) {
-        return new JAXBElement<AjouterParticipationResponse>(_AjouterParticipationResponse_QNAME, AjouterParticipationResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetComptes")
+    public JAXBElement<ResetComptes> createResetComptes(ResetComptes value) {
+        return new JAXBElement<ResetComptes>(_ResetComptes_QNAME, ResetComptes.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetEventsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetEventsResponse")
+    public JAXBElement<ResetEventsResponse> createResetEventsResponse(ResetEventsResponse value) {
+        return new JAXBElement<ResetEventsResponse>(_ResetEventsResponse_QNAME, ResetEventsResponse.class, null, value);
     }
 
     /**
@@ -642,15 +696,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://gestion/", name = "afficherComptes")
     public JAXBElement<AfficherComptes> createAfficherComptes(AfficherComptes value) {
         return new JAXBElement<AfficherComptes>(_AfficherComptes_QNAME, AfficherComptes.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifImageEvent }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifImageEvent")
-    public JAXBElement<ModifImageEvent> createModifImageEvent(ModifImageEvent value) {
-        return new JAXBElement<ModifImageEvent>(_ModifImageEvent_QNAME, ModifImageEvent.class, null, value);
     }
 
     /**
@@ -672,33 +717,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SetAdminResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "setAdminResponse")
-    public JAXBElement<SetAdminResponse> createSetAdminResponse(SetAdminResponse value) {
-        return new JAXBElement<SetAdminResponse>(_SetAdminResponse_QNAME, SetAdminResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipations }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipations")
-    public JAXBElement<AfficherParticipations> createAfficherParticipations(AfficherParticipations value) {
-        return new JAXBElement<AfficherParticipations>(_AfficherParticipations_QNAME, AfficherParticipations.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifCompteResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifCompteResponse")
-    public JAXBElement<ModifCompteResponse> createModifCompteResponse(ModifCompteResponse value) {
-        return new JAXBElement<ModifCompteResponse>(_ModifCompteResponse_QNAME, ModifCompteResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AfficherEventsResponse }{@code >}}
      * 
      */
@@ -714,15 +732,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://gestion/", name = "modifEvent")
     public JAXBElement<ModifEvent> createModifEvent(ModifEvent value) {
         return new JAXBElement<ModifEvent>(_ModifEvent_QNAME, ModifEvent.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModifEventResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "modifEventResponse")
-    public JAXBElement<ModifEventResponse> createModifEventResponse(ModifEventResponse value) {
-        return new JAXBElement<ModifEventResponse>(_ModifEventResponse_QNAME, ModifEventResponse.class, null, value);
     }
 
     /**
@@ -744,6 +753,240 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprParticipationEventResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprParticipationEventResponse")
+    public JAXBElement<SupprParticipationEventResponse> createSupprParticipationEventResponse(SupprParticipationEventResponse value) {
+        return new JAXBElement<SupprParticipationEventResponse>(_SupprParticipationEventResponse_QNAME, SupprParticipationEventResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipants }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipants")
+    public JAXBElement<AfficherParticipants> createAfficherParticipants(AfficherParticipants value) {
+        return new JAXBElement<AfficherParticipants>(_AfficherParticipants_QNAME, AfficherParticipants.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterParticipation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "ajouterParticipation")
+    public JAXBElement<AjouterParticipation> createAjouterParticipation(AjouterParticipation value) {
+        return new JAXBElement<AjouterParticipation>(_AjouterParticipation_QNAME, AjouterParticipation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifCompte }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifCompte")
+    public JAXBElement<ModifCompte> createModifCompte(ModifCompte value) {
+        return new JAXBElement<ModifCompte>(_ModifCompte_QNAME, ModifCompte.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherComptesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherComptesResponse")
+    public JAXBElement<AfficherComptesResponse> createAfficherComptesResponse(AfficherComptesResponse value) {
+        return new JAXBElement<AfficherComptesResponse>(_AfficherComptesResponse_QNAME, AfficherComptesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjoutEvent }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "ajoutEvent")
+    public JAXBElement<AjoutEvent> createAjoutEvent(AjoutEvent value) {
+        return new JAXBElement<AjoutEvent>(_AjoutEvent_QNAME, AjoutEvent.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifMdpCompte }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifMdpCompte")
+    public JAXBElement<ModifMdpCompte> createModifMdpCompte(ModifMdpCompte value) {
+        return new JAXBElement<ModifMdpCompte>(_ModifMdpCompte_QNAME, ModifMdpCompte.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CompteValideResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "compteValideResponse")
+    public JAXBElement<CompteValideResponse> createCompteValideResponse(CompteValideResponse value) {
+        return new JAXBElement<CompteValideResponse>(_CompteValideResponse_QNAME, CompteValideResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetParticipations }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetParticipations")
+    public JAXBElement<ResetParticipations> createResetParticipations(ResetParticipations value) {
+        return new JAXBElement<ResetParticipations>(_ResetParticipations_QNAME, ResetParticipations.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetComptesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetComptesResponse")
+    public JAXBElement<ResetComptesResponse> createResetComptesResponse(ResetComptesResponse value) {
+        return new JAXBElement<ResetComptesResponse>(_ResetComptesResponse_QNAME, ResetComptesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprCompte }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprCompte")
+    public JAXBElement<SupprCompte> createSupprCompte(SupprCompte value) {
+        return new JAXBElement<SupprCompte>(_SupprCompte_QNAME, SupprCompte.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetEvents }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetEvents")
+    public JAXBElement<ResetEvents> createResetEvents(ResetEvents value) {
+        return new JAXBElement<ResetEvents>(_ResetEvents_QNAME, ResetEvents.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SupprEvent }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "supprEvent")
+    public JAXBElement<SupprEvent> createSupprEvent(SupprEvent value) {
+        return new JAXBElement<SupprEvent>(_SupprEvent_QNAME, SupprEvent.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Participant }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "participant")
+    public JAXBElement<Participant> createParticipant(Participant value) {
+        return new JAXBElement<Participant>(_Participant_QNAME, Participant.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IsAdmin }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "isAdmin")
+    public JAXBElement<IsAdmin> createIsAdmin(IsAdmin value) {
+        return new JAXBElement<IsAdmin>(_IsAdmin_QNAME, IsAdmin.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifMdpCompteResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifMdpCompteResponse")
+    public JAXBElement<ModifMdpCompteResponse> createModifMdpCompteResponse(ModifMdpCompteResponse value) {
+        return new JAXBElement<ModifMdpCompteResponse>(_ModifMdpCompteResponse_QNAME, ModifMdpCompteResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipationsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipationsResponse")
+    public JAXBElement<AfficherParticipationsResponse> createAfficherParticipationsResponse(AfficherParticipationsResponse value) {
+        return new JAXBElement<AfficherParticipationsResponse>(_AfficherParticipationsResponse_QNAME, AfficherParticipationsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjoutCompte }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "ajoutCompte")
+    public JAXBElement<AjoutCompte> createAjoutCompte(AjoutCompte value) {
+        return new JAXBElement<AjoutCompte>(_AjoutCompte_QNAME, AjoutCompte.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetParticipationsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "resetParticipationsResponse")
+    public JAXBElement<ResetParticipationsResponse> createResetParticipationsResponse(ResetParticipationsResponse value) {
+        return new JAXBElement<ResetParticipationsResponse>(_ResetParticipationsResponse_QNAME, ResetParticipationsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterParticipationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "ajouterParticipationResponse")
+    public JAXBElement<AjouterParticipationResponse> createAjouterParticipationResponse(AjouterParticipationResponse value) {
+        return new JAXBElement<AjouterParticipationResponse>(_AjouterParticipationResponse_QNAME, AjouterParticipationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifImageEvent }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifImageEvent")
+    public JAXBElement<ModifImageEvent> createModifImageEvent(ModifImageEvent value) {
+        return new JAXBElement<ModifImageEvent>(_ModifImageEvent_QNAME, ModifImageEvent.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetAdminResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "setAdminResponse")
+    public JAXBElement<SetAdminResponse> createSetAdminResponse(SetAdminResponse value) {
+        return new JAXBElement<SetAdminResponse>(_SetAdminResponse_QNAME, SetAdminResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipationEventsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipationEventsResponse")
+    public JAXBElement<AfficherParticipationEventsResponse> createAfficherParticipationEventsResponse(AfficherParticipationEventsResponse value) {
+        return new JAXBElement<AfficherParticipationEventsResponse>(_AfficherParticipationEventsResponse_QNAME, AfficherParticipationEventsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipations }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipations")
+    public JAXBElement<AfficherParticipations> createAfficherParticipations(AfficherParticipations value) {
+        return new JAXBElement<AfficherParticipations>(_AfficherParticipations_QNAME, AfficherParticipations.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifCompteResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifCompteResponse")
+    public JAXBElement<ModifCompteResponse> createModifCompteResponse(ModifCompteResponse value) {
+        return new JAXBElement<ModifCompteResponse>(_ModifCompteResponse_QNAME, ModifCompteResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifEventResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://gestion/", name = "modifEventResponse")
+    public JAXBElement<ModifEventResponse> createModifEventResponse(ModifEventResponse value) {
+        return new JAXBElement<ModifEventResponse>(_ModifEventResponse_QNAME, ModifEventResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Compte }{@code >}}
      * 
      */
@@ -762,24 +1005,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Initialisation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "initialisation")
-    public JAXBElement<Initialisation> createInitialisation(Initialisation value) {
-        return new JAXBElement<Initialisation>(_Initialisation_QNAME, Initialisation.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AfficherParticipants }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "afficherParticipants")
-    public JAXBElement<AfficherParticipants> createAfficherParticipants(AfficherParticipants value) {
-        return new JAXBElement<AfficherParticipants>(_AfficherParticipants_QNAME, AfficherParticipants.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Connexion }{@code >}}
      * 
      */
@@ -795,15 +1020,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://gestion/", name = "connexionResponse")
     public JAXBElement<ConnexionResponse> createConnexionResponse(ConnexionResponse value) {
         return new JAXBElement<ConnexionResponse>(_ConnexionResponse_QNAME, ConnexionResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterParticipation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://gestion/", name = "ajouterParticipation")
-    public JAXBElement<AjouterParticipation> createAjouterParticipation(AjouterParticipation value) {
-        return new JAXBElement<AjouterParticipation>(_AjouterParticipation_QNAME, AjouterParticipation.class, null, value);
     }
 
 }

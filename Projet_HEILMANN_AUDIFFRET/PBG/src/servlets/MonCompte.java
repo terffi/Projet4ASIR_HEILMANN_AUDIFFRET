@@ -29,7 +29,6 @@ public class MonCompte extends HttpServlet {
     public MonCompte() {
         super();
 		stub = new GestionPBGService().getGestionPBGPort();
-		stub.initialisation();
     }
 
 	/**
