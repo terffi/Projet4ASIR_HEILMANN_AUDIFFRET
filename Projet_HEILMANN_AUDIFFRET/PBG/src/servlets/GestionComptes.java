@@ -111,8 +111,8 @@ public class GestionComptes extends HttpServlet {
 			
 			//recherche
 			if(action.equals("Rechercher")) {
-				String motClef = request.getParameter("recherche");
-				maSession.setAttribute("recherche", motClef);	
+				String motClef = request.getParameter("rechercheCompte");
+				maSession.setAttribute("rechercheCompte", motClef);	
 			}
 		
 			//ajout d'un compte administrateur

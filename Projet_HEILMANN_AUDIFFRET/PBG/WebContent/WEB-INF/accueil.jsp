@@ -65,8 +65,7 @@
 					</c:otherwise>
 				</c:choose>
 				
-				<a class="btn btn-action btn-lg" role="button" href="ControllerClient">VOIR LES EVENEMENTS</a>
-				<a class="btn btn-action btn-lg" role="button" href="ControllerEvent">STAFF</a>
+				<a class="btn btn-action btn-lg" role="button" href="events">VOIR LES EVENEMENTS</a>
 				
 				</p>
 			</div>

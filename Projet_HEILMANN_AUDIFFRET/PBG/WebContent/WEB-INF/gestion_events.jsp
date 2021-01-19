@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,23 +61,23 @@
 	<form action="gestion_events" method="post">
 		<div class="form-group">
   			<label for="rechercheEvent">Nom de l'event :</label>
-  			<input type="text" class="form-control" id="rechercheEvent" name="rechercheEvent">
+  			<input type="text" class="form-control" id="rechercheEvent" name="rechercheEvent" value="${sessionScope.rechercheEvent}">
 		</div>
 		<input type="hidden" name="action" value="Rechercher"/>
 	</form>
 	
 	<!-- Resultats de la recherche -->
-	<div class="container">
+	<div class="table-responsive">
 
-	<table class="table" id="listeRecherche">
+	<table class="table table-hover text-center table-vcenter" id="listeRecherche">
 	
 	<thead>
 	      <tr>
-	      	<th>identifiant</th>
-	        <th>nom</th>
-	        <th>image</th>
-	        <th>description</th>
-	        <th>date</th>
+	      	<th class="text-center">identifiant</th>
+	        <th class="text-center">nom</th>
+	        <th class="text-center">image</th>
+	        <th class="text-center">description</th>
+	        <th class="text-center">date</th>
 	      </tr>
 	</thead>
 	
@@ -92,7 +91,7 @@
 	<td>
 	<c:choose>
 		<c:when test="${eventRecherche.base64Image!=null}">
-			<img src="data:image/jpg;base64,${eventRecherche.base64Image}" width="200" height="200">
+			<img src="data:image/jpg;base64,${eventRecherche.base64Image}" height="200">
 		</c:when>
 	</c:choose>
 	</td>
@@ -120,22 +119,22 @@
 	<br/><br/><br/>
 	
 	
-	<!-- Affichage de tout les comptes -->
+<!-- Affichage de tout les events -->
 <div class="page-header">
-<h1>Liste de tout les comptes</h1>
+<h1>Liste de tout les events</h1>
 </div>
 
-<div class="container">
+<div class="table-responsive">
 
-<table class="table" id="listeEvent">
+<table class="table table-hover text-center table-vcenter" id="listeEvent">
 
 <thead>
       <tr>
-	      <th>identifiant</th>
-	      <th>nom</th>
-	      <th>image</th>
-	      <th>description</th>
-	      <th>date</th>
+	      <th class="text-center">identifiant</th>
+	      <th class="text-center">nom</th>
+	      <th class="text-center">image</th>
+	      <th class="text-center">description</th>
+	      <th class="text-center">date</th>
       </tr>
 </thead>
 
@@ -149,7 +148,7 @@
 	<td>
 	<c:choose>
 		<c:when test="${event.base64Image!=null}">
-			<img src="data:image/jpg;base64,${event.base64Image}" width="200" height="200">
+			<img src="data:image/jpg;base64,${event.base64Image}" height="200">
 		</c:when>
 	</c:choose>
 	</td>
@@ -286,9 +285,6 @@ $(document).ready(function() {
         	<input type="submit" name="action" value="Supprimer" class="btn btn-danger"/>
         
 	</form>
-	
-	
-	<br/><br/><br/>
 	
 
 </div>

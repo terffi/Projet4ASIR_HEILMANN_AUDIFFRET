@@ -25,6 +25,7 @@ import eu.medsea.mimeutil.MimeUtil;
 import gestion.GestionPBG;
 import gestion.GestionPBGService;
 
+//servlet de gestion des events accessibles uniquement aux administrateurs
 
 /**
  * Servlet implementation class ControllerEvent
@@ -33,7 +34,7 @@ import gestion.GestionPBGService;
 public class GestionEvents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	GestionPBG stub;
+	GestionPBG stub; //communication avec le service web SOAP
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,7 +50,6 @@ public class GestionEvents extends HttpServlet {
 	
 		HttpSession maSession = request.getSession();
 		
-		//Events events = new Events();
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		
@@ -91,6 +91,18 @@ public class GestionEvents extends HttpServlet {
 		
 		//avant toute action, on vérifie que l'utilisateur est connecté avec un compte administrateur
 		if(compte!=null && stub.isAdmin(compte.getMail(),compte.getMdp())) {
+			
+			
+			//Rechercher un event
+			if(action.equals("Rechercher")) {
+				
+				//récupération des paramètres du form de la jsp + passage de "recherche" à la session
+				String idCle = request.getParameter("rechercheEvent");
+				maSession.setAttribute("rechercheEvent", idCle);
+				
+				response.sendRedirect("/PBG/gestion_events");				
+			}
+			
 			
 			//créer un nouvel event 
 			if(action.equals("Envoyer")) {
@@ -176,11 +188,7 @@ public class GestionEvents extends HttpServlet {
 				}
 				
 			}
-			
-		
-		
-		
-		
+	
 		
 			//Modifier l'image d'un event
 			if(action.equals("Modifier l'image")) {
@@ -257,7 +265,6 @@ public class GestionEvents extends HttpServlet {
 			}
 			
 			
-			
 			//Modifier le nom, la description et la date 
 			if(action.equals("Modifier")) {
 				
@@ -302,7 +309,6 @@ public class GestionEvents extends HttpServlet {
 					doGet(request, response);
 				}				
 			}
-			
 			
 			
 			//Suppression d'un event
@@ -374,9 +380,7 @@ public class GestionEvents extends HttpServlet {
 	private XMLGregorianCalendar convertionDate(String date1) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-	           /*java.util.Date date = formatter.parse(date1);
-	           System.out.println(date);
-	           System.out.println(formatter.format(date));*/
+
 			Date dateBis = formatter.parse(date1);//on doit passer par une conversion en simple Date pour imposer la format souhaité, ici yyyy-MM-dd
 			
 			GregorianCalendar c = new GregorianCalendar();

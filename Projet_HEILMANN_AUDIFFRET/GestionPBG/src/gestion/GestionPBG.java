@@ -351,6 +351,18 @@ public class GestionPBG {
 	}
 	
 	
+	//Méthode pour obtenir une participation
+	public Participant getParticipation(int idEvent, String mail){
+		
+		for(Participant p : participations) {
+			if(p.getMail().equals(mail)) {
+				return p;
+			}
+		}
+		
+		return null;
+	}	
+	
 	
 	//Méthode pour obtenir tous les participants d'un event
 	@WebMethod(operationName = "afficherParticipants")
@@ -415,10 +427,12 @@ public class GestionPBG {
 	//Méthode pour supprimer des participations
 	@WebMethod(operationName = "supprParticipation")
 	public void supprParticipation(int idEvent, String mail) {
+
+		Participant p = getParticipation(idEvent, mail);
 		
-		Participant p = new Participant(idEvent, mail);
-		
-		participations.remove(p);
+		if(p!=null) {
+			participations.remove(p);
+		}
 	}
 	
 	

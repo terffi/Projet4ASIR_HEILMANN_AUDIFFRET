@@ -27,8 +27,8 @@
   
   
   <servlet>
-    <servlet-name>ControllerClient</servlet-name>
-    <servlet-class>servlets.ControllerClient</servlet-class>
+    <servlet-name>events</servlet-name>
+    <servlet-class>servlets.InscriptionEvents</servlet-class>
      <multipart-config>
         <location>c:/fichiers</location>
         <max-file-size>104857600</max-file-size> <!-- 100 Mo -->
@@ -37,7 +37,7 @@
     </multipart-config>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ControllerClient</servlet-name>
-    <url-pattern>/ControllerClient</url-pattern>
+    <servlet-name>events</servlet-name>
+    <url-pattern>/events</url-pattern>
   </servlet-mapping>
 </web-app>
