@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -54,7 +55,7 @@ public class ControllerEvent extends HttpServlet {
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		
-		
+		//vérifie si l'utilisateur est bien connecté et admin
 		if(compte!=null && compte.isAdmin()) {
 			if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
 			
@@ -64,7 +65,7 @@ public class ControllerEvent extends HttpServlet {
 					
 					request.setAttribute("list", stub.afficherEvents());
 				}
-				else {
+				else {//vérifit si l'identifiant entré est bien un int 
 					if(validation_id((String)maSession.getAttribute("recherche"))) {
 						
 						request.setAttribute("list", stub.rechercheEvent(Integer.parseInt((String)maSession.getAttribute("recherche"))));
@@ -83,7 +84,7 @@ public class ControllerEvent extends HttpServlet {
 		}
 		else {
 			//utilisateur non connecté ou non admin
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 	}
@@ -101,29 +102,35 @@ public class ControllerEvent extends HttpServlet {
 		
 		
 		
-		
+		//vérifie si l'utilisateur est bien connecté et admin
 		if(compte!=null && compte.isAdmin()) {
 			
+			//créer un nouvel event 
 			if(action.equals("Envoyer")) {
 				boolean valide;
 				
+				//vérifie si l'identifiant entré est bien un int 
 				if(validation_id(request.getParameter("id"))) {
 					
+					//récupération des paramètres du formulaires de la jsp
 					int id = Integer.parseInt(request.getParameter("id"));
 					String nom = request.getParameter("nom");
 					String description = request.getParameter("description");
 					String date1 = request.getParameter("date");
 					
 					
-					if(validationNom(nom) && validationDescription(description)) {
+					//vérifie si nom et description sont valides, ainsi que la date
+					if(validationNom(nom) && validationDescription(description) && validation_date(date1)) {
 					   
+						//conversion de la date 
 						XMLGregorianCalendar date = convertionDate(date1);
 						
-						
+						//récupération du fichier
 						try {
 							Part part = request.getPart("fichier");
 						
 							
+							//vérifie si le fichier est non vide 
 							if(part!=null) {
 							
 								System.out.println(part.getName());
@@ -133,10 +140,12 @@ public class ControllerEvent extends HttpServlet {
 								InputStream input = part.getInputStream();
 								
 								
+								//vérifie si le fichier est bien une image de la bonne taille
 								if(validationImage(input, part)) {
 									
 									valide = true;
 									
+									//extraction de l'image
 									ByteArrayOutputStream out = new ByteArrayOutputStream();
 									byte[] buffer = new byte[4096];
 									int bytesRead = -1;
@@ -147,9 +156,10 @@ public class ControllerEvent extends HttpServlet {
 									 
 									byte[] imageBytes = out.toByteArray();
 									 
+									
 									String image = Base64.getEncoder().encodeToString(imageBytes);
 									
-									
+									//ajout de l'event
 									stub.ajoutEvent(id, nom, description, date, image);// c'est quoi ton xmltrucjesaispasquoila C'EST UNE DATE C'EST TOUT 
 									
 								}
@@ -203,16 +213,18 @@ public class ControllerEvent extends HttpServlet {
 		
 		
 		
-		
+		//Modifier l'image d'un event
 			if(action.equals("ModifierImage")) {
 				
 				
 				boolean valide;
 				
+				//vérifie si l'identifiant entré est bien un int 
 				if(validation_id(request.getParameter("id"))) {
 					
 					int id = Integer.parseInt(request.getParameter("id"));
 					
+					//vérifie si l'identifiant entré est bien un identifiant d'un event existant 
 					if(stub.rechercheEvent(id)==null) {
 						
 						valide = false;
@@ -221,6 +233,7 @@ public class ControllerEvent extends HttpServlet {
 					}
 					else {
 						
+						//récupération du fichier de l'image 
 						try {
 							Part part = request.getPart("fichier");
 						
@@ -238,7 +251,7 @@ public class ControllerEvent extends HttpServlet {
 									
 									valide = true;
 									
-									
+									//extraction de l'image
 									ByteArrayOutputStream out = new ByteArrayOutputStream();
 									byte[] buffer = new byte[4096];
 									int bytesRead = -1;
@@ -252,6 +265,7 @@ public class ControllerEvent extends HttpServlet {
 									String image = Base64.getEncoder().encodeToString(imageBytes);
 									
 									
+									//modification de l'image
 									stub.modifImageEvent(id,image);
 									
 								}
@@ -300,34 +314,40 @@ public class ControllerEvent extends HttpServlet {
 			
 			
 			
+			//Modifier le nom, la description et la date 
 			if(action.equals("ModifierNomDescriptionDate")) {
 				
 				boolean valide = true;
 				
+				//récupération des paramètres du formulaire de la jsp
 				String id = request.getParameter("id");
 				String nomModif = request.getParameter("nomModif2");
 				String descriptionModif = request.getParameter("descriptionModif2");
 				String dateModif = request.getParameter("dateModif2");
 				
 				
-				if(validation_id(id)) {
+				//vérifie si l'identifiant entré n'est pas un int 
+				if(validation_id(id)==false) {
 					
 					valide = false;
 					request.setAttribute("erreurIdentifiant", "l'identifiant est invalide");
 				}
 				
+				//vérifie si le nom entré est invalide 
 				if(validationNom(nomModif)==false) {
 					
 					valide = false;
 					request.setAttribute("erreurNom", "le nom est invalide");
 				}
 				
+				//vérifie si la description entrée est invalide 
 				if(validationDescription(descriptionModif)==false) {
 					
 					valide = false;
 					request.setAttribute("erreurDescription", "la description est invalide");
 				}
 				
+				//vérifie si la date entrée est invalide 
 				if(validation_date(dateModif)) {
 					
 					valide = false;
@@ -338,6 +358,7 @@ public class ControllerEvent extends HttpServlet {
 					
 					int idModif = Integer.parseInt(id);
 					
+					//vérifie si l'identifiant de l'event entré correspond bien à un event existant 
 					if(stub.rechercheEvent(idModif)==null) {
 						
 						request.setAttribute("erreurId", "il n'y a aucun event qui porte cet identifiant");
@@ -345,8 +366,11 @@ public class ControllerEvent extends HttpServlet {
 						
 					}
 					else {
+						
+						//convertion de la date
 						XMLGregorianCalendar date = convertionDate(dateModif);
 						
+						//modification du nom, de la description et de la date de l'event 
 						stub.modifEvent(idModif, nomModif, descriptionModif, date);
 						
 						response.sendRedirect("/PBG/ControllerEvent");
@@ -365,18 +389,22 @@ public class ControllerEvent extends HttpServlet {
 			
 			
 			
-			
+			//Suppression d'un event
 			if(action.equals("Supprimer")) {
 				
 				
 				
 				boolean Valide;
+				
+				//récupération du paramètre du form de la jsp
 				String idSupp = request.getParameter("idSupp");
 				
+				//vérifie que l'identifiant est un int
 				if(validation_id(idSupp)) {
 					
 					int id = Integer.parseInt(idSupp);
 					
+					//vérifie que l'identifiant correspond bien à un event
 					if(stub.rechercheEvent(id)==null){
 						
 						Valide = false;
@@ -413,7 +441,7 @@ public class ControllerEvent extends HttpServlet {
 		}
 		else {
 			
-			response.sendRedirect("/PBG/acceuil");
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 		
@@ -441,6 +469,7 @@ public class ControllerEvent extends HttpServlet {
 	}
 	
 	
+	//méthode qui vérifie que la description n'est pas vide et qu'elle n'est pas trop grande 
 	private boolean validationDescription(String description)  {
 		if(!description.equals("")) {
 			if(description.length() > 60000) {
@@ -455,6 +484,8 @@ public class ControllerEvent extends HttpServlet {
 		}
 	}
 	
+	
+	//méthode qui vérifie si le fichier est bien une image de la bonne taille 
 	private boolean validationImage(InputStream input, Part part) {
 		
 		
@@ -469,24 +500,21 @@ public class ControllerEvent extends HttpServlet {
 			   return true;
 		} 
 		else {
-			   /* Envoyer ici une exception précisant que le fichier doit être une image... */
 			return false;
 		}
 
 	}
 	
 	
+	//vérifie que l'identifiant est bien un int 
 	private boolean validation_id(String TestId) {
 		if(TestId.equals("")) {return false;}
+		
 		else {
 			try {
+				
 				int i=Integer.parseInt(TestId);
-				/*if(stub.verification_id2(i, est_pas_present)) {
-					return true;
-				}
-				else {
-					return false;
-				}*/
+
 				return true;
 				
 			}catch(Exception e) {
@@ -496,8 +524,9 @@ public class ControllerEvent extends HttpServlet {
 	}
 	
 	
+	//vérifie que la date récupérée sous forme de string peut être convertie en une date de la bonne forme et qu'elle n'est pas vide
 	private boolean validation_date(String date1) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");//définition du format atendue de la date
 		if(date1.equals("")) {
 			return false;
 		}
@@ -509,26 +538,26 @@ public class ControllerEvent extends HttpServlet {
 				GregorianCalendar c = new GregorianCalendar();
 				c.setTime(dateBis);
 				
-				XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+				//XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 
 				return true;
 		           
 
-		        } catch (ParseException | DatatypeConfigurationException e) {
+		        } catch (ParseException e) {
 		            return false;
 		        }
 		}
 	}
 	
 	
-	
+	//conversion de la date sous forme de string en XMLGregorianCalendar
 	private XMLGregorianCalendar convertionDate(String date1) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 	           /*java.util.Date date = formatter.parse(date1);
 	           System.out.println(date);
 	           System.out.println(formatter.format(date));*/
-			Date dateBis = formatter.parse(date1);
+			Date dateBis = formatter.parse(date1);//on doit passer par une conversion en simple Date pour imposer la format souhaité, ici yyyy-MM-dd
 			
 			GregorianCalendar c = new GregorianCalendar();
 			c.setTime(dateBis);

@@ -40,16 +40,17 @@ public class ControllerClient extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession maSession = request.getSession();
+		HttpSession maSession = request.getSession();//récupération de la session
 		
 		String action = request.getParameter("action");
 		
-		//Events events = new Events();
+
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		
-		
+		//vérifie si l'utilisateur est connecté
 		if(compte!=null) {
+			
 			if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
 			
 			if(maSession.getAttribute("recherche")!=null) {
@@ -60,6 +61,7 @@ public class ControllerClient extends HttpServlet {
 				}
 				else {
 					
+					//vérification que l'identifiant est bien un int avant d'appeler la méthode rechercheEvent
 					if(validation_id((String)maSession.getAttribute("recherche"))) {
 						
 						request.setAttribute("list", stub.rechercheEvent(Integer.parseInt((String)maSession.getAttribute("recherche"))));
@@ -77,8 +79,8 @@ public class ControllerClient extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);
 		}
 		else {
-			//utilisateur non connecté
-			response.sendRedirect("/PBG/acceuil");
+			//utilisateur non connecté, retour à la page d'accueil
+			response.sendRedirect("/PBG/accueil");
 		}
 		
 		
@@ -100,27 +102,33 @@ public class ControllerClient extends HttpServlet {
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		
+		//vérifie si l'utilisateur est connecté
 		if(compte!=null) {
 			
 		
 		
-		
+			//Rechercher un event
 			if(action.equals("Rechercher")) {
 				
+				//récupération des paramètres du form de la jsp + passage de "recherche" à la session
 				String idCle = request.getParameter("recherche");
 				maSession.setAttribute("recherche", idCle);
 				
 			}
 			
+			
+			//Inscription à un event
 			if(action.equals("S'inscrire")) {				
 
 				boolean Valide;
 				String idInsc = request.getParameter("idInsc");
 				
+				//vérifie si l'identifiant entré est bien un int 
 				if(validation_id(idInsc)) {
 					
 					int id = Integer.parseInt(idInsc);
 					
+					//vérifie si l'identifiant correspond à un event
 					if(stub.rechercheEvent(id)==null){
 						
 						Valide = false;
@@ -159,7 +167,8 @@ public class ControllerClient extends HttpServlet {
 			response.sendRedirect("/PolyBoardGames/ControllerClient");
 		}
 		else {
-			response.sendRedirect("/PolyBoardGames/acceuil");
+			//utilisateur non connecté
+			response.sendRedirect("/PolyBoardGames/accueil");
 		}
 	}
 	
