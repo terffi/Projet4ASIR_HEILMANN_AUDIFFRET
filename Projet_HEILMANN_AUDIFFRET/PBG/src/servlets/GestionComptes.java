@@ -44,10 +44,10 @@ public class GestionComptes extends HttpServlet {
 		if(compte!=null && compte.isAdmin()) {
 			
 			//affichage des résultats de la recherche
-			if(maSession.getAttribute("recherche")==null) maSession.setAttribute("recherche", "");
+			if(maSession.getAttribute("rechercheCompte")==null) maSession.setAttribute("rechercheCompte", "");
 			
 			
-			if(maSession.getAttribute("recherche").equals("")) {
+			if(maSession.getAttribute("rechercheCompte").equals("")) {
 				request.setAttribute("resultatRecherche", stub.afficherComptes());
 			}
 			else {

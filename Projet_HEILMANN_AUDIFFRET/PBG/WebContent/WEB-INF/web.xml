@@ -12,18 +12,17 @@
   
   
   <servlet>
-    <servlet-name>ControllerEvent</servlet-name>
-    <servlet-class>servlets.ControllerEvent</servlet-class>
+    <servlet-name>gestion_events</servlet-name>
+    <servlet-class>servlets.GestionEvents</servlet-class>
     <multipart-config>
-        <location>c:/fichiers</location>
         <max-file-size>104857600</max-file-size> <!-- 100 Mo -->
         <max-request-size>524288000</max-request-size> <!-- 5 x 100 Mo -->
         <file-size-threshold>104857600</file-size-threshold> <!-- 100 Mo -->
     </multipart-config>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ControllerEvent</servlet-name>
-    <url-pattern>/ControllerEvent</url-pattern>
+    <servlet-name>gestion_events</servlet-name>
+    <url-pattern>/gestion_events</url-pattern>
   </servlet-mapping>
   
   
