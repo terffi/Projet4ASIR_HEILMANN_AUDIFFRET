@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for rechercheEventResponse complex type.
+ * <p>Java class for adminsResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="rechercheEventResponse">
+ * &lt;complexType name="adminsResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://gestion/}event" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://gestion/}compte" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,13 +29,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rechercheEventResponse", propOrder = {
+@XmlType(name = "adminsResponse", propOrder = {
     "_return"
 })
-public class RechercheEventResponse {
+public class AdminsResponse {
 
     @XmlElement(name = "return")
-    protected List<Event> _return;
+    protected List<Compte> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class RechercheEventResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Event }
+     * {@link Compte }
      * 
      * 
      */
-    public List<Event> getReturn() {
+    public List<Compte> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<Event>();
+            _return = new ArrayList<Compte>();
         }
         return this._return;
     }

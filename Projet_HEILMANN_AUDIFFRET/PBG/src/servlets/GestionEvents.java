@@ -63,7 +63,7 @@ public class GestionEvents extends HttpServlet {
 				request.setAttribute("resultatRecherche", stub.afficherEvents());
 			}
 			else {
-					
+				request.setAttribute("resultatRecherche", stub.rechercheEvent((String) maSession.getAttribute("rechercheEvent")));	
 			}
 			
 			//affichage de tout les events
@@ -344,10 +344,17 @@ public class GestionEvents extends HttpServlet {
 					doGet(request, response);
 				}
 			}
+			
+			
+			//reset de la liste
+			if(action.equals("Reset")) {
+				stub.resetEvents();
+				response.sendRedirect("/PBG/gestion_events");
+			}
 		}
 		else {
 			//l'utilisateur n'a pas un compte admin valide
-			response.sendRedirect("/PBG/accueil");
+			response.sendRedirect("/PBG/sign-out");
 		}
 	}
 	

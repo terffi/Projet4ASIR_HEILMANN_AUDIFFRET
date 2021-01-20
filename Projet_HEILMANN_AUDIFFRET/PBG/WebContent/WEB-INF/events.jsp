@@ -70,7 +70,7 @@
 </div>
 	
 	<!-- Mot à rechercher -->
-	<form action="gestion_events" method="post">
+	<form action="events" method="post">
 		<div class="form-group">
   			<label for="rechercheEventInscription">Nom de l'event :</label>
   			<input type="text" class="form-control" id="rechercheEventInscription" name="rechercheEventInscription" value="${sessionScope.rechercheEventInscription}">

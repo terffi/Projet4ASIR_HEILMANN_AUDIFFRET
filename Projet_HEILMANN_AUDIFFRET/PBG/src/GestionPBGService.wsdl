@@ -30,11 +30,17 @@
   <message name="afficherComptesResponse">
     <part name="parameters" element="tns:afficherComptesResponse"/>
   </message>
-  <message name="rechercheCompte">
-    <part name="parameters" element="tns:rechercheCompte"/>
+  <message name="rechercherCompte">
+    <part name="parameters" element="tns:rechercherCompte"/>
   </message>
-  <message name="rechercheCompteResponse">
-    <part name="parameters" element="tns:rechercheCompteResponse"/>
+  <message name="rechercherCompteResponse">
+    <part name="parameters" element="tns:rechercherCompteResponse"/>
+  </message>
+  <message name="rechercheUnCompte">
+    <part name="parameters" element="tns:rechercheUnCompte"/>
+  </message>
+  <message name="rechercheUnCompteResponse">
+    <part name="parameters" element="tns:rechercheUnCompteResponse"/>
   </message>
   <message name="ajoutCompte">
     <part name="parameters" element="tns:ajoutCompte"/>
@@ -84,6 +90,18 @@
   <message name="setAdminResponse">
     <part name="parameters" element="tns:setAdminResponse"/>
   </message>
+  <message name="unsetAdmin">
+    <part name="parameters" element="tns:unsetAdmin"/>
+  </message>
+  <message name="unsetAdminResponse">
+    <part name="parameters" element="tns:unsetAdminResponse"/>
+  </message>
+  <message name="admins">
+    <part name="parameters" element="tns:admins"/>
+  </message>
+  <message name="adminsResponse">
+    <part name="parameters" element="tns:adminsResponse"/>
+  </message>
   <message name="isAdmin">
     <part name="parameters" element="tns:isAdmin"/>
   </message>
@@ -101,6 +119,12 @@
   </message>
   <message name="rechercheEventResponse">
     <part name="parameters" element="tns:rechercheEventResponse"/>
+  </message>
+  <message name="rechercherUnEvent">
+    <part name="parameters" element="tns:rechercherUnEvent"/>
+  </message>
+  <message name="rechercherUnEventResponse">
+    <part name="parameters" element="tns:rechercherUnEventResponse"/>
   </message>
   <message name="ajoutEvent">
     <part name="parameters" element="tns:ajoutEvent"/>
@@ -137,6 +161,12 @@
   </message>
   <message name="afficherParticipationsResponse">
     <part name="parameters" element="tns:afficherParticipationsResponse"/>
+  </message>
+  <message name="getParticipation">
+    <part name="parameters" element="tns:getParticipation"/>
+  </message>
+  <message name="getParticipationResponse">
+    <part name="parameters" element="tns:getParticipationResponse"/>
   </message>
   <message name="afficherParticipants">
     <part name="parameters" element="tns:afficherParticipants"/>
@@ -179,9 +209,13 @@
       <input message="tns:afficherComptes"/>
       <output message="tns:afficherComptesResponse"/>
     </operation>
-    <operation name="rechercheCompte">
-      <input message="tns:rechercheCompte"/>
-      <output message="tns:rechercheCompteResponse"/>
+    <operation name="rechercherCompte">
+      <input message="tns:rechercherCompte"/>
+      <output message="tns:rechercherCompteResponse"/>
+    </operation>
+    <operation name="rechercheUnCompte">
+      <input message="tns:rechercheUnCompte"/>
+      <output message="tns:rechercheUnCompteResponse"/>
     </operation>
     <operation name="ajoutCompte">
       <input message="tns:ajoutCompte"/>
@@ -215,6 +249,14 @@
       <input message="tns:setAdmin"/>
       <output message="tns:setAdminResponse"/>
     </operation>
+    <operation name="unsetAdmin">
+      <input message="tns:unsetAdmin"/>
+      <output message="tns:unsetAdminResponse"/>
+    </operation>
+    <operation name="admins">
+      <input message="tns:admins"/>
+      <output message="tns:adminsResponse"/>
+    </operation>
     <operation name="isAdmin">
       <input message="tns:isAdmin"/>
       <output message="tns:isAdminResponse"/>
@@ -226,6 +268,10 @@
     <operation name="rechercheEvent">
       <input message="tns:rechercheEvent"/>
       <output message="tns:rechercheEventResponse"/>
+    </operation>
+    <operation name="rechercherUnEvent">
+      <input message="tns:rechercherUnEvent"/>
+      <output message="tns:rechercherUnEventResponse"/>
     </operation>
     <operation name="ajoutEvent">
       <input message="tns:ajoutEvent"/>
@@ -250,6 +296,10 @@
     <operation name="afficherParticipations">
       <input message="tns:afficherParticipations"/>
       <output message="tns:afficherParticipationsResponse"/>
+    </operation>
+    <operation name="getParticipation">
+      <input message="tns:getParticipation"/>
+      <output message="tns:getParticipationResponse"/>
     </operation>
     <operation name="afficherParticipants">
       <input message="tns:afficherParticipants"/>
@@ -306,7 +356,16 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="rechercheCompte">
+    <operation name="rechercherCompte">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="rechercheUnCompte">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -387,6 +446,24 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="unsetAdmin">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="admins">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="isAdmin">
       <soap:operation soapAction=""/>
       <input>
@@ -406,6 +483,15 @@
       </output>
     </operation>
     <operation name="rechercheEvent">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="rechercherUnEvent">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -460,6 +546,15 @@
       </output>
     </operation>
     <operation name="afficherParticipations">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getParticipation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

@@ -286,6 +286,21 @@ $(document).ready(function() {
         
 	</form>
 	
+	
+<br/><br/><br/>
+
+
+<!-- Reset de la liste des events -->
+<div class="page-header">
+<h1>Reset de la liste des events</h1>
+</div>
+
+<form action="gestion_events" method="post">
+
+<input type="submit" name="action" value="Reset" class="btn btn-danger"/>
+
+</form>
+	
 
 </div>
 <!-- container -->

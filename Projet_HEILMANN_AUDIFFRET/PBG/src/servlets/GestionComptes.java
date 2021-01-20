@@ -37,7 +37,7 @@ public class GestionComptes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		HttpSession maSession = request.getSession();
-		
+
 		Compte compte = (Compte)maSession.getAttribute("compte"); //récupération du compte de la session
 		
 		//avant toute action, on vérifie que le compte utilisateur est un compte valide et admin
@@ -51,11 +51,15 @@ public class GestionComptes extends HttpServlet {
 				request.setAttribute("resultatRecherche", stub.afficherComptes());
 			}
 			else {
-				
+				request.setAttribute("resultatRecherche", stub.rechercherCompte((String) maSession.getAttribute("rechercheCompte")));			
 			}
 			
 			//affichage de tout les comptes
 			request.setAttribute("resultat", stub.afficherComptes());
+			
+			//affichage de tout les comptes administrateurs
+			request.setAttribute("resultatAdmins", stub.admins());
+			
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/gestion_comptes.jsp").forward(request, response);
 		}
@@ -122,6 +126,14 @@ public class GestionComptes extends HttpServlet {
 			
 			}
 			
+			
+			//retrait d'un compte administrateur
+			if(action.equals("Retirer en tant qu'administrateur")) {
+				String mail = request.getParameter("mailAdmin");
+				stub.unsetAdmin(mail);
+			
+			}
+			
 			//modification du mot de passe d'un compte
 			if(action.equals("Modifier le mot de passe")) {
 				String mail = request.getParameter("mailModifMdp");
@@ -129,11 +141,17 @@ public class GestionComptes extends HttpServlet {
 				stub.modifMdpCompte(mail, mdp);
 			}
 			
+			
+			//reset de la liste
+			if(action.equals("Reset")) {
+				stub.resetComptes();
+			}
+			
 			response.sendRedirect("/PBG/gestion_comptes");
 		}
 		else {
 			//le compte utilisateur n'est pas admin
-			response.sendRedirect("/PBG/accueil");
+			response.sendRedirect("/PBG/sign-out");
 		}
 	}
 

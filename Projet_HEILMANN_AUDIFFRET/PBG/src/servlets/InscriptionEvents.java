@@ -46,7 +46,7 @@ public class InscriptionEvents extends HttpServlet {
 			request.setAttribute("resultatRecherche", stub.afficherEvents());
 		}
 		else {
-				
+			request.setAttribute("resultatRecherche", stub.rechercheEvent((String) maSession.getAttribute("rechercheEventInscription")));	
 		}
 		
 		gestion.Compte compte = (gestion.Compte)maSession.getAttribute("compte"); //récupération du compte de la session

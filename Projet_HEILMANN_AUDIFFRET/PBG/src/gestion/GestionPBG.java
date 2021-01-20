@@ -62,15 +62,29 @@ public interface GestionPBG {
 
     /**
      * 
+     * @param motCle
+     * @return
+     *     returns java.util.List<gestion.Compte>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "rechercherCompte", targetNamespace = "http://gestion/", className = "gestion.RechercherCompte")
+    @ResponseWrapper(localName = "rechercherCompteResponse", targetNamespace = "http://gestion/", className = "gestion.RechercherCompteResponse")
+    public List<Compte> rechercherCompte(
+        @WebParam(name = "motCle", targetNamespace = "")
+        String motCle);
+
+    /**
+     * 
      * @param mail
      * @return
      *     returns gestion.Compte
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "rechercheCompte", targetNamespace = "http://gestion/", className = "gestion.RechercheCompte")
-    @ResponseWrapper(localName = "rechercheCompteResponse", targetNamespace = "http://gestion/", className = "gestion.RechercheCompteResponse")
-    public Compte rechercheCompte(
+    @RequestWrapper(localName = "rechercheUnCompte", targetNamespace = "http://gestion/", className = "gestion.RechercheUnCompte")
+    @ResponseWrapper(localName = "rechercheUnCompteResponse", targetNamespace = "http://gestion/", className = "gestion.RechercheUnCompteResponse")
+    public Compte rechercheUnCompte(
         @WebParam(name = "mail", targetNamespace = "")
         String mail);
 
@@ -201,6 +215,28 @@ public interface GestionPBG {
     /**
      * 
      * @param mail
+     */
+    @WebMethod
+    @RequestWrapper(localName = "unsetAdmin", targetNamespace = "http://gestion/", className = "gestion.UnsetAdmin")
+    @ResponseWrapper(localName = "unsetAdminResponse", targetNamespace = "http://gestion/", className = "gestion.UnsetAdminResponse")
+    public void unsetAdmin(
+        @WebParam(name = "mail", targetNamespace = "")
+        String mail);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<gestion.Compte>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "admins", targetNamespace = "http://gestion/", className = "gestion.Admins")
+    @ResponseWrapper(localName = "adminsResponse", targetNamespace = "http://gestion/", className = "gestion.AdminsResponse")
+    public List<Compte> admins();
+
+    /**
+     * 
+     * @param mail
      * @param mdp
      * @return
      *     returns boolean
@@ -228,15 +264,29 @@ public interface GestionPBG {
 
     /**
      * 
+     * @param motCle
+     * @return
+     *     returns java.util.List<gestion.Event>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "rechercheEvent", targetNamespace = "http://gestion/", className = "gestion.RechercheEvent")
+    @ResponseWrapper(localName = "rechercheEventResponse", targetNamespace = "http://gestion/", className = "gestion.RechercheEventResponse")
+    public List<Event> rechercheEvent(
+        @WebParam(name = "motCle", targetNamespace = "")
+        String motCle);
+
+    /**
+     * 
      * @param id
      * @return
      *     returns gestion.Event
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "rechercheEvent", targetNamespace = "http://gestion/", className = "gestion.RechercheEvent")
-    @ResponseWrapper(localName = "rechercheEventResponse", targetNamespace = "http://gestion/", className = "gestion.RechercheEventResponse")
-    public Event rechercheEvent(
+    @RequestWrapper(localName = "rechercherUnEvent", targetNamespace = "http://gestion/", className = "gestion.RechercherUnEvent")
+    @ResponseWrapper(localName = "rechercherUnEventResponse", targetNamespace = "http://gestion/", className = "gestion.RechercherUnEventResponse")
+    public Event rechercherUnEvent(
         @WebParam(name = "id", targetNamespace = "")
         int id);
 
@@ -332,6 +382,23 @@ public interface GestionPBG {
     @RequestWrapper(localName = "afficherParticipations", targetNamespace = "http://gestion/", className = "gestion.AfficherParticipations")
     @ResponseWrapper(localName = "afficherParticipationsResponse", targetNamespace = "http://gestion/", className = "gestion.AfficherParticipationsResponse")
     public List<Participant> afficherParticipations();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns gestion.Participant
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getParticipation", targetNamespace = "http://gestion/", className = "gestion.GetParticipation")
+    @ResponseWrapper(localName = "getParticipationResponse", targetNamespace = "http://gestion/", className = "gestion.GetParticipationResponse")
+    public Participant getParticipation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 

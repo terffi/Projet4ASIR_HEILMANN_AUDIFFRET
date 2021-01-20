@@ -241,25 +241,6 @@ $(document).ready(function() {
 <br/><br/><br/>
 
 
-<!-- Ajout d'un compte Administrateur -->
-<div class="page-header">
-<h1>Définir un compte administrateur</h1>
-</div>
-
-<form action="gestion_comptes" method="post">
-<div class="form-group">
-  <label for="mailAdmin">Mail:</label>
-  <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
-</div>
-
-<input type="submit" name="action" value="Ajouter en tant qu'administrateur" class="btn btn-info"/>
-
-</form>
-
-
-<br/><br/><br/>
-
-
 <!-- Suppression d'un compte -->
 <div class="page-header">
 <h1>Supprimer un compte</h1>
@@ -275,6 +256,87 @@ $(document).ready(function() {
 
 </form>
 
+
+
+<br/><br/><br/>
+
+
+<!-- Gestion des Administrateurs -->
+<div class="page-header">
+<h1>Gérer les administrateurs</h1>
+</div>
+
+<form action="gestion_comptes" method="post">
+<div class="form-group">
+  <label for="mailAdmin">Mail:</label>
+  <input type="text" class="form-control" id="mailAdmin" name="mailAdmin">
+</div>
+
+<input type="submit" name="action" value="Ajouter en tant qu'administrateur" class="btn btn-info"/>
+
+<input type="submit" name="action" value="Retirer en tant qu'administrateur" class="btn btn-danger"/>
+
+</form>
+
+
+<br/><br/><br/>
+
+
+<!-- Affichage de tout les admins -->
+<div class="page-header">
+<h1>Liste de tout les Administrateurs</h1>
+</div>
+
+<div class="container">
+
+<table class="table" id="listeAdmins">
+
+<thead>
+      <tr>
+        <th>nom</th>
+        <th>prénom</th>
+        <th>mail</th>
+      </tr>
+</thead>
+
+<tbody>
+
+<c:forEach items="${resultatAdmins}" var="admin">
+
+<tr>
+<td><c:out value="${admin.nom}"></c:out></td>
+<td><c:out value="${admin.prenom}"></c:out></td>
+<td><c:out value="${admin.mail}"></c:out></td>
+</tr>
+
+</c:forEach>
+
+</tbody>
+
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#listeAdmins').DataTable();
+} );
+</script>
+
+</div>
+
+
+<br/><br/><br/>
+
+
+<!-- Reset de la liste des comptes -->
+<div class="page-header">
+<h1>Reset de la liste des comptes</h1>
+</div>
+
+<form action="gestion_comptes" method="post">
+
+<input type="submit" name="action" value="Reset" class="btn btn-danger"/>
+
+</form>
 
 </div>
 <!-- container -->

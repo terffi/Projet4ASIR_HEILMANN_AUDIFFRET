@@ -62,8 +62,24 @@ public class GestionPBG {
 	
 	
 	
+	//Méthode pour obtenir les informations d'un compte via une recherche
+	@WebMethod(operationName = "rechercherCompte")
+	public ArrayList<Compte> rechercherCompte(@WebParam(name="motCle") String motCle) {
+		
+		ArrayList<Compte> listeComptes = new ArrayList<Compte>();
+
+		for(Compte c : comptes) {
+			if(c.getMail().matches("(.*)"+motCle+"(.*)") || c.getNom().matches("(.*)"+motCle+"(.*)") || c.getPrenom().matches("(.*)"+motCle+"(.*)")){
+				listeComptes.add(c);
+			}
+		}
+		return listeComptes;
+	}
+	
+	
+	
 	//Méthode pour obtenir les informations d'un compte via son mail
-	@WebMethod(operationName = "rechercheCompte")
+	@WebMethod(operationName = "rechercheUnCompte")
 	public Compte rechercheUnCompte(@WebParam(name="mail") String mail) {
 		
 		for(Compte c : comptes) {
@@ -228,6 +244,35 @@ public class GestionPBG {
 	
 	
 	
+	//Méthode pour retirer un compte administrateur
+	@WebMethod(operationName = "unsetAdmin")
+	public void unsetAdmin(@WebParam(name="mail") String mail) {
+		//méthode permettant de supprimer un compte administrateur, seulement s'il reste d'autre administrateurs
+		
+		if(admins().size()>1) {
+			Compte c = rechercheUnCompte(mail);
+			c.setAdmin(false);
+		}
+	}
+	
+	
+	//Méthode pour obtenir la liste des comptes administrateur
+	@WebMethod(operationName = "admins")
+	public ArrayList<Compte> admins() {
+		
+		ArrayList<Compte> listeAdmins = new ArrayList<Compte>();
+		
+		for(Compte c : comptes) {
+			if(c.isAdmin()) {
+				listeAdmins.add(c);
+			}
+		}
+		
+		return listeAdmins;
+	}
+	
+	
+	
 	//Méthode pour savoir si un compte est administrateur
 	@WebMethod(operationName = "isAdmin")
 	public boolean isAdmin(@WebParam(name="mail") String mail, @WebParam(name="mdp") String mdp) {
@@ -263,9 +308,24 @@ public class GestionPBG {
 	}
 	
 	
+	//Méthode pour obtenir les informations d'un compte via une recherche
+	@WebMethod(operationName = "rechercheEvent")
+	public ArrayList<Event> rechercheEvent(@WebParam(name="motCle") String motCle) {
+		
+		ArrayList<Event> listeEvent = new ArrayList<Event>();
+		
+		for(Event e : events) {
+			if(e.getNom().matches("(.*)"+motCle+"(.*)") || e.getDescription().matches("(.*)"+motCle+"(.*)")){
+				listeEvent.add(e);
+			}
+		}
+		return listeEvent;
+	}
+	
+	
 	
 	//Méthode pour obtenir les informations d'un event via son id
-	@WebMethod(operationName = "rechercheEvent")
+	@WebMethod(operationName = "rechercherUnEvent")
 	public Event rechercherUnEvent(@WebParam(name="id") int id) {
 		
 		for(Event e : events) {
@@ -460,7 +520,5 @@ public class GestionPBG {
 			}
 		}
 	}
-
-	
 	
 }

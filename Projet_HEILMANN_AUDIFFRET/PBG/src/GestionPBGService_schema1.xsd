@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" targetNamespace="http://gestion/" xmlns:tns="http://gestion/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+  <xs:element name="admins" type="tns:admins"/>
+
+  <xs:element name="adminsResponse" type="tns:adminsResponse"/>
+
   <xs:element name="afficherComptes" type="tns:afficherComptes"/>
 
   <xs:element name="afficherComptesResponse" type="tns:afficherComptesResponse"/>
@@ -45,6 +49,10 @@
 
   <xs:element name="event" type="tns:event"/>
 
+  <xs:element name="getParticipation" type="tns:getParticipation"/>
+
+  <xs:element name="getParticipationResponse" type="tns:getParticipationResponse"/>
+
   <xs:element name="isAdmin" type="tns:isAdmin"/>
 
   <xs:element name="isAdminResponse" type="tns:isAdminResponse"/>
@@ -67,13 +75,21 @@
 
   <xs:element name="participant" type="tns:participant"/>
 
-  <xs:element name="rechercheCompte" type="tns:rechercheCompte"/>
-
-  <xs:element name="rechercheCompteResponse" type="tns:rechercheCompteResponse"/>
-
   <xs:element name="rechercheEvent" type="tns:rechercheEvent"/>
 
   <xs:element name="rechercheEventResponse" type="tns:rechercheEventResponse"/>
+
+  <xs:element name="rechercheUnCompte" type="tns:rechercheUnCompte"/>
+
+  <xs:element name="rechercheUnCompteResponse" type="tns:rechercheUnCompteResponse"/>
+
+  <xs:element name="rechercherCompte" type="tns:rechercherCompte"/>
+
+  <xs:element name="rechercherCompteResponse" type="tns:rechercherCompteResponse"/>
+
+  <xs:element name="rechercherUnEvent" type="tns:rechercherUnEvent"/>
+
+  <xs:element name="rechercherUnEventResponse" type="tns:rechercherUnEventResponse"/>
 
   <xs:element name="resetComptes" type="tns:resetComptes"/>
 
@@ -110,6 +126,10 @@
   <xs:element name="supprParticipationMailResponse" type="tns:supprParticipationMailResponse"/>
 
   <xs:element name="supprParticipationResponse" type="tns:supprParticipationResponse"/>
+
+  <xs:element name="unsetAdmin" type="tns:unsetAdmin"/>
+
+  <xs:element name="unsetAdminResponse" type="tns:unsetAdminResponse"/>
 
   <xs:complexType name="supprEvent">
     <xs:sequence>
@@ -203,6 +223,16 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="unsetAdmin">
+    <xs:sequence>
+      <xs:element name="mail" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unsetAdminResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
   <xs:complexType name="compteValide">
     <xs:sequence>
       <xs:element name="mail" type="xs:string" minOccurs="0"/>
@@ -213,6 +243,18 @@
   <xs:complexType name="compteValideResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rechercheEvent">
+    <xs:sequence>
+      <xs:element name="motCle" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rechercheEventResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:event" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -298,13 +340,13 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="rechercheEvent">
+  <xs:complexType name="rechercherUnEvent">
     <xs:sequence>
       <xs:element name="id" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="rechercheEventResponse">
+  <xs:complexType name="rechercherUnEventResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:event" minOccurs="0"/>
     </xs:sequence>
@@ -327,15 +369,37 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="rechercheCompte">
+  <xs:complexType name="rechercheUnCompte">
     <xs:sequence>
       <xs:element name="mail" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="rechercheCompteResponse">
+  <xs:complexType name="rechercheUnCompteResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:compte" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rechercherCompte">
+    <xs:sequence>
+      <xs:element name="motCle" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rechercherCompteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="admins">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="adminsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -387,13 +451,16 @@
     <xs:sequence/>
   </xs:complexType>
 
-  <xs:complexType name="afficherEvents">
-    <xs:sequence/>
+  <xs:complexType name="getParticipation">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="afficherEventsResponse">
+  <xs:complexType name="getParticipationResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:event" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:participant" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -406,6 +473,16 @@
   <xs:complexType name="afficherParticipantsResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:compte" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="afficherEvents">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="afficherEventsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:event" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

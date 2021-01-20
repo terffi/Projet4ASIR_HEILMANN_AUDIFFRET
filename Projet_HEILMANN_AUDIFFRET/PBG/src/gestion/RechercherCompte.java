@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for rechercheEvent complex type.
+ * <p>Java class for rechercherCompte complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="rechercheEvent">
+ * &lt;complexType name="rechercherCompte">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rechercheEvent", propOrder = {
+@XmlType(name = "rechercherCompte", propOrder = {
     "motCle"
 })
-public class RechercheEvent {
+public class RechercherCompte {
 
     protected String motCle;
 
