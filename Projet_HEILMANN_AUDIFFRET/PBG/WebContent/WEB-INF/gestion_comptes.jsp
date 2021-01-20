@@ -60,7 +60,7 @@
 <!-- Mot à rechercher -->
 <form action="gestion_comptes" method="post">
 <div class="form-group">
-  <label for="rechercheCompte">Recherche:</label>
+  <label for="rechercheCompte">Recherche :</label>
   <input type="text" class="form-control" id="rechercheCompte" name="rechercheCompte" value="${sessionScope.rechercheCompte}">
 </div>
 <input type="hidden" name="action" value="Rechercher"/>

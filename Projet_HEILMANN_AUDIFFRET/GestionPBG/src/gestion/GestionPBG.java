@@ -465,20 +465,24 @@ public class GestionPBG {
 	public void ajouterParticipation(int idEvent, String mail) {
 		//vérifie si un participant le mail rentré existe déjà pour l'event donné puis ajoute la participation à la liste si 
 		//le participant ne participe pas déjà à l'event
+		//vérifie également si l'event et le compte existe
 		
-		//vérification de la participation
-		List<Compte> participants = afficherParticipants(idEvent);
+		if(rechercherUnEvent(idEvent)!=null && rechercheUnCompte(mail)!=null) {
 		
-		boolean valide = true;
-		for(Compte c : participants) {
-			if(c.getMail().equals(mail)) {
-				valide=false;
+			//vérification de la participation
+			List<Compte> participants = afficherParticipants(idEvent);
+			
+			boolean valide = true;
+			for(Compte c : participants) {
+				if(c.getMail().equals(mail)) {
+					valide=false;
+				}
 			}
-		}
-		
-		//ajout de la participation
-		if(valide) {
-			participations.add(new Participant(idEvent, mail));
+			
+			//ajout de la participation
+			if(valide) {
+				participations.add(new Participant(idEvent, mail));
+			}
 		}
 	}
 	
@@ -501,10 +505,16 @@ public class GestionPBG {
 	@WebMethod(operationName = "supprParticipationMail")
 	public void supprParticipationMail(String mail) {
 		
+		ArrayList<Participant> removeP = new ArrayList<Participant>();
+		
 		for(Participant p : participations) {
 			if(p.getMail().equals(mail)) {
-				participations.remove(p);
+				removeP.add(p);
 			}
+		}
+		
+		if(removeP!=null) {
+			participations.removeAll(removeP);
 		}
 	}
 	
@@ -514,10 +524,16 @@ public class GestionPBG {
 	@WebMethod(operationName = "supprParticipationEvent")
 	public void supprParticipationEvent(int idEvent) {
 		
+		ArrayList<Participant> removeP = new ArrayList<Participant>();
+		
 		for(Participant p : participations) {
 			if(p.getIdEvent()==idEvent) {
-				participations.remove(p);
+				removeP.add(p);
 			}
+		}
+		
+		if(removeP!=null) {
+			participations.removeAll(removeP);
 		}
 	}
 	

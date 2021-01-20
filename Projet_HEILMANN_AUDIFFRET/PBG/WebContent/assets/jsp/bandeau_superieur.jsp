@@ -37,7 +37,8 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Interfaces administrateur <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="gestion_comptes">Gestion des comptes</a></li>
-									<li class="active"><a href="gestion_events">Gestion des évènements</a></li>
+									<li><a href="gestion_events">Gestion des évènements</a></li>
+									<li><a href="gestion_participations">Gestion des participations</a></li>
 								</ul>
 							</li>
 						</c:when>
