@@ -121,7 +121,7 @@
 	
 <!-- Affichage de tout les events -->
 <div class="page-header">
-<h1>Liste de tout les events</h1>
+<h1>Liste de tous les events</h1>
 </div>
 
 <div class="table-responsive">

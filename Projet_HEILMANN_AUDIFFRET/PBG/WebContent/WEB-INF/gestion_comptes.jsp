@@ -113,7 +113,7 @@ $(document).ready(function() {
 
 <!-- Affichage de tout les comptes -->
 <div class="page-header">
-<h1>Liste de tout les comptes</h1>
+<h1>Liste de tous les comptes</h1>
 </div>
 
 <div class="container">

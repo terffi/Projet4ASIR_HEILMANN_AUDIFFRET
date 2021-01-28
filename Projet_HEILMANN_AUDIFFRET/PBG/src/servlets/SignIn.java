@@ -58,7 +58,7 @@ public class SignIn extends HttpServlet {
 			
 			maSession.setAttribute("compte", compte);
 			
-			response.sendRedirect("/PBG/accueil");			
+			response.sendRedirect("/PBG/acceuil");			
 		}
 		else {
 			//mot de passe ou mail incorrect
