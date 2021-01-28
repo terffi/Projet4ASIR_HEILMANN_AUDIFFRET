@@ -214,7 +214,7 @@ public class GestionEvents extends HttpServlet {
 				
 				//récupération et verification du fichier
 				try {
-					Part part = request.getPart("fichier");
+					Part part = request.getPart("fichierModifImage");
 						
 					//vérifie si le fichier est non vide 
 					if(part!=null && !part.getSubmittedFileName().equals("")) {
@@ -241,12 +241,12 @@ public class GestionEvents extends HttpServlet {
 							}
 							else {
 								valide = false;
-								request.setAttribute("erreurFichier", "fichier invalide");
+								request.setAttribute("erreurFichierModifImage", "fichier invalide");
 							}	
 						}					   
 					}catch(IllegalStateException e) {		
 						valide = false;
-						request.setAttribute("erreurFichier", "fichier invalide");
+						request.setAttribute("erreurFichierModifImage", "fichier invalide");
 					}	
 				
 				
